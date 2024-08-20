@@ -15,22 +15,40 @@ class _TimerScreenState extends State<TimerScreen> {
     return Column(
       children: [
         Flexible(
-          flex: 5,
+          flex: 1,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.list),
-                  Text(workName),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 4),
+                    child: Image.asset(
+                      height: 22,
+                      "assets/images/todo.png",
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  Text(
+                    workName,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
                 ],
               ),
-              const Text(
-                "25:00",
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 50,
+              const Padding(
+                padding: EdgeInsets.only(
+                  top: 18,
+                ),
+                child: Text(
+                  "25:00",
+                  style: TextStyle(
+                    fontSize: 70,
+                    fontWeight: FontWeight.w100,
+                  ),
                 ),
               ),
               const Row(
@@ -39,7 +57,7 @@ class _TimerScreenState extends State<TimerScreen> {
                   Icon(
                     Icons.circle,
                     size: 15,
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 229, 229, 229),
                   ),
                 ],
               ),
@@ -47,13 +65,17 @@ class _TimerScreenState extends State<TimerScreen> {
           ),
         ),
         Flexible(
-          flex: 6,
+          flex: 1,
           child: Column(
             children: [
               const Icon(Icons.slideshow),
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.play_arrow_outlined),
+                icon: Image.asset(
+                  height: 40,
+                  "assets/images/play.png",
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
             ],
           ),

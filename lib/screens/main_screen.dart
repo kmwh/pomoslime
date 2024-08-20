@@ -30,35 +30,52 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: IndexedStack(
         index: _selectedIndex,
         children: _screens,
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(
-            label: "timer",
-            icon: Icon(
-              Icons.timer_sharp,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+                color: Theme.of(context).colorScheme.surfaceContainerLowest),
+          ),
+        ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          items: [
+            BottomNavigationBarItem(
+              label: "timer",
+              icon: Image.asset(
+                height: 34,
+                "assets/images/timer.png",
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: "calender",
-            icon: Icon(
-              Icons.calendar_month_outlined,
+            BottomNavigationBarItem(
+                label: "calender",
+                icon: Image.asset(
+                  height: 34,
+                  "assets/images/calender.png",
+                  color: Theme.of(context).colorScheme.primary,
+                )),
+            BottomNavigationBarItem(
+              label: "setting",
+              icon: Image.asset(
+                height: 34,
+                "assets/images/setting.png",
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
-          ),
-          BottomNavigationBarItem(
-            label: "setting",
-            icon: Icon(Icons.settings_outlined),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
