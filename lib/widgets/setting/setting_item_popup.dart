@@ -4,12 +4,14 @@ class SettingItemPopup extends StatelessWidget {
   final String icon;
   final String text;
   final Function() func;
+  final bool? isCrown;
 
   const SettingItemPopup({
     super.key,
     required this.icon,
     required this.text,
     required this.func,
+    this.isCrown,
   });
 
   @override
@@ -24,7 +26,9 @@ class SettingItemPopup extends StatelessWidget {
               child: Image.asset(
                 icon,
                 height: 24,
-                color: Theme.of(context).colorScheme.primary,
+                color: isCrown == true
+                    ? const Color.fromARGB(255, 255, 208, 0)
+                    : Theme.of(context).colorScheme.primary,
               ),
             ),
             Text(

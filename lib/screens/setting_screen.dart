@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/theme/theme_provider.dart';
+import 'package:pomoslime/widgets/setting/notification_menu.dart';
 import 'package:pomoslime/widgets/setting/setting_item_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_switch.dart';
 import 'package:pomoslime/widgets/setting/setting_menu.dart';
+import 'package:provider/provider.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -11,33 +14,34 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-  bool _startImmediately = false;
-  bool _vibration = false;
-  bool _darkMode = false;
-  bool _backgroundUse = false;
+  bool startImmediately = false;
+  bool vibration = false;
+  bool darkMode = false;
+  bool backgroundUse = false;
   bool verified = false;
 
   void setStartImmediately(bool value) {
     setState(() {
-      _startImmediately = value;
+      startImmediately = value;
     });
   }
 
   void setVibration(bool value) {
     setState(() {
-      _vibration = value;
+      vibration = value;
     });
   }
 
   void setDarkMode(bool value) {
     setState(() {
-      _darkMode = value;
+      darkMode = value;
+      Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
     });
   }
 
   void setBackgroundUse(bool value) {
     setState(() {
-      _backgroundUse = value;
+      backgroundUse = value;
     });
   }
 
@@ -53,16 +57,37 @@ class _SettingScreenState extends State<SettingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SettingMenu(
+              title: "계정 설정",
+              children: [
+                SettingItemPopup(
+                  icon: "assets/images/crown.png",
+                  text: "프리미엄",
+                  func: () {},
+                  isCrown: true,
+                ),
+                SettingItemPopup(
+                  icon: "assets/images/download.png",
+                  text: "데이터 백업하기",
+                  func: () {},
+                ),
+                SettingItemPopup(
+                  icon: "assets/images/upload.png",
+                  text: "데이터 불러오기",
+                  func: () {},
+                ),
+              ],
+            ),
+            SettingMenu(
               title: "타이머 설정",
               children: [
                 SettingItemSwitch(
-                  initialValue: _startImmediately,
+                  initialValue: startImmediately,
                   icon: "assets/images/fire.png",
                   text: "휴식 후 집중 바로 시작",
                   onChanged: setStartImmediately,
                 ),
                 SettingItemSwitch(
-                  initialValue: _vibration,
+                  initialValue: vibration,
                   icon: "assets/images/vibration.png",
                   text: "진동",
                   onChanged: setVibration,
@@ -70,7 +95,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 SettingItemPopup(
                   icon: "assets/images/notification.png",
                   text: "알림",
-                  func: () {},
+                  func: () => NotificationMenu.showOptions(context),
                 ),
                 SettingItemPopup(
                   icon: "assets/images/sound.png",
@@ -83,13 +108,13 @@ class _SettingScreenState extends State<SettingScreen> {
               title: "앱 설정",
               children: [
                 SettingItemSwitch(
-                  initialValue: _darkMode,
+                  initialValue: darkMode,
                   icon: "assets/images/moon.png",
                   text: "다크 모드",
                   onChanged: setDarkMode,
                 ),
                 SettingItemSwitch(
-                  initialValue: _backgroundUse,
+                  initialValue: backgroundUse,
                   icon: "assets/images/timer.png",
                   text: "백그라운드 사용",
                   onChanged: setBackgroundUse,
@@ -107,36 +132,16 @@ class _SettingScreenState extends State<SettingScreen> {
               ],
             ),
             SettingMenu(
-              title: "계정 설정",
-              children: [
-                SettingItemPopup(
-                  icon: "assets/images/present.png",
-                  text: "구독",
-                  func: () {},
-                ),
-                SettingItemPopup(
-                  icon: "assets/images/${verified ? "logout" : "login"}.png",
-                  text: verified ? "로그아웃" : "로그인",
-                  func: () {},
-                ),
-              ],
-            ),
-            SettingMenu(
               title: "앱 정보",
               children: [
-                SettingItemPopup(
-                  icon: "assets/images/manual.png",
-                  text: "자주 묻는 질문",
-                  func: () {},
-                ),
                 SettingItemPopup(
                   icon: "assets/images/star.png",
                   text: "리뷰 작성하기",
                   func: () {},
                 ),
                 SettingItemPopup(
-                  icon: "assets/images/info.png",
-                  text: "이용약관",
+                  icon: "assets/images/manual.png",
+                  text: "자주 묻는 질문",
                   func: () {},
                 ),
               ],
