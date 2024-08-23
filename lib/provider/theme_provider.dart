@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:pomoslime/model/user_settings_model.dart';
 
 class ThemeProvider with ChangeNotifier {
+  final UserSettingsModel _userSettings;
   late ThemeData _themeData;
 
-  ThemeProvider(bool darkMode) {
-    _themeData = darkMode ? _darkTheme() : _lightTheme();
+  ThemeProvider(this._userSettings) {
+    _themeData = _userSettings.darkMode ? _darkTheme() : _lightTheme();
   }
 
   ThemeData get themeData => _themeData;
+  bool get darkMode => _userSettings.darkMode;
 
-  void toggleTheme(UserSettingsModel userSettings) {
-    userSettings.darkMode = !userSettings.darkMode;
-    userSettings.save();
+  void toggle() {
+    _userSettings.darkMode = !_userSettings.darkMode;
+    _userSettings.save();
 
-    _themeData = userSettings.darkMode ? _darkTheme() : _lightTheme();
+    _themeData = _userSettings.darkMode ? _darkTheme() : _lightTheme();
     notifyListeners();
   }
 

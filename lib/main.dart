@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pomoslime/model/user_settings_model.dart';
+import 'package:pomoslime/provider/background_usage_provider.dart';
+import 'package:pomoslime/provider/focus_setting_provider.dart';
+import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/screens/main_screen.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -20,9 +23,17 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => ThemeProvider(userSettings.darkMode),
+          create: (context) => ThemeProvider(userSettings),
         ),
-        Provider.value(value: userSettings),
+        ChangeNotifierProvider(
+          create: (context) => FocusSettingProvider(userSettings),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => BackgroundUsageProvider(userSettings),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => VibrationProvider(userSettings),
+        ),
       ],
       child: const App(),
     ),
@@ -48,14 +59,9 @@ Future<UserSettingsModel> initializeSettings(Box<UserSettingsModel> box) async {
   return box.get("settings")!;
 }
 
-class App extends StatefulWidget {
+class App extends StatelessWidget {
   const App({super.key});
 
-  @override
-  State<App> createState() => _AppState();
-}
-
-class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
