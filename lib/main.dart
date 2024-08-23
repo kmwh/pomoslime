@@ -55,8 +55,9 @@ Future<UserSettingsModel> initializeSettings(Box<UserSettingsModel> box) async {
     );
     await box.put("settings", defaultSettings);
     return defaultSettings;
+  } else {
+    return box.get("settings")!;
   }
-  return box.get("settings")!;
 }
 
 class App extends StatelessWidget {
