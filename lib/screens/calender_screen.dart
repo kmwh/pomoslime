@@ -10,7 +10,7 @@ class CalenderScreen extends StatefulWidget {
 }
 
 class _CalenderScreenState extends State<CalenderScreen> {
-  List focusTimes = [
+  List contents = [
     ["전체", 456789],
     ["오늘", 12],
     ["이번 주", 123],
@@ -22,7 +22,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 60,
+        vertical: 70,
         horizontal: 32,
       ),
       child: SingleChildScrollView(
@@ -37,7 +37,7 @@ class _CalenderScreenState extends State<CalenderScreen> {
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 26),
             HeatMap(
               datasets: {
                 DateTime(2024, 8, 6): 1,
@@ -52,12 +52,12 @@ class _CalenderScreenState extends State<CalenderScreen> {
               showColorTip: false,
               scrollable: true,
               colorsets: const {
-                1: Color.fromARGB(255, 65, 182, 29),
+                1: Color(0xFF39d353),
               },
-              size: 21,
+              size: 20,
             ),
             const SizedBox(height: 10),
-            ...focusTimes.map((focusTime) {
+            ...contents.map((focusTime) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 6),
                 child: CalenderTile(
