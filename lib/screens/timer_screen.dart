@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class TimerScreen extends StatefulWidget {
@@ -8,7 +10,40 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
+  int totalSeconds = 3;
+  int totalPomodoros = 0;
+  bool isRunning = false;
+  late Timer timer;
+
   String workName = "pomodoro";
+
+  void onTick(Timer timer) {
+    if (totalSeconds == 0) {
+      totalSeconds = 3;
+      totalPomodoros += 1;
+      debugPrint(totalPomodoros.toString());
+    }
+    setState(() {
+      totalSeconds -= 1;
+    });
+  }
+
+  void onStartPressed() {
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      onTick,
+    );
+    setState(() {
+      isRunning = true;
+    });
+  }
+
+  void onPausePressed() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +74,13 @@ class _TimerScreenState extends State<TimerScreen> {
                   ),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.only(
+              Padding(
+                padding: const EdgeInsets.only(
                   top: 18,
                 ),
                 child: Text(
-                  "25:00",
-                  style: TextStyle(
+                  "$totalSeconds",
+                  style: const TextStyle(
                     fontSize: 70,
                     fontWeight: FontWeight.w100,
                   ),
@@ -70,10 +105,12 @@ class _TimerScreenState extends State<TimerScreen> {
             children: [
               const Icon(Icons.slideshow),
               IconButton(
-                onPressed: () {},
+                onPressed: isRunning ? onPausePressed : onStartPressed,
                 icon: Image.asset(
                   height: 40,
-                  "assets/images/play.png",
+                  isRunning
+                      ? "assets/images/pause.png"
+                      : "assets/images/play.png",
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
