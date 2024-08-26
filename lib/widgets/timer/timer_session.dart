@@ -10,33 +10,42 @@ class TimerSession extends StatelessWidget {
     List<Widget> group = [];
     Widget widgetToAdd = const SizedBox();
 
-    for (int i = 0; i <= context.read<TimerProvider>().totalSession; i++) {
-      if ((i + 1) % 8 == 0 && i != 0) {
-        widgetToAdd = const SizedBox(width: 8);
-      } else if (i % 2 == 0) {
-        widgetToAdd = Container(
-          width: 10,
-          height: 10,
-          decoration: BoxDecoration(
-            color: (i < context.read<TimerProvider>().currentSession)
-                ? Theme.of(context).colorScheme.secondary
-                : null,
-            border: Border.all(
-              color: Theme.of(context).colorScheme.primary,
-              width: 0.8,
+    List<Widget> setTimerSession() {
+      group = [];
+      for (int i = 0; i < context.read<TimerProvider>().totalSession; i++) {
+        if ((i + 1) % 8 == 0 && i != 0) {
+          widgetToAdd = const SizedBox(width: 8);
+        } else if (i % 2 == 0) {
+          widgetToAdd = Container(
+            width: 10,
+            height: 10,
+            decoration: BoxDecoration(
+              color: (i < context.read<TimerProvider>().currentSession)
+                  ? Theme.of(context).colorScheme.secondary
+                  : null,
+              border: Border.all(
+                color: Theme.of(context).colorScheme.primary,
+                width: 0.8,
+              ),
+              borderRadius: BorderRadius.circular(100),
             ),
-            borderRadius: BorderRadius.circular(100),
-          ),
-        );
-      } else {
-        widgetToAdd = const SizedBox(width: 2.5);
+          );
+        } else {
+          widgetToAdd = const SizedBox(width: 2.5);
+        }
+        group.add(widgetToAdd);
       }
-      group.add(widgetToAdd);
+
+      return group;
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: group,
+    return Consumer<TimerProvider>(
+      builder: (context, value, child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: setTimerSession(),
+        );
+      },
     );
   }
 }

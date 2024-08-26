@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/screens/calender_screen.dart';
 import 'package:pomoslime/screens/setting_screen.dart';
 import 'package:pomoslime/screens/timer_screen.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -35,47 +37,55 @@ class _MainScreenState extends State<MainScreen> {
         index: _selectedIndex,
         children: _screens,
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(
-                color: Theme.of(context).colorScheme.surfaceContainerLowest),
-          ),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          items: [
-            BottomNavigationBarItem(
-              label: "timer",
-              icon: Image.asset(
-                height: 34,
-                "assets/images/timer.png",
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-            BottomNavigationBarItem(
-                label: "calender",
-                icon: Image.asset(
-                  height: 34,
-                  "assets/images/calender.png",
-                  color: Theme.of(context).colorScheme.primary,
-                )),
-            BottomNavigationBarItem(
-              label: "setting",
-              icon: Image.asset(
-                height: 34,
-                "assets/images/setting.png",
-                color: Theme.of(context).colorScheme.primary,
-              ),
-            ),
-          ],
-        ),
+      bottomNavigationBar: Consumer<TimerProvider>(
+        builder: (context, provider, child) {
+          return provider.isRunning
+              ? const SizedBox()
+              : Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .surfaceContainerLowest),
+                    ),
+                  ),
+                  child: BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    showSelectedLabels: false,
+                    showUnselectedLabels: false,
+                    currentIndex: _selectedIndex,
+                    onTap: _onItemTapped,
+                    items: [
+                      BottomNavigationBarItem(
+                        label: "timer",
+                        icon: Image.asset(
+                          height: 34,
+                          "assets/images/timer.png",
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                      BottomNavigationBarItem(
+                          label: "calender",
+                          icon: Image.asset(
+                            height: 34,
+                            "assets/images/calender.png",
+                            color: Theme.of(context).colorScheme.primary,
+                          )),
+                      BottomNavigationBarItem(
+                        label: "setting",
+                        icon: Image.asset(
+                          height: 34,
+                          "assets/images/setting.png",
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+        },
       ),
     );
   }

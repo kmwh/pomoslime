@@ -8,20 +8,25 @@ class TimerProvider with ChangeNotifier {
 
   bool isRunning = false;
   bool isInit = true;
+  late String currentSessionName;
   late int currentSeconds;
   late Timer timer;
 
   TimerProvider(this._userData) {
     currentSeconds = _userData.currentToDo[2];
+    currentSessionName = 'focus';
   }
 
   int get currentSessionSeconds {
     if ((_userData.currentSession + 1) % 8 == 0 &&
         _userData.currentSession != 0) {
+      currentSessionName = 'long';
       return _userData.currentToDo[4];
     } else if (_userData.currentSession % 2 == 0) {
+      currentSessionName = 'focus';
       return _userData.currentToDo[2];
     } else {
+      currentSessionName = 'short';
       return _userData.currentToDo[3];
     }
   }
@@ -46,10 +51,16 @@ class TimerProvider with ChangeNotifier {
 
     if (currentSeconds == 0) {
       _userData.currentSession += 1;
+      if (_userData.currentSession > _userData.currentToDo[1]) {
+        _userData.currentSession = 0;
+      }
       _userData.save();
 
       currentSeconds = currentSessionSeconds;
-      pauseTimer();
+
+      if (currentSessionName == 'focus' && !_userData.focusImmediately) {
+        pauseTimer();
+      }
     }
 
     notifyListeners();
@@ -73,11 +84,12 @@ class TimerProvider with ChangeNotifier {
   }
 
   void onCancelPressed() {
+    _userData.currentSession = 0;
+    _userData.save();
+
     currentSeconds = currentSessionSeconds;
     isInit = true;
     pauseTimer();
-    _userData.currentSession = 0;
-    _userData.save();
 
     notifyListeners();
   }
