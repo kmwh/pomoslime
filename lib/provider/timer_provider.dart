@@ -16,10 +16,11 @@ class TimerProvider with ChangeNotifier {
   }
 
   int get currentSessionSeconds {
-    if (_userData.currentSession % 2 == 0) {
-      return _userData.currentToDo[2];
-    } else if (_userData.currentSession % 7 == 0) {
+    if ((_userData.currentSession + 1) % 8 == 0 &&
+        _userData.currentSession != 0) {
       return _userData.currentToDo[4];
+    } else if (_userData.currentSession % 2 == 0) {
+      return _userData.currentToDo[2];
     } else {
       return _userData.currentToDo[3];
     }

@@ -18,7 +18,7 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(UserDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData1");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData");
 
   // 초기 설정 적용
   final userData = await initializeSettings(userDataBox);
@@ -69,7 +69,7 @@ Future<UserDataModel> initializeSettings(Box<UserDataModel> box) async {
       language: 0,
       focusImmediately: false,
       toDoMap: {
-        "pomodoro": [4, 1500, 5, 10],
+        "pomodoro": [4, 1500, 300, 600],
       },
       currentToDo: ["pomodoro", 7, 1500, 300, 600],
       currentSession: 0,
