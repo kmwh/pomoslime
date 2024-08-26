@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pomoslime/model/user_settings_model.dart';
+import 'package:pomoslime/model/user_data_model.dart';
 
 class VibrationProvider with ChangeNotifier {
-  final UserSettingsModel _userSettings;
+  final UserDataModel _userData;
 
-  VibrationProvider(this._userSettings);
+  VibrationProvider(this._userData);
 
-  bool get vibration => _userSettings.vibration;
+  bool get vibration => _userData.vibration;
 
   void toggle() {
-    _userSettings.vibration = !_userSettings.vibration;
-    _userSettings.save();
+    _userData.vibration = !_userData.vibration;
+    _userData.save();
 
     notifyListeners();
   }

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pomoslime/model/user_settings_model.dart';
+import 'package:pomoslime/model/user_data_model.dart';
 
 class BackgroundUsageProvider with ChangeNotifier {
-  final UserSettingsModel _userSettings;
+  final UserDataModel _userData;
 
-  BackgroundUsageProvider(this._userSettings);
+  BackgroundUsageProvider(this._userData);
 
-  bool get backgroundUsage => _userSettings.backgroundUsage;
+  bool get backgroundUsage => _userData.backgroundUsage;
 
   void toggle() {
-    _userSettings.backgroundUsage = !_userSettings.backgroundUsage;
-    _userSettings.save();
+    _userData.backgroundUsage = !_userData.backgroundUsage;
+    _userData.save();
 
     notifyListeners();
   }

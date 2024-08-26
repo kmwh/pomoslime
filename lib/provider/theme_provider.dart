@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:pomoslime/model/user_settings_model.dart';
+import 'package:pomoslime/model/user_data_model.dart';
 
 class ThemeProvider with ChangeNotifier {
-  final UserSettingsModel _userSettings;
+  final UserDataModel _userData;
 
-  ThemeProvider(this._userSettings);
+  ThemeProvider(this._userData);
 
-  ThemeData get themeData => _userSettings.darkMode ? _darkTheme : _lightTheme;
-  bool get darkMode => _userSettings.darkMode;
+  ThemeData get themeData => _userData.darkMode ? _darkTheme : _lightTheme;
+  bool get darkMode => _userData.darkMode;
 
   void toggle() {
-    _userSettings.darkMode = !_userSettings.darkMode;
-    _userSettings.save();
+    _userData.darkMode = !_userData.darkMode;
+    _userData.save();
     notifyListeners();
   }
 
@@ -22,6 +22,7 @@ class ThemeProvider with ChangeNotifier {
       surfaceBright: Color(0xFF111111),
       surfaceContainerLowest: Color.fromRGBO(255, 255, 255, 0.2),
       primary: Color(0xFFFFFFFF),
+      secondary: Color.fromARGB(255, 196, 196, 196),
     ),
   );
 
@@ -32,6 +33,7 @@ class ThemeProvider with ChangeNotifier {
       surfaceBright: Colors.white,
       surfaceContainerLowest: Color.fromRGBO(0, 0, 0, 0.2),
       primary: Color(0xFF222222),
+      secondary: Color.fromARGB(255, 255, 234, 0),
     ),
   );
 }

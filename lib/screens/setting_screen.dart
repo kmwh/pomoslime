@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
-import 'package:pomoslime/provider/focus_setting_provider.dart';
+import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
@@ -47,7 +47,7 @@ class _SettingScreenState extends State<SettingScreen> {
             SettingMenu(
               title: "타이머 설정",
               children: [
-                Consumer<FocusSettingProvider>(
+                Consumer<FocusImmediatelyProvider>(
                   builder: (context, provider, child) {
                     return SettingItemSwitch(
                       initialValue: provider.focusImmediately,

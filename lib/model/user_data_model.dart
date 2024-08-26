@@ -1,9 +1,9 @@
 import 'package:hive/hive.dart';
 
-part 'user_settings_model.g.dart';
+part 'user_data_model.g.dart';
 
 @HiveType(typeId: 1)
-class UserSettingsModel extends HiveObject {
+class UserDataModel extends HiveObject {
   @HiveField(0)
   bool premium;
 
@@ -23,12 +23,21 @@ class UserSettingsModel extends HiveObject {
   bool backgroundUsage;
 
   @HiveField(6)
-  String language;
+  int language; // 0: eng, 1: kor
 
   @HiveField(7)
   bool focusImmediately;
 
-  UserSettingsModel({
+  @HiveField(8)
+  Map<String, List> toDoMap; // { "pomodoro": [집중 세션 수, 집중 시간(초), 짧은 휴식, 긴 휴식] }
+
+  @HiveField(9)
+  List currentToDo; // ['name', 총 세션 수, 집중 시간(초), 짧은 휴식, 긴 휴식]
+
+  @HiveField(10)
+  int currentSession;
+
+  UserDataModel({
     required this.premium,
     required this.vibration,
     required this.notificationIndex,
@@ -37,5 +46,8 @@ class UserSettingsModel extends HiveObject {
     required this.backgroundUsage,
     required this.language,
     required this.focusImmediately,
+    required this.toDoMap,
+    required this.currentToDo,
+    required this.currentSession,
   });
 }

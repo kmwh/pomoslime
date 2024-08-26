@@ -1,37 +1,41 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_settings_model.dart';
+part of 'user_data_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserSettingsModelAdapter extends TypeAdapter<UserSettingsModel> {
+class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
   @override
   final int typeId = 1;
 
   @override
-  UserSettingsModel read(BinaryReader reader) {
+  UserDataModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return UserSettingsModel(
-      premium: fields[0] == null ? false : fields[0] as bool,
+    return UserDataModel(
+      premium: fields[0] as bool,
       vibration: fields[1] as bool,
       notificationIndex: fields[2] as int,
       whiteNoiseIndex: fields[3] as int,
       darkMode: fields[4] as bool,
       backgroundUsage: fields[5] as bool,
-      language: fields[6] as String,
+      language: fields[6] as int,
       focusImmediately: fields[7] as bool,
+      toDoMap: (fields[8] as Map).map((dynamic k, dynamic v) =>
+          MapEntry(k as String, (v as List).cast<dynamic>())),
+      currentToDo: (fields[9] as List).cast<dynamic>(),
+      currentSession: fields[10] as int,
     );
   }
 
   @override
-  void write(BinaryWriter writer, UserSettingsModel obj) {
+  void write(BinaryWriter writer, UserDataModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.premium)
       ..writeByte(1)
@@ -47,7 +51,13 @@ class UserSettingsModelAdapter extends TypeAdapter<UserSettingsModel> {
       ..writeByte(6)
       ..write(obj.language)
       ..writeByte(7)
-      ..write(obj.focusImmediately);
+      ..write(obj.focusImmediately)
+      ..writeByte(8)
+      ..write(obj.toDoMap)
+      ..writeByte(9)
+      ..write(obj.currentToDo)
+      ..writeByte(10)
+      ..write(obj.currentSession);
   }
 
   @override
@@ -56,7 +66,7 @@ class UserSettingsModelAdapter extends TypeAdapter<UserSettingsModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserSettingsModelAdapter &&
+      other is UserDataModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
