@@ -29,13 +29,13 @@ class UserDataModel extends HiveObject {
   bool focusImmediately;
 
   @HiveField(8)
-  Map<String, List> toDoMap; // { "pomodoro": [집중 세션 수, 집중 시간(초), 짧은 휴식, 긴 휴식] }
+  List<List> toDoList; // [["name", 집중 세션 수, 집중 시간(초), 짧은 휴식(초), 긴 휴식(초), 색깔],]
 
   @HiveField(9)
-  List currentToDo; // ['name', 총 세션 수, 집중 시간(초), 짧은 휴식, 긴 휴식]
+  int currentToDo;
 
   @HiveField(10)
-  int currentSession;
+  int currentSession; // 총 세션 기준 현재 세션
 
   UserDataModel({
     required this.premium,
@@ -46,7 +46,7 @@ class UserDataModel extends HiveObject {
     required this.backgroundUsage,
     required this.language,
     required this.focusImmediately,
-    required this.toDoMap,
+    required this.toDoList,
     required this.currentToDo,
     required this.currentSession,
   });

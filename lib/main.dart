@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
+import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/current_to_do_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
@@ -17,11 +19,15 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(UserDataModelAdapter());
+  Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData4");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData8");
+  final calenderDataBox =
+      await Hive.openBox<CalenderDataModel>("calenderData8");
 
   // 초기 설정 적용
-  final userData = await initializeSettings(userDataBox);
+  final userData = await initializeUserData(userDataBox);
+  final calenderData = await initializeCalenderData(calenderDataBox);
 
   runApp(
     MultiProvider(
@@ -50,6 +56,9 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => VibrationProvider(userData),
         ),
+        ChangeNotifierProvider(
+          create: (context) => CalenderProvider(calenderData),
+        ),
       ],
       child: const App(),
     ),
@@ -57,9 +66,9 @@ void main() async {
 }
 
 // 초기 설정 함수
-Future<UserDataModel> initializeSettings(Box<UserDataModel> box) async {
+Future<UserDataModel> initializeUserData(Box<UserDataModel> box) async {
   if (box.isEmpty) {
-    final defaultSettings = UserDataModel(
+    final defaultUserData = UserDataModel(
       premium: false,
       vibration: false,
       notificationIndex: 1,
@@ -68,16 +77,37 @@ Future<UserDataModel> initializeSettings(Box<UserDataModel> box) async {
       backgroundUsage: true,
       language: 0,
       focusImmediately: false,
-      toDoMap: {
-        "pomodoro": [13, 12, 5, 10],
-      },
-      currentToDo: ["pomodoro", 25, 12, 5, 10],
+      toDoList: [
+        ["pomodoro1", 13, 12, 5, 10, const Color(0xFFFFCC00).value],
+        ["pomodoro2", 13, 12, 5, 10, const Color(0xFF2BFF00).value],
+        ["pomodoro3", 13, 12, 5, 10, const Color(0xFF0026FF).value],
+        ["pomodoro4", 13, 12, 5, 10, const Color(0xFF4800FF).value],
+        ["pomodoro5", 13, 12, 5, 10, const Color(0xFFFF0000).value],
+        ["pomodoro6", 13, 12, 5, 10, const Color(0xFFB700FF).value],
+        ["pomodoro7", 13, 12, 5, 10, const Color(0xFFFFCC00).value],
+        ["pomodoro8", 13, 12, 5, 10, const Color(0xFFFFCC00).value],
+        ["pomodoro9", 13, 12, 5, 10, const Color(0xFFFFCC00).value],
+      ],
+      currentToDo: 0,
       currentSession: 0,
     );
-    await box.put("settings", defaultSettings);
-    return defaultSettings;
+    await box.put("userData", defaultUserData);
+    return defaultUserData;
   } else {
-    return box.get("settings")!;
+    return box.get("userData")!;
+  }
+}
+
+Future<CalenderDataModel> initializeCalenderData(
+    Box<CalenderDataModel> box) async {
+  if (box.isEmpty) {
+    final defaultCalenderData = CalenderDataModel(
+      focusTimeMap: {},
+    );
+    await box.put("calenderData", defaultCalenderData);
+    return defaultCalenderData;
+  } else {
+    return box.get("calenderData")!;
   }
 }
 

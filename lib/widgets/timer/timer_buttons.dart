@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/timer_provider.dart';
+import 'package:provider/provider.dart';
+
+class TimerButtons extends StatefulWidget {
+  const TimerButtons({super.key});
+
+  @override
+  State<TimerButtons> createState() => _TimerButtonsState();
+}
+
+class _TimerButtonsState extends State<TimerButtons> {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<TimerProvider>(
+      builder: (context, provider, child) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              onPressed: provider.isRunning
+                  ? provider.onPausePressed
+                  : provider.onStartPressed,
+              icon: Image.asset(
+                height: 40,
+                provider.isRunning
+                    ? "assets/images/pause.png"
+                    : "assets/images/play.png",
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+            const SizedBox(
+              width: 14,
+              height: 0,
+            ),
+            (!provider.isRunning && !provider.isInit)
+                ? IconButton(
+                    onPressed: provider.onCancelPressed,
+                    icon: Image.asset(
+                      height: 40,
+                      "assets/images/cancel.png",
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  )
+                : const SizedBox(),
+          ],
+        );
+      },
+    );
+  }
+}

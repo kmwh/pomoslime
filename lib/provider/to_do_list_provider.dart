@@ -6,24 +6,25 @@ class ToDoListProvider with ChangeNotifier {
 
   ToDoListProvider(this._userData);
 
-  Map<String, List> get toDoList => _userData.toDoMap;
+  List<List> get toDoList => _userData.toDoList;
+  int get toDoListLength => _userData.toDoList.length;
 
-  void addToDoList(Map<String, List> newTodo) {
-    _userData.toDoMap.addAll(newTodo);
+  void addToDoList(List newToDo) {
+    _userData.toDoList.add(newToDo);
     _userData.save();
 
     notifyListeners();
   }
 
-  void deleteToDoList(String name) {
-    _userData.toDoMap.remove(name);
+  void deleteToDoList(int index) {
+    _userData.toDoList.removeAt(index);
     _userData.save();
 
     notifyListeners();
   }
 
-  void updateToDoList(String name, List settings) {
-    _userData.toDoMap.update(name, (value) => settings);
+  void updateToDoList(int index, List updatedToDo) {
+    _userData.toDoList[index] = updatedToDo;
     _userData.save();
 
     notifyListeners();

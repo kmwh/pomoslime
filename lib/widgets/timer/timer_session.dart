@@ -10,9 +10,9 @@ class TimerSession extends StatelessWidget {
     List<Widget> group = [];
     Widget widgetToAdd = const SizedBox();
 
-    List<Widget> setTimerSession() {
+    List<Widget> setTimerSession(TimerProvider provider) {
       group = [];
-      for (int i = 0; i < context.read<TimerProvider>().totalSession; i++) {
+      for (int i = 0; i < provider.totalSession; i++) {
         if ((i + 1) % 8 == 0 && i != 0) {
           widgetToAdd = const SizedBox(width: 8);
         } else if (i % 2 == 0) {
@@ -20,7 +20,7 @@ class TimerSession extends StatelessWidget {
             width: 10,
             height: 10,
             decoration: BoxDecoration(
-              color: (i < context.read<TimerProvider>().currentSession)
+              color: (i < provider.currentSession)
                   ? Theme.of(context).colorScheme.secondary
                   : null,
               border: Border.all(
@@ -40,10 +40,10 @@ class TimerSession extends StatelessWidget {
     }
 
     return Consumer<TimerProvider>(
-      builder: (context, value, child) {
+      builder: (context, provider, child) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: setTimerSession(),
+          children: setTimerSession(provider),
         );
       },
     );

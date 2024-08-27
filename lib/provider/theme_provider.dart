@@ -33,7 +33,7 @@ class ThemeProvider with ChangeNotifier {
       surfaceBright: Colors.white,
       surfaceContainerLowest: Color.fromRGBO(0, 0, 0, 0.2),
       primary: Color(0xFF222222),
-      secondary: Color.fromARGB(255, 255, 234, 0),
+      secondary: Color.fromARGB(255, 255, 206, 8),
     ),
   );
 }

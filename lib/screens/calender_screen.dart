@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/widgets/calender/calender_tile.dart';
+import 'package:provider/provider.dart';
 
 class CalenderScreen extends StatefulWidget {
   const CalenderScreen({super.key});
@@ -38,32 +40,34 @@ class _CalenderScreenState extends State<CalenderScreen> {
               ),
             ),
             const SizedBox(height: 26),
-            HeatMap(
-              datasets: {
-                DateTime(2024, 8, 6): 1,
-                DateTime(2024, 8, 7): 2,
-                DateTime(2024, 8, 8): 3,
-                DateTime(2024, 8, 9): 4,
-                DateTime(2024, 8, 24): 5,
+            Consumer<CalenderProvider>(
+              builder: (context, provider, child) {
+                return HeatMap(
+                  datasets: provider.focusTimeMap,
+                  defaultColor: const Color.fromRGBO(129, 129, 129, 0.23),
+                  colorMode: ColorMode.opacity,
+                  showText: false,
+                  showColorTip: false,
+                  scrollable: true,
+                  colorsets: const {
+                    1: Color(0xFF39d353),
+                  },
+                  size: 20,
+                );
               },
-              defaultColor: const Color.fromRGBO(129, 129, 129, 0.23),
-              colorMode: ColorMode.opacity,
-              showText: false,
-              showColorTip: false,
-              scrollable: true,
-              colorsets: const {
-                1: Color(0xFF39d353),
-              },
-              size: 20,
             ),
             const SizedBox(height: 10),
             ...contents.map((focusTime) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                child: CalenderTile(
-                  period: focusTime[0],
-                  minutes: focusTime[1],
-                ),
+              return Consumer<CalenderProvider>(
+                builder: (context, provider, child) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 6),
+                    child: CalenderTile(
+                      period: focusTime[0],
+                      minutes: focusTime[1],
+                    ),
+                  );
+                },
               );
             }),
             const SizedBox(

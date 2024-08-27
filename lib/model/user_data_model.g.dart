@@ -25,9 +25,10 @@ class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
       backgroundUsage: fields[5] as bool,
       language: fields[6] as int,
       focusImmediately: fields[7] as bool,
-      toDoMap: (fields[8] as Map).map((dynamic k, dynamic v) =>
-          MapEntry(k as String, (v as List).cast<dynamic>())),
-      currentToDo: (fields[9] as List).cast<dynamic>(),
+      toDoList: (fields[8] as List)
+          .map((dynamic e) => (e as List).cast<dynamic>())
+          .toList(),
+      currentToDo: fields[9] as int,
       currentSession: fields[10] as int,
     );
   }
@@ -53,7 +54,7 @@ class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
       ..writeByte(7)
       ..write(obj.focusImmediately)
       ..writeByte(8)
-      ..write(obj.toDoMap)
+      ..write(obj.toDoList)
       ..writeByte(9)
       ..write(obj.currentToDo)
       ..writeByte(10)

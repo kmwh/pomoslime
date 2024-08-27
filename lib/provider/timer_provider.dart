@@ -13,7 +13,7 @@ class TimerProvider with ChangeNotifier {
   late Timer timer;
 
   TimerProvider(this._userData) {
-    currentSeconds = _userData.currentToDo[2];
+    currentSeconds = _userData.toDoList[_userData.currentToDo][2];
     currentSessionName = 'focus';
   }
 
@@ -21,24 +21,19 @@ class TimerProvider with ChangeNotifier {
     if ((_userData.currentSession + 1) % 8 == 0 &&
         _userData.currentSession != 0) {
       currentSessionName = 'long';
-      return _userData.currentToDo[4];
+      return _userData.toDoList[_userData.currentToDo][4];
     } else if (_userData.currentSession % 2 == 0) {
       currentSessionName = 'focus';
-      return _userData.currentToDo[2];
+      return _userData.toDoList[_userData.currentToDo][2];
     } else {
       currentSessionName = 'short';
-      return _userData.currentToDo[3];
+      return _userData.toDoList[_userData.currentToDo][3];
     }
-  }
-
-  String formatTimer(int seconds) {
-    var duration = Duration(seconds: seconds);
-    return duration.toString().split('.').first.substring(2, 7);
   }
 
   String get formattedCurrentSessionSeconds => formatTimer(currentSeconds);
 
-  int get totalSession => _userData.currentToDo[1];
+  int get totalSession => _userData.toDoList[_userData.currentToDo][1] * 2 - 1;
   int get currentSession => _userData.currentSession;
 
   void pauseTimer() {
@@ -46,17 +41,30 @@ class TimerProvider with ChangeNotifier {
     isRunning = false;
   }
 
+  String formatTimer(int seconds) {
+    var duration = Duration(seconds: seconds);
+    return duration.toString().split('.').first.substring(2, 7);
+  }
+
+  void initTimer() {
+    _userData.currentSession = 0;
+    _userData.save();
+    pauseTimer();
+    currentSeconds = currentSessionSeconds;
+    isInit = true;
+  }
+
   void onTick(Timer timer) {
     currentSeconds -= 1;
 
     if (currentSeconds == 0) {
       _userData.currentSession += 1;
-      if (_userData.currentSession > _userData.currentToDo[1]) {
-        _userData.currentSession = 0;
-      }
       _userData.save();
-
       currentSeconds = currentSessionSeconds;
+
+      if (_userData.currentSession >= totalSession) {
+        initTimer();
+      }
 
       if (currentSessionName == 'focus' && !_userData.focusImmediately) {
         pauseTimer();
@@ -79,18 +87,11 @@ class TimerProvider with ChangeNotifier {
 
   void onPausePressed() {
     pauseTimer();
-
     notifyListeners();
   }
 
   void onCancelPressed() {
-    _userData.currentSession = 0;
-    _userData.save();
-
-    currentSeconds = currentSessionSeconds;
-    isInit = true;
-    pauseTimer();
-
+    initTimer();
     notifyListeners();
   }
 }

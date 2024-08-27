@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class NotificationMenu {
   static void showOptions(BuildContext context) {
     showModalBottomSheet(
+      backgroundColor: Theme.of(context).colorScheme.surfaceBright,
       context: context,
       builder: (BuildContext context) {
         return Column(
