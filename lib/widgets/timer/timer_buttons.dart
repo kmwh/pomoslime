@@ -23,7 +23,7 @@ class _TimerButtonsState extends State<TimerButtons> {
                   ? provider.onPausePressed
                   : provider.onStartPressed,
               icon: Image.asset(
-                height: 40,
+                height: 32,
                 provider.isRunning
                     ? "assets/images/pause.png"
                     : "assets/images/play.png",
@@ -31,14 +31,14 @@ class _TimerButtonsState extends State<TimerButtons> {
               ),
             ),
             const SizedBox(
-              width: 14,
+              width: 10,
               height: 0,
             ),
             (!provider.isRunning && !provider.isInit)
                 ? IconButton(
                     onPressed: provider.onCancelPressed,
                     icon: Image.asset(
-                      height: 40,
+                      height: 32,
                       "assets/images/cancel.png",
                       color: Theme.of(context).colorScheme.primary,
                     ),

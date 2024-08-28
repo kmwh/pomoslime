@@ -17,8 +17,8 @@ class TimerSession extends StatelessWidget {
           widgetToAdd = const SizedBox(width: 8);
         } else if (i % 2 == 0) {
           widgetToAdd = Container(
-            width: 10,
-            height: 10,
+            width: 9,
+            height: 9,
             decoration: BoxDecoration(
               color: (i < provider.currentSession)
                   ? Theme.of(context).colorScheme.secondary
@@ -31,7 +31,7 @@ class TimerSession extends StatelessWidget {
             ),
           );
         } else {
-          widgetToAdd = const SizedBox(width: 2.5);
+          widgetToAdd = const SizedBox(width: 3);
         }
         group.add(widgetToAdd);
       }

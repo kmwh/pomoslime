@@ -20,8 +20,10 @@ class ThemeProvider with ChangeNotifier {
     colorScheme: const ColorScheme.dark(
       surface: Colors.black,
       surfaceBright: Color(0xFF111111),
-      surfaceContainerLowest: Color.fromRGBO(255, 255, 255, 0.2),
+      surfaceContainer: Color.fromRGBO(255, 255, 255, 0.1),
+      surfaceContainerLowest: Color.fromRGBO(255, 255, 255, 0.4),
       primary: Color(0xFFFFFFFF),
+      primaryContainer: Color.fromRGBO(255, 255, 255, 0.668),
       secondary: Color.fromARGB(255, 196, 196, 196),
     ),
   );
@@ -31,8 +33,10 @@ class ThemeProvider with ChangeNotifier {
     colorScheme: const ColorScheme.light(
       surface: Color(0xFFF7F8F7),
       surfaceBright: Colors.white,
-      surfaceContainerLowest: Color.fromRGBO(0, 0, 0, 0.2),
+      surfaceContainer: Color.fromRGBO(0, 0, 0, 0.1),
+      surfaceContainerLowest: Color.fromRGBO(0, 0, 0, 0.4),
       primary: Color(0xFF222222),
+      primaryContainer: Color.fromRGBO(0, 0, 0, 0.812),
       secondary: Color.fromARGB(255, 255, 206, 8),
     ),
   );

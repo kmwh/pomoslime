@@ -4,7 +4,6 @@ import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
-import 'package:pomoslime/provider/current_to_do_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
@@ -34,9 +33,6 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) => BackgroundUsageProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CurrentToDoProvider(userData),
         ),
         ChangeNotifierProvider(
           create: (context) => FocusImmediatelyProvider(userData),
