@@ -7,7 +7,11 @@ class CurrentToDoProvider with ChangeNotifier {
   CurrentToDoProvider(this._userData);
 
   String get currentToDoName => _userData.toDoList[_userData.currentToDo][0];
+
   int get currentToDo => _userData.currentToDo;
+
+  int get currentToDoColor => _userData.toDoList[_userData.currentToDo][5];
+
   int get toDoListLength => _userData.toDoList.length;
 
   void setCurrentToDo(int index) {

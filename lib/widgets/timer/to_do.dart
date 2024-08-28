@@ -17,7 +17,7 @@ void showToDoList(BuildContext context) {
     context: context,
     builder: (context) {
       return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 36),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 22),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,16 +27,16 @@ void showToDoList(BuildContext context) {
                 GestureDetector(
                   onTap: () {},
                   child: Icon(
-                    Icons.add,
+                    Icons.add_circle_outline,
                     color: Theme.of(context).colorScheme.primary,
-                    size: 20,
+                    size: 22,
                   ),
                 ),
                 Text(
                   'To Do List',
                   style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                     color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
@@ -47,7 +47,7 @@ void showToDoList(BuildContext context) {
                   child: Icon(
                     Icons.close,
                     color: Theme.of(context).colorScheme.primary,
-                    size: 20,
+                    size: 22,
                   ),
                 ),
               ],
@@ -134,17 +134,15 @@ class _ToDoState extends State<ToDo> {
                   Consumer<TimerProvider>(
                     builder: (context, provider, child) {
                       return !provider.isRunning
-                          ? Padding(
-                              padding: const EdgeInsets.only(right: 2),
-                              child: Image.asset(
-                                "assets/images/todo.png",
-                                width: 22,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
+                          ? Icon(
+                              Icons.circle,
+                              size: 10,
+                              color: Color(toDoProvider.currentToDoColor),
                             )
                           : const SizedBox();
                     },
                   ),
+                  const SizedBox(width: 6),
                   Text(
                     toDoProvider.currentToDoName,
                     style: const TextStyle(
