@@ -20,7 +20,7 @@ class CustomCheckbox extends StatelessWidget {
       ),
       side: WidgetStateBorderSide.resolveWith(
         (states) => BorderSide(
-            width: 0.8,
+            width: 1,
             color: Theme.of(context).colorScheme.surfaceContainerLowest),
       ),
       checkColor: Colors.green,

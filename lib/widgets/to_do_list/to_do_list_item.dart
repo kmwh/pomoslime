@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
-import 'package:pomoslime/screens/to_do_screen.dart';
-import 'package:pomoslime/widgets/to_do/custom_checkbox.dart';
-import 'package:pomoslime/widgets/to_do/custom_dialog.dart';
+import 'package:pomoslime/screens/edit_to_do_screen.dart';
+import 'package:pomoslime/widgets/to_do_list/custom_checkbox.dart';
+import 'package:pomoslime/widgets/to_do_list/custom_dialog.dart';
 import 'package:provider/provider.dart';
 
 class ToDoListItem extends StatefulWidget {
@@ -65,25 +65,29 @@ class _ToDoListItemState extends State<ToDoListItem> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 8,
+        horizontal: 10,
         vertical: 4,
       ),
-      child: InkWell(
-        onTap: () => showToDoDialog(widget.index),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            vertical: 14,
-            horizontal: 10,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(
-                width: 0.8,
-                color: Theme.of(context).colorScheme.surfaceContainerLowest),
-            borderRadius: BorderRadius.circular(5),
-          ),
-          child: Consumer<ToDoListProvider>(
-            builder: (context, provider, child) {
-              return Column(
+      child: Consumer<ToDoListProvider>(
+        builder: (context, provider, child) {
+          return Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: 14,
+              horizontal: 10,
+            ),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surfaceBright,
+              border: provider.currentToDo == widget.index
+                  ? Border.all(
+                      color: Theme.of(context).colorScheme.primary,
+                      width: 0.9,
+                    )
+                  : null,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: InkWell(
+              onTap: () => showToDoDialog(widget.index),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
@@ -96,20 +100,20 @@ class _ToDoListItemState extends State<ToDoListItem> {
                             onChanged: (value) => showToDoDialog(widget.index),
                           ),
                           const SizedBox(width: 8),
-                          Icon(
-                            Icons.circle,
-                            size: 12,
-                            color: Color(provider.toDoList[widget.index][5]),
+                          Image.asset(
+                            "assets/images/${provider.toDoList[widget.index][5]}.png",
+                            width: 20,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
-                          const SizedBox(width: 14),
+                          const SizedBox(width: 6),
                           Text(
                             provider.toDoList[widget.index][0],
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
-                              fontSize: 16,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w300,
                             ),
                           ),
-                          const SizedBox(width: 16),
                         ],
                       ),
                       Row(
@@ -119,10 +123,9 @@ class _ToDoListItemState extends State<ToDoListItem> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ToDoScreen(
+                                  builder: (context) => EditToDoScreen(
                                     index: widget.index,
-                                    toDo:
-                                        provider.toDoList[provider.currentToDo],
+                                    toDo: provider.toDoList[widget.index],
                                   ),
                                 ),
                               );
@@ -135,7 +138,11 @@ class _ToDoListItemState extends State<ToDoListItem> {
                           ),
                           IconButton(
                             onPressed: () => showDeleteDialog(widget.index),
-                            icon: const Icon(Icons.delete_outline_outlined),
+                            icon: Image.asset(
+                              "assets/images/trash.png",
+                              width: 26,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
                           ),
                         ],
                       ),
@@ -144,18 +151,19 @@ class _ToDoListItemState extends State<ToDoListItem> {
                   Padding(
                     padding: const EdgeInsets.only(left: 46),
                     child: Text(
-                      "${provider.toDoList[widget.index][1].toString()}  |  ${provider.toDoList[widget.index][2].toString()}0 min  |  ${provider.toDoList[widget.index][3].toString()}00 min  |  ${provider.toDoList[widget.index][4].toString()}0 min",
+                      "${provider.toDoList[widget.index][1].toString()}  |  ${provider.toDoList[widget.index][2].toString()} min  |  ${provider.toDoList[widget.index][3].toString()} min  |  ${provider.toDoList[widget.index][4].toString()} min",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primaryContainer,
                         fontSize: 14,
+                        fontWeight: FontWeight.w300,
                       ),
                     ),
                   ),
                 ],
-              );
-            },
-          ),
-        ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

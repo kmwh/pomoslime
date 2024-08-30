@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
-import 'package:pomoslime/screens/to_do_screen.dart';
-import 'package:pomoslime/widgets/to_do/to_do_list_item.dart';
+import 'package:pomoslime/screens/edit_to_do_screen.dart';
+import 'package:pomoslime/widgets/to_do_list/to_do_list_item.dart';
 import 'package:provider/provider.dart';
 
 class ToDoListScreen extends StatefulWidget {
@@ -17,11 +17,12 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.surface,
         title: const Text(
           "To Do List",
           style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w400,
+            fontSize: 20,
+            fontWeight: FontWeight.w300,
           ),
         ),
         centerTitle: true,
@@ -43,7 +44,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ToDoScreen(),
+                    builder: (context) => const EditToDoScreen(),
                   ),
                 );
               },

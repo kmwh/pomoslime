@@ -34,12 +34,12 @@ class _ToDoState extends State<ToDo> {
                   },
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.circle,
-                        size: 10,
-                        color: Color(toDoProvider.currentToDoColor),
+                      Image.asset(
+                        "assets/images/${toDoProvider.toDoList[toDoProvider.currentToDo][5]}.png",
+                        width: 20,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                      const SizedBox(width: 6),
+                      const SizedBox(width: 4),
                       Text(
                         toDoProvider.currentToDoName,
                         style: const TextStyle(
