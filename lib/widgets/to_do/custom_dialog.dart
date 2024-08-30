@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pomoslime/provider/timer_provider.dart';
-import 'package:pomoslime/provider/to_do_list_provider.dart';
-import 'package:provider/provider.dart';
 
-class ChangeToDoDialog extends StatelessWidget {
+class CustomDialog extends StatelessWidget {
+  final String title;
+  final String content;
   final int index;
-  const ChangeToDoDialog({
+  final Function() func;
+  const CustomDialog({
     super.key,
+    required this.title,
+    required this.content,
     required this.index,
+    required this.func,
   });
 
   @override
@@ -22,25 +25,21 @@ class ChangeToDoDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text(
-            "세션 변경",
-            style: TextStyle(
+          Text(
+            title,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w500,
             ),
           ),
           const SizedBox(height: 15),
-          const Text("세션을 변경하면 현재 세션이 초기화됩니다"),
+          Text(content),
           const SizedBox(height: 15),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               OutlinedButton(
-                onPressed: () {
-                  context.read<ToDoListProvider>().setCurrentToDo(index);
-                  context.read<TimerProvider>().onCancelPressed();
-                  Navigator.pop(context);
-                },
+                onPressed: func,
                 style: const ButtonStyle(),
                 child: const Text("확인"),
               ),

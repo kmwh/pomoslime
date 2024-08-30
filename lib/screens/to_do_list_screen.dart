@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/screens/to_do_screen.dart';
-import 'package:pomoslime/widgets/to_do_list/to_do_list_items.dart';
+import 'package:pomoslime/widgets/to_do/to_do_list_item.dart';
+import 'package:provider/provider.dart';
 
 class ToDoListScreen extends StatefulWidget {
   const ToDoListScreen({super.key});
@@ -18,7 +20,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         title: const Text(
           "To Do List",
           style: TextStyle(
-            fontSize: 20,
+            fontSize: 18,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -41,9 +43,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ToDoScreen(
-                      index: -1,
-                    ),
+                    builder: (context) => const ToDoScreen(),
                   ),
                 );
               },
@@ -56,7 +56,20 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
           ),
         ],
       ),
-      body: const ToDoListItems(),
+      body: Consumer<ToDoListProvider>(
+        builder: (context, provider, child) {
+          return SingleChildScrollView(
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: provider.toDoListLength,
+              itemBuilder: (context, index) {
+                return ToDoListItem(index: index);
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

@@ -29,7 +29,8 @@ class UserDataModel extends HiveObject {
   bool focusImmediately;
 
   @HiveField(8)
-  List<List> toDoList; // [["name", 집중 세션 수, 집중 시간(초), 짧은 휴식(초), 긴 휴식(초), 색깔],]
+  List<List>
+      toDoList; // [["name", 집중 세션 수, 집중 시간(초), 짧은 휴식(초), 긴 휴식(초), 색깔값(int)],]
 
   @HiveField(9)
   int currentToDo;
