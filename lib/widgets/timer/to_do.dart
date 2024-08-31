@@ -35,7 +35,7 @@ class _ToDoState extends State<ToDo> {
                   child: Row(
                     children: [
                       Image.asset(
-                        "assets/images/${toDoProvider.toDoList[toDoProvider.currentToDo][5]}.png",
+                        "assets/images/${toDoProvider.toDoList[toDoProvider.currentToDo]["icon"]}.png",
                         width: 20,
                         color: Theme.of(context).colorScheme.primary,
                       ),

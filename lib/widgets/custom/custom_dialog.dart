@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/widgets/custom/custom_text_button.dart';
 
 class CustomDialog extends StatelessWidget {
   final String title;
   final String content;
-  final int index;
-  final Function() func;
+  final Function() onPressed;
+
   const CustomDialog({
     super.key,
     required this.title,
     required this.content,
-    required this.index,
-    required this.func,
+    required this.onPressed,
   });
 
   @override
@@ -41,20 +41,22 @@ class CustomDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                OutlinedButton(
-                  onPressed: func,
-                  style: const ButtonStyle(),
-                  child: const Text("확인"),
+                CustomTextButton(
+                  text: "확인",
+                  fontSize: 14,
+                  onPressed: onPressed,
+                  horizontalPadding: 5,
+                  verticalPadding: 5,
                 ),
                 const SizedBox(
                   width: 10,
                 ),
-                OutlinedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  style: const ButtonStyle(),
-                  child: const Text("취소"),
+                CustomTextButton(
+                  text: "취소",
+                  fontSize: 14,
+                  onPressed: () => Navigator.pop(context),
+                  horizontalPadding: 5,
+                  verticalPadding: 5,
                 ),
               ],
             )

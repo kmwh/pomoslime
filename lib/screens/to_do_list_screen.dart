@@ -27,9 +27,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         ),
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
           icon: Image.asset(
             "assets/images/arrow_left.png",
             color: Theme.of(context).colorScheme.primary,

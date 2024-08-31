@@ -12,7 +12,8 @@ class TimerProvider with ChangeNotifier {
   late Timer timer;
 
   TimerProvider(this._userData) {
-    currentSeconds = _userData.toDoList[_userData.currentToDo][2];
+    currentSeconds =
+        _userData.toDoList[_userData.currentToDo]["focusTime"] * 60;
     currentSessionName = 'focus';
     timer = Timer.periodic(
       const Duration(seconds: 1),
@@ -25,19 +26,20 @@ class TimerProvider with ChangeNotifier {
     if ((_userData.currentSession + 1) % 8 == 0 &&
         _userData.currentSession != 0) {
       currentSessionName = 'long';
-      return _userData.toDoList[_userData.currentToDo][4];
+      return _userData.toDoList[_userData.currentToDo]["longBreakTime"] * 60;
     } else if (_userData.currentSession % 2 == 0) {
       currentSessionName = 'focus';
-      return _userData.toDoList[_userData.currentToDo][2];
+      return _userData.toDoList[_userData.currentToDo]["focusTime"] * 60;
     } else {
       currentSessionName = 'short';
-      return _userData.toDoList[_userData.currentToDo][3];
+      return _userData.toDoList[_userData.currentToDo]["shortBreakTime"] * 60;
     }
   }
 
   String get formattedCurrentSessionSeconds => formatTimer(currentSeconds);
 
-  int get totalSession => _userData.toDoList[_userData.currentToDo][1] * 2 - 1;
+  int get totalSession =>
+      _userData.toDoList[_userData.currentToDo]["focusCount"] * 2 - 1;
 
   int get currentSession => _userData.currentSession;
 
@@ -45,7 +47,11 @@ class TimerProvider with ChangeNotifier {
 
   String formatTimer(int seconds) {
     var duration = Duration(seconds: seconds);
-    return duration.toString().split('.').first.substring(2, 7);
+    if (duration.inHours > 0) {
+      return duration.toString().split('.').first;
+    } else {
+      return duration.toString().split('.').first.substring(2, 7);
+    }
   }
 
   void onTick(Timer timer) {

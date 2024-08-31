@@ -19,8 +19,8 @@ class ThemeProvider with ChangeNotifier {
     brightness: Brightness.dark,
     colorScheme: const ColorScheme.dark(
       surface: Colors.black,
-      surfaceBright: Color.fromARGB(255, 19, 19, 19),
-      surfaceContainer: Color.fromRGBO(255, 255, 255, 0.1),
+      surfaceBright: Color.fromARGB(255, 23, 23, 23),
+      surfaceContainer: Color.fromARGB(255, 43, 43, 43),
       surfaceContainerLowest: Color.fromRGBO(255, 255, 255, 0.4),
       primary: Color(0xFFFFFFFF),
       primaryContainer: Color.fromRGBO(255, 255, 255, 0.668),
@@ -31,9 +31,9 @@ class ThemeProvider with ChangeNotifier {
   final ThemeData _lightTheme = ThemeData(
     brightness: Brightness.light,
     colorScheme: const ColorScheme.light(
-      surface: Color.fromARGB(255, 247, 247, 247),
+      surface: Color.fromARGB(255, 246, 246, 246),
       surfaceBright: Colors.white,
-      surfaceContainer: Color.fromRGBO(0, 0, 0, 0.1),
+      surfaceContainer: Color.fromARGB(255, 233, 233, 233),
       surfaceContainerLowest: Color.fromRGBO(0, 0, 0, 0.4),
       primary: Color(0xFF222222),
       primaryContainer: Color.fromRGBO(0, 0, 0, 0.812),

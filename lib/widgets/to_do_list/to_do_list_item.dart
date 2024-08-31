@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/screens/edit_to_do_screen.dart';
-import 'package:pomoslime/widgets/to_do_list/custom_checkbox.dart';
-import 'package:pomoslime/widgets/to_do_list/custom_dialog.dart';
+import 'package:pomoslime/widgets/custom/custom_checkbox.dart';
+import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';
 
 class ToDoListItem extends StatefulWidget {
@@ -29,8 +29,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
           return CustomDialog(
             title: "세션 변경",
             content: "세션을 변경하면 현재 세션이 초기화됩니다.",
-            index: index,
-            func: () {
+            onPressed: () {
               context.read<ToDoListProvider>().setCurrentToDo(index);
               context.read<TimerProvider>().onCancelPressed();
               Navigator.pop(context);
@@ -51,8 +50,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
         return CustomDialog(
           title: "세션 삭제",
           content: "삭제된 세션은 복구되지 않습니다",
-          index: index,
-          func: () {
+          onPressed: () {
             context.read<ToDoListProvider>().deleteToDo(index);
             Navigator.pop(context);
           },
@@ -79,7 +77,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
               color: Theme.of(context).colorScheme.surfaceBright,
               border: provider.currentToDo == widget.index
                   ? Border.all(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Theme.of(context).colorScheme.primaryContainer,
                       width: 0.9,
                     )
                   : null,
@@ -101,13 +99,13 @@ class _ToDoListItemState extends State<ToDoListItem> {
                           ),
                           const SizedBox(width: 8),
                           Image.asset(
-                            "assets/images/${provider.toDoList[widget.index][5]}.png",
+                            "assets/images/${provider.toDoList[widget.index]["icon"]}.png",
                             width: 20,
                             color: Theme.of(context).colorScheme.primary,
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            provider.toDoList[widget.index][0],
+                            provider.toDoList[widget.index]["name"],
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontSize: 18,
@@ -137,11 +135,17 @@ class _ToDoListItemState extends State<ToDoListItem> {
                             ),
                           ),
                           IconButton(
-                            onPressed: () => showDeleteDialog(widget.index),
+                            onPressed: provider.currentToDo != widget.index
+                                ? () => showDeleteDialog(widget.index)
+                                : null,
                             icon: Image.asset(
                               "assets/images/trash.png",
                               width: 26,
-                              color: Theme.of(context).colorScheme.primary,
+                              color: provider.currentToDo != widget.index
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .surfaceContainerLowest,
                             ),
                           ),
                         ],
@@ -151,7 +155,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
                   Padding(
                     padding: const EdgeInsets.only(left: 46),
                     child: Text(
-                      "${provider.toDoList[widget.index][1].toString()}  |  ${provider.toDoList[widget.index][2].toString()} min  |  ${provider.toDoList[widget.index][3].toString()} min  |  ${provider.toDoList[widget.index][4].toString()} min",
+                      "${provider.toDoList[widget.index]["focusCount"].toString()}  |  ${provider.toDoList[widget.index]["focusTime"].toString()} min  |  ${provider.toDoList[widget.index]["shortBreakTime"].toString()} min  |  ${provider.toDoList[widget.index]["longBreakTime"].toString()} min",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primaryContainer,
                         fontSize: 14,

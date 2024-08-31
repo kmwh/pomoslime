@@ -20,9 +20,9 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData10");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData19");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData10");
+      await Hive.openBox<CalenderDataModel>("calenderData19");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
@@ -74,17 +74,15 @@ Future<UserDataModel> initializeUserData(Box<UserDataModel> box) async {
       language: 0,
       focusImmediately: false,
       toDoList: [
-        ["pomodoro1", 13, 12, 5, 10, "pencil"],
-        ["pomodoro2", 4, 12, 5, 10, "play"],
-        ["pomodoro3", 6, 12, 5, 10, "setting"],
-        ["pomodoro4", 16, 12, 5, 10, "setting"],
-        ["pomo", 8, 12, 5, 10, "fire"],
-        ["pomodoro6", 13, 12, 5, 10, "security"],
-        ["pomodotty", 13, 12, 5, 10, "pencil"],
-        ["pomodtt", 13, 12, 5, 10, "pencil"],
-        ["pomodoew", 13, 12, 5, 10, "pencil"],
-        ["pomodoaa", 13, 12, 5, 10, "pencil"],
-        ["pomodo", 13, 12, 5, 10, "pencil"],
+        {
+          "name": "pomo",
+          "focusCount": 4,
+          "focusTime": 25,
+          "shortBreakTime": 5,
+          "longBreakTime": 10,
+          "timeUnit": 5,
+          "icon": "pencil",
+        },
       ],
       currentToDo: 0,
       currentSession: 0,

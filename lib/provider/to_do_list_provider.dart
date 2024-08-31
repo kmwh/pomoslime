@@ -6,15 +6,14 @@ class ToDoListProvider with ChangeNotifier {
 
   ToDoListProvider(this._userData);
 
-  List<List> get toDoList => _userData.toDoList;
+  List<Map> get toDoList => _userData.toDoList;
 
   int get toDoListLength => _userData.toDoList.length;
 
   int get currentToDo => _userData.currentToDo;
 
-  String get currentToDoName => _userData.toDoList[_userData.currentToDo][0];
-
-  int get currentToDoColor => _userData.toDoList[_userData.currentToDo][5];
+  String get currentToDoName =>
+      _userData.toDoList[_userData.currentToDo]["name"];
 
   void setCurrentToDo(int index) {
     _userData.currentToDo = index;
@@ -24,7 +23,7 @@ class ToDoListProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addToDo(List newToDo) {
+  void addToDo(Map newToDo) {
     _userData.toDoList.add(newToDo);
     _userData.save();
 
@@ -33,12 +32,15 @@ class ToDoListProvider with ChangeNotifier {
 
   void deleteToDo(int index) {
     _userData.toDoList.removeAt(index);
+    if (index < _userData.currentToDo) {
+      _userData.currentToDo -= 1;
+    }
     _userData.save();
 
     notifyListeners();
   }
 
-  void updateToDo(int index, List updatedToDo) {
+  void updateToDo(int index, Map updatedToDo) {
     _userData.toDoList[index] = updatedToDo;
     _userData.save();
 

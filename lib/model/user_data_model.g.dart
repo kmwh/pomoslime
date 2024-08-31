@@ -26,7 +26,7 @@ class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
       language: fields[6] as int,
       focusImmediately: fields[7] as bool,
       toDoList: (fields[8] as List)
-          .map((dynamic e) => (e as List).cast<dynamic>())
+          .map((dynamic e) => (e as Map).cast<dynamic, dynamic>())
           .toList(),
       currentToDo: fields[9] as int,
       currentSession: fields[10] as int,
