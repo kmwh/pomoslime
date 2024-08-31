@@ -47,7 +47,6 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
   void setNewToDoValue(String key, var value) {
     setState(() {
       newToDo[key] = value;
-      print(context.read<ToDoListProvider>().toDoList);
     });
   }
 
@@ -235,9 +234,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                   ),
                   CustomTextButton(
                     text: "취소",
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: () => Navigator.pop(context),
                     horizontalPadding: 30,
                     verticalPadding: 12,
                   ),
