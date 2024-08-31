@@ -1,17 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 
 class TimerProvider with ChangeNotifier {
   final UserDataModel _userData;
+  final CalenderDataModel _calenderData;
 
   bool isInit = true;
   late int currentSeconds;
   late String currentSessionName;
   late Timer timer;
 
-  TimerProvider(this._userData) {
+  TimerProvider(this._userData, this._calenderData) {
     currentSeconds =
         _userData.toDoList[_userData.currentToDo]["focusTime"] * 60;
     currentSessionName = 'focus';
@@ -20,6 +22,9 @@ class TimerProvider with ChangeNotifier {
       onTick,
     );
     timer.cancel();
+    if (_userData.currentSession != 0) {
+      isInit = false;
+    }
   }
 
   int get currentSessionSeconds {
@@ -45,6 +50,44 @@ class TimerProvider with ChangeNotifier {
 
   bool get isRunning => timer.isActive;
 
+  ///////// 캘린더
+  Map<DateTime, int> get focusTimeMap => _calenderData.focusTimeMap;
+
+  int get totalFocusTime {
+    return 20;
+  }
+
+  int get todayFocusTime {
+    return 10;
+  }
+
+  int get weekFocusTime {
+    return 10;
+  }
+
+  int get monthFocusTime {
+    return 10;
+  }
+
+  int get yearFocusTime {
+    return 10;
+  }
+
+  int getPeriodTimes(int index) {
+    if (index == 0) {
+      return totalFocusTime;
+    } else if (index == 1) {
+      return todayFocusTime;
+    } else if (index == 2) {
+      return weekFocusTime;
+    } else if (index == 3) {
+      return monthFocusTime;
+    } else {
+      return yearFocusTime;
+    }
+  }
+  /////////
+
   String formatTimer(int seconds) {
     var duration = Duration(seconds: seconds);
     if (duration.inHours > 0) {
@@ -58,6 +101,16 @@ class TimerProvider with ChangeNotifier {
     currentSeconds -= 1;
 
     if (currentSeconds == 0) {
+      // 캘린더 기록
+      if (currentSessionName == 'focus') {
+        DateTime now = DateTime.now();
+        DateTime dateOnly = DateUtils.dateOnly(now);
+        _calenderData.focusTimeMap[dateOnly] =
+            (_calenderData.focusTimeMap[dateOnly] ?? 0) + 1;
+        _calenderData.save();
+      }
+
+      // 다음 세션으로 넘기는 작업
       _userData.currentSession += 1;
       currentSeconds = currentSessionSeconds;
 

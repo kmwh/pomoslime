@@ -3,7 +3,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
-import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
@@ -44,16 +43,13 @@ void main() async {
           create: (context) => ThemeProvider(userData),
         ),
         ChangeNotifierProvider(
-          create: (context) => TimerProvider(userData),
+          create: (context) => TimerProvider(userData, calenderData),
         ),
         ChangeNotifierProvider(
           create: (context) => ToDoListProvider(userData),
         ),
         ChangeNotifierProvider(
           create: (context) => VibrationProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CalenderProvider(calenderData),
         ),
       ],
       child: const App(),
