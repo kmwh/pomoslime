@@ -9,14 +9,9 @@ import 'package:pomoslime/widgets/setting/setting_item_switch.dart';
 import 'package:pomoslime/widgets/setting/setting_menu.dart';
 import 'package:provider/provider.dart';
 
-class SettingScreen extends StatefulWidget {
+class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
-  @override
-  State<SettingScreen> createState() => _SettingScreenState();
-}
-
-class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(

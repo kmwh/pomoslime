@@ -5,14 +5,9 @@ import 'package:pomoslime/widgets/timer/timer_buttons.dart';
 import 'package:pomoslime/widgets/timer/timer_session.dart';
 import 'package:pomoslime/widgets/timer/to_do.dart';
 
-class TimerScreen extends StatefulWidget {
+class TimerScreen extends StatelessWidget {
   const TimerScreen({super.key});
 
-  @override
-  State<TimerScreen> createState() => _TimerScreenState();
-}
-
-class _TimerScreenState extends State<TimerScreen> {
   @override
   Widget build(BuildContext context) {
     return const Column(

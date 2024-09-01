@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:provider/provider.dart';
 
-class TimerButtons extends StatefulWidget {
+class TimerButtons extends StatelessWidget {
   const TimerButtons({super.key});
 
-  @override
-  State<TimerButtons> createState() => _TimerButtonsState();
-}
-
-class _TimerButtonsState extends State<TimerButtons> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TimerProvider>(

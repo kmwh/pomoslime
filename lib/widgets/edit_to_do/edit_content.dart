@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class EditContent extends StatefulWidget {
+class EditContent extends StatelessWidget {
   final String text;
   final int timeUnit;
   final int currentValue;
@@ -23,11 +23,6 @@ class EditContent extends StatefulWidget {
   });
 
   @override
-  State<EditContent> createState() => _EditContentState();
-}
-
-class _EditContentState extends State<EditContent> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
@@ -35,7 +30,7 @@ class _EditContentState extends State<EditContent> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            widget.text,
+            text,
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w300,
@@ -45,16 +40,13 @@ class _EditContentState extends State<EditContent> {
           Row(
             children: [
               IconButton(
-                onPressed: (widget.currentValue - widget.timeUnit >=
-                        widget.minValue)
-                    ? () => widget.changeValueFunc(
-                        widget.toDoKey, widget.currentValue - widget.timeUnit)
+                onPressed: (currentValue - timeUnit >= minValue)
+                    ? () => changeValueFunc(toDoKey, currentValue - timeUnit)
                     : null,
                 icon: Image.asset(
                   "assets/images/arrow_left.png",
                   width: 24,
-                  color: (widget.currentValue - widget.timeUnit >=
-                          widget.minValue)
+                  color: (currentValue - timeUnit >= minValue)
                       ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.primary.withOpacity(0.4),
                 ),
@@ -62,7 +54,7 @@ class _EditContentState extends State<EditContent> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
-                  "${widget.currentValue.toString()} ${widget.isMinute ? "min" : ""}",
+                  "${currentValue.toString()} ${isMinute ? "min" : ""}",
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w300,
@@ -70,16 +62,13 @@ class _EditContentState extends State<EditContent> {
                 ),
               ),
               IconButton(
-                onPressed: (widget.currentValue + widget.timeUnit <=
-                        widget.maxValue)
-                    ? () => widget.changeValueFunc(
-                        widget.toDoKey, widget.currentValue + widget.timeUnit)
+                onPressed: (currentValue + timeUnit <= maxValue)
+                    ? () => changeValueFunc(toDoKey, currentValue + timeUnit)
                     : null,
                 icon: Image.asset(
                   "assets/images/arrow.png",
                   width: 24,
-                  color: (widget.currentValue + widget.timeUnit <=
-                          widget.maxValue)
+                  color: (currentValue + timeUnit <= maxValue)
                       ? Theme.of(context).colorScheme.primary
                       : Theme.of(context).colorScheme.primary.withOpacity(0.4),
                 ),

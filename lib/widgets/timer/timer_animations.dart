@@ -4,14 +4,9 @@ import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:provider/provider.dart';
 
-class TimerAnimations extends StatefulWidget {
+class TimerAnimations extends StatelessWidget {
   const TimerAnimations({super.key});
 
-  @override
-  State<TimerAnimations> createState() => _TimerAnimationsState();
-}
-
-class _TimerAnimationsState extends State<TimerAnimations> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(

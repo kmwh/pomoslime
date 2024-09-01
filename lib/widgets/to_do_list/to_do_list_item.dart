@@ -6,7 +6,7 @@ import 'package:pomoslime/widgets/custom/custom_checkbox.dart';
 import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';
 
-class ToDoListItem extends StatefulWidget {
+class ToDoListItem extends StatelessWidget {
   final int index;
 
   const ToDoListItem({
@@ -15,52 +15,47 @@ class ToDoListItem extends StatefulWidget {
   });
 
   @override
-  State<ToDoListItem> createState() => _ToDoListItemState();
-}
+  Widget build(BuildContext context) {
+    void showToDoDialog(int index) {
+      if (index == context.read<ToDoListProvider>().currentToDo) {
+        return;
+      } else if (!context.read<TimerProvider>().isInit) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return CustomDialog(
+              title: "세션 변경",
+              content: "세션을 변경하면 현재 세션이 초기화됩니다.",
+              onPressed: () {
+                context.read<ToDoListProvider>().setCurrentToDo(index);
+                context.read<TimerProvider>().onCancelPressed();
+                Navigator.pop(context);
+              },
+            );
+          },
+        );
+      } else {
+        context.read<ToDoListProvider>().setCurrentToDo(index);
+        context.read<TimerProvider>().onCancelPressed();
+      }
+    }
 
-class _ToDoListItemState extends State<ToDoListItem> {
-  void showToDoDialog(int index) {
-    if (index == context.read<ToDoListProvider>().currentToDo) {
-      return;
-    } else if (!context.read<TimerProvider>().isInit) {
+    void showDeleteDialog(int index) {
       showDialog(
         context: context,
         builder: (context) {
           return CustomDialog(
-            title: "세션 변경",
-            content: "세션을 변경하면 현재 세션이 초기화됩니다.",
+            title: "세션 삭제",
+            content: "삭제된 세션은 복구되지 않습니다",
             onPressed: () {
-              context.read<ToDoListProvider>().setCurrentToDo(index);
-              context.read<TimerProvider>().onCancelPressed();
+              context.read<ToDoListProvider>().deleteToDo(index);
               Navigator.pop(context);
             },
           );
         },
       );
-    } else {
-      context.read<ToDoListProvider>().setCurrentToDo(index);
-      context.read<TimerProvider>().onCancelPressed();
     }
-  }
 
-  void showDeleteDialog(int index) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return CustomDialog(
-          title: "세션 삭제",
-          content: "삭제된 세션은 복구되지 않습니다",
-          onPressed: () {
-            context.read<ToDoListProvider>().deleteToDo(index);
-            Navigator.pop(context);
-          },
-        );
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
@@ -75,7 +70,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
             ),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surfaceBright,
-              border: provider.currentToDo == widget.index
+              border: provider.currentToDo == index
                   ? Border.all(
                       color: Theme.of(context).colorScheme.primaryContainer,
                       width: 0.9,
@@ -84,7 +79,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: InkWell(
-              onTap: () => showToDoDialog(widget.index),
+              onTap: () => showToDoDialog(index),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -94,18 +89,18 @@ class _ToDoListItemState extends State<ToDoListItem> {
                       Row(
                         children: [
                           CustomCheckbox(
-                            value: provider.currentToDo == widget.index,
-                            onChanged: (value) => showToDoDialog(widget.index),
+                            value: provider.currentToDo == index,
+                            onChanged: (value) => showToDoDialog(index),
                           ),
                           const SizedBox(width: 8),
                           Image.asset(
-                            "assets/images/${provider.toDoList[widget.index]["icon"]}.png",
+                            "assets/images/${provider.toDoList[index]["icon"]}.png",
                             width: 20,
                             color: Theme.of(context).colorScheme.primary,
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            provider.toDoList[widget.index]["name"],
+                            provider.toDoList[index]["name"],
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontSize: 18,
@@ -122,8 +117,8 @@ class _ToDoListItemState extends State<ToDoListItem> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => EditToDoScreen(
-                                    index: widget.index,
-                                    toDo: provider.toDoList[widget.index],
+                                    index: index,
+                                    toDo: provider.toDoList[index],
                                   ),
                                 ),
                               );
@@ -135,13 +130,13 @@ class _ToDoListItemState extends State<ToDoListItem> {
                             ),
                           ),
                           IconButton(
-                            onPressed: provider.currentToDo != widget.index
-                                ? () => showDeleteDialog(widget.index)
+                            onPressed: provider.currentToDo != index
+                                ? () => showDeleteDialog(index)
                                 : null,
                             icon: Image.asset(
                               "assets/images/trash.png",
                               width: 26,
-                              color: provider.currentToDo != widget.index
+                              color: provider.currentToDo != index
                                   ? Theme.of(context).colorScheme.primary
                                   : Theme.of(context)
                                       .colorScheme
@@ -155,7 +150,7 @@ class _ToDoListItemState extends State<ToDoListItem> {
                   Padding(
                     padding: const EdgeInsets.only(left: 46),
                     child: Text(
-                      "${provider.toDoList[widget.index]["focusCount"].toString()}  |  ${provider.toDoList[widget.index]["focusTime"].toString()} min  |  ${provider.toDoList[widget.index]["shortBreakTime"].toString()} min  |  ${provider.toDoList[widget.index]["longBreakTime"].toString()} min",
+                      "${provider.toDoList[index]["focusCount"].toString()}  |  ${provider.toDoList[index]["focusTime"].toString()} min  |  ${provider.toDoList[index]["shortBreakTime"].toString()} min  |  ${provider.toDoList[index]["longBreakTime"].toString()} min",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primaryContainer,
                         fontSize: 14,

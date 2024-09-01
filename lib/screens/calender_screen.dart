@@ -5,14 +5,9 @@ import 'package:pomoslime/widgets/calender/calender_backup_buttons.dart';
 import 'package:pomoslime/widgets/calender/calender_tile.dart';
 import 'package:provider/provider.dart';
 
-class CalenderScreen extends StatefulWidget {
+class CalenderScreen extends StatelessWidget {
   const CalenderScreen({super.key});
 
-  @override
-  State<CalenderScreen> createState() => _CalenderScreenState();
-}
-
-class _CalenderScreenState extends State<CalenderScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(

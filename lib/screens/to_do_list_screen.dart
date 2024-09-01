@@ -4,14 +4,9 @@ import 'package:pomoslime/screens/edit_to_do_screen.dart';
 import 'package:pomoslime/widgets/to_do_list/to_do_list_item.dart';
 import 'package:provider/provider.dart';
 
-class ToDoListScreen extends StatefulWidget {
+class ToDoListScreen extends StatelessWidget {
   const ToDoListScreen({super.key});
 
-  @override
-  State<ToDoListScreen> createState() => _ToDoListScreenState();
-}
-
-class _ToDoListScreenState extends State<ToDoListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

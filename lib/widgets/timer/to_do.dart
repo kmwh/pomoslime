@@ -4,14 +4,9 @@ import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/screens/to_do_list_screen.dart';
 import 'package:provider/provider.dart';
 
-class ToDo extends StatefulWidget {
+class ToDo extends StatelessWidget {
   const ToDo({super.key});
 
-  @override
-  State<ToDo> createState() => _ToDoState();
-}
-
-class _ToDoState extends State<ToDo> {
   @override
   Widget build(BuildContext context) {
     return Row(
