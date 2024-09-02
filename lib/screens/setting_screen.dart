@@ -77,7 +77,7 @@ class SettingScreen extends StatelessWidget {
               children: [
                 SettingItemSwitch(
                   initialValue: context.read<CalenderProvider>().numberView,
-                  icon: "assets/images/calender.png",
+                  icon: "assets/images/calender_date.png",
                   text: "캘린터 날짜 표시",
                   onChanged: (value) =>
                       context.read<CalenderProvider>().toggleNumberView(value),

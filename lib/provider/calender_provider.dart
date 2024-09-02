@@ -17,9 +17,9 @@ class CalenderProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void readCalenderData() {
-    setPeriodTimes();
-  }
+  void uploadCalenderData() {}
+
+  void downloadCalenderData() {}
 
   void addToCalender(int time) {
     DateTime now = DateTime.now();
