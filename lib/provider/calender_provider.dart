@@ -66,7 +66,6 @@ class CalenderProvider with ChangeNotifier {
         focusTimeMap.values.fold(0, (sum, value) => sum + value);
 
     _calenderData.totalFocusTime = totalFocusTime;
-    print("aa");
 
     _calenderData.save();
   }
@@ -76,7 +75,6 @@ class CalenderProvider with ChangeNotifier {
     DateTime dateOnly = DateUtils.dateOnly(now);
 
     _calenderData.todayFocusTime = focusTimeMap[dateOnly] ?? 0;
-    print("bb");
 
     _calenderData.save();
   }
@@ -93,7 +91,6 @@ class CalenderProvider with ChangeNotifier {
             entry.key.isAfter(startOfWeek.subtract(const Duration(days: 1))) &&
             entry.key.isBefore(endOfWeek.add(const Duration(days: 1))))
         .fold(0, (sum, entry) => sum + entry.value);
-    print("cc");
 
     _calenderData.save();
   }
@@ -109,7 +106,6 @@ class CalenderProvider with ChangeNotifier {
             entry.key.isAfter(startOfMonth.subtract(const Duration(days: 1))) &&
             entry.key.isBefore(endOfMonth.add(const Duration(days: 1))))
         .fold(0, (sum, entry) => sum + entry.value);
-    print("dd");
 
     _calenderData.save();
   }
@@ -125,7 +121,6 @@ class CalenderProvider with ChangeNotifier {
             entry.key.isAfter(startOfYear.subtract(const Duration(days: 1))) &&
             entry.key.isBefore(endOfYear.add(const Duration(days: 1))))
         .fold(0, (sum, entry) => sum + entry.value);
-    print("ee");
 
     _calenderData.save();
   }

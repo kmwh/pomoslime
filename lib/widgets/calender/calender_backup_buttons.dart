@@ -24,7 +24,7 @@ class CalenderBackupButtons extends StatelessWidget {
               ),
             ),
             InkWell(
-              onTap: provider.readCalenderData,
+              onTap: () {},
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
                 child: Image.asset(
