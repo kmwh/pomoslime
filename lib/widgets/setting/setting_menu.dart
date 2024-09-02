@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class SettingMenu extends StatelessWidget {
   final String title;
   final List<Widget> children;
+
   const SettingMenu({
     super.key,
     required this.title,

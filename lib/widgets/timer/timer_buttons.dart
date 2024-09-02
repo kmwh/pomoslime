@@ -1,9 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
+import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';
 
 class TimerButtons extends StatelessWidget {
   const TimerButtons({super.key});
+
+  void showCancelDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CustomDialog(
+          title: "세션 초기화",
+          content: "세션을 초기화하면 이전 과정까지 기록됩니다",
+          onPressed: () {
+            context.read<TimerProvider>().onCancelPressed();
+            Navigator.pop(context);
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +32,8 @@ class TimerButtons extends StatelessWidget {
           children: [
             IconButton(
               onPressed: provider.isRunning
-                  ? provider.onPausePressed
-                  : provider.onStartPressed,
+                  ? () => provider.onPausePressed()
+                  : () => provider.onStartPressed(context),
               icon: Image.asset(
                 height: 32,
                 provider.isRunning
@@ -31,7 +48,7 @@ class TimerButtons extends StatelessWidget {
             ),
             (!provider.isRunning && !provider.isInit)
                 ? IconButton(
-                    onPressed: provider.onCancelPressed,
+                    onPressed: () => showCancelDialog(context),
                     icon: Image.asset(
                       height: 32,
                       "assets/images/cancel.png",

@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
+import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
@@ -19,9 +20,9 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData20");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData22");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData20");
+      await Hive.openBox<CalenderDataModel>("calenderData22");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
@@ -34,6 +35,9 @@ void main() async {
           create: (context) => BackgroundUsageProvider(userData),
         ),
         ChangeNotifierProvider(
+          create: (context) => CalenderProvider(calenderData),
+        ),
+        ChangeNotifierProvider(
           create: (context) => FocusImmediatelyProvider(userData),
         ),
         ChangeNotifierProvider(
@@ -43,7 +47,7 @@ void main() async {
           create: (context) => ThemeProvider(userData),
         ),
         ChangeNotifierProvider(
-          create: (context) => TimerProvider(userData, calenderData),
+          create: (context) => TimerProvider(userData),
         ),
         ChangeNotifierProvider(
           create: (context) => ToDoListProvider(userData),
@@ -82,7 +86,7 @@ Future<UserDataModel> initializeUserData(Box<UserDataModel> box) async {
       ],
       currentToDo: 0,
       currentSession: 0,
-      currentTime: 25,
+      currentTime: 1500,
     );
     await box.put("userData", defaultUserData);
     return defaultUserData;
@@ -96,6 +100,7 @@ Future<CalenderDataModel> initializeCalenderData(
   if (box.isEmpty) {
     final defaultCalenderData = CalenderDataModel(
       focusTimeMap: {},
+      numberView: false,
     );
     await box.put("calenderData", defaultCalenderData);
     return defaultCalenderData;

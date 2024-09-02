@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomoslime/provider/timer_provider.dart';
+import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:provider/provider.dart';
 
 class CalenderTile extends StatelessWidget {
@@ -14,7 +14,7 @@ class CalenderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TimerProvider>(
+    return Consumer<CalenderProvider>(
       builder: (context, provider, child) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 6),

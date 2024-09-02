@@ -17,14 +17,14 @@ class CustomDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Theme.of(context).colorScheme.surfaceBright,
+      contentPadding: const EdgeInsets.symmetric(vertical: 16),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(12),
         ),
       ),
       content: SizedBox(
-        width:
-            MediaQuery.of(context).size.width * 0.8, // 가로 크기를 조절, 화면의 80%로 설정
+        width: MediaQuery.of(context).size.width * 0.8,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -45,18 +45,18 @@ class CustomDialog extends StatelessWidget {
                   text: "확인",
                   fontSize: 14,
                   onPressed: onPressed,
-                  horizontalPadding: 5,
-                  verticalPadding: 5,
+                  horizontalPadding: 26,
+                  verticalPadding: 12,
                 ),
                 const SizedBox(
-                  width: 10,
+                  width: 8,
                 ),
                 CustomTextButton(
                   text: "취소",
                   fontSize: 14,
                   onPressed: () => Navigator.pop(context),
-                  horizontalPadding: 5,
-                  verticalPadding: 5,
+                  horizontalPadding: 26,
+                  verticalPadding: 12,
                 ),
               ],
             )

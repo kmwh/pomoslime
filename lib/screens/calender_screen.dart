@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
-import 'package:pomoslime/provider/timer_provider.dart';
+import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/widgets/calender/calender_backup_buttons.dart';
 import 'package:pomoslime/widgets/calender/calender_tile.dart';
 import 'package:provider/provider.dart';
@@ -28,13 +28,13 @@ class CalenderScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 26),
-            Consumer<TimerProvider>(
+            Consumer<CalenderProvider>(
               builder: (context, provider, child) {
                 return HeatMap(
                   datasets: provider.focusTimeMap,
                   defaultColor: const Color.fromRGBO(129, 129, 129, 0.23),
                   colorMode: ColorMode.opacity,
-                  showText: true,
+                  showText: provider.numberView,
                   showColorTip: false,
                   scrollable: true,
                   colorsets: const {
@@ -65,9 +65,7 @@ class CalenderScreen extends StatelessWidget {
               period: "이번 년도",
               timeIndex: 4,
             ),
-            const SizedBox(
-              height: 18,
-            ),
+            const SizedBox(height: 18),
             const CalenderBackupButtons(),
           ],
         ),

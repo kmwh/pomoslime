@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
+import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
@@ -42,28 +43,21 @@ class SettingScreen extends StatelessWidget {
             SettingMenu(
               title: "타이머 설정",
               children: [
-                Consumer<FocusImmediatelyProvider>(
-                  builder: (context, provider, child) {
-                    return SettingItemSwitch(
-                      initialValue: provider.focusImmediately,
-                      icon: "assets/images/fire.png",
-                      text: "휴식 후 집중 바로 시작",
-                      onChanged: (value) {
-                        provider.toggle();
-                      },
-                    );
+                SettingItemSwitch(
+                  initialValue:
+                      context.read<FocusImmediatelyProvider>().focusImmediately,
+                  icon: "assets/images/fire.png",
+                  text: "휴식 후 집중 바로 시작",
+                  onChanged: (value) {
+                    context.read<FocusImmediatelyProvider>().toggle();
                   },
                 ),
-                Consumer<VibrationProvider>(
-                  builder: (context, provider, child) {
-                    return SettingItemSwitch(
-                      initialValue: provider.vibration,
-                      icon: "assets/images/vibration.png",
-                      text: "진동",
-                      onChanged: (value) {
-                        provider.toggle();
-                      },
-                    );
+                SettingItemSwitch(
+                  initialValue: context.read<VibrationProvider>().vibration,
+                  icon: "assets/images/vibration.png",
+                  text: "진동",
+                  onChanged: (value) {
+                    context.read<VibrationProvider>().toggle();
                   },
                 ),
                 SettingItemPopup(
@@ -79,30 +73,33 @@ class SettingScreen extends StatelessWidget {
               ],
             ),
             SettingMenu(
+              title: "캘린더 설정",
+              children: [
+                SettingItemSwitch(
+                  initialValue: context.read<CalenderProvider>().numberView,
+                  icon: "assets/images/calender.png",
+                  text: "캘린터 날짜 표시",
+                  onChanged: (value) =>
+                      context.read<CalenderProvider>().toggleNumberView(value),
+                ),
+              ],
+            ),
+            SettingMenu(
               title: "앱 설정",
               children: [
-                Consumer<ThemeProvider>(
-                  builder: (context, provider, child) {
-                    return SettingItemSwitch(
-                      initialValue: provider.darkMode,
-                      icon: "assets/images/moon.png",
-                      text: "다크 모드",
-                      onChanged: (value) {
-                        provider.toggle();
-                      },
-                    );
-                  },
+                SettingItemSwitch(
+                  initialValue: context.read<ThemeProvider>().darkMode,
+                  icon: "assets/images/moon.png",
+                  text: "다크 모드",
+                  onChanged: (value) => context.read<ThemeProvider>().toggle(),
                 ),
-                Consumer<BackgroundUsageProvider>(
-                  builder: (context, provider, child) {
-                    return SettingItemSwitch(
-                      initialValue: provider.backgroundUsage,
-                      icon: "assets/images/timer.png",
-                      text: "백그라운드 사용",
-                      onChanged: (value) {
-                        provider.toggle();
-                      },
-                    );
+                SettingItemSwitch(
+                  initialValue:
+                      context.read<BackgroundUsageProvider>().backgroundUsage,
+                  icon: "assets/images/timer.png",
+                  text: "백그라운드 사용",
+                  onChanged: (value) {
+                    context.read<BackgroundUsageProvider>().toggle();
                   },
                 ),
                 SettingItemPopup(

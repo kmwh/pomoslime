@@ -1,27 +1,26 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
+import 'package:pomoslime/provider/calender_provider.dart';
+import 'package:provider/provider.dart';
 
 class TimerProvider with ChangeNotifier {
   final UserDataModel _userData;
-  final CalenderDataModel _calenderData;
 
   bool isInit = true;
   late String currentSessionName;
   late Timer timer;
 
-  TimerProvider(this._userData, this._calenderData) {
-    _userData.currentTime =
-        _userData.toDoList[_userData.currentToDo]["focusTime"] * 60;
+  TimerProvider(this._userData) {
     currentSessionName = 'focus';
     timer = Timer.periodic(
       const Duration(seconds: 1),
-      onTick,
+      (timer) => onTick(timer, null),
     );
     timer.cancel();
-    if (_userData.currentSession != 0) {
+    if (_userData.currentSession > 0 ||
+        _userData.currentTime !=
+            (_userData.toDoList[_userData.currentToDo]["focusTime"] * 60)) {
       isInit = false;
     }
   }
@@ -50,44 +49,6 @@ class TimerProvider with ChangeNotifier {
 
   bool get isRunning => timer.isActive;
 
-  ///////// 캘린더
-  Map<DateTime, int> get focusTimeMap => _calenderData.focusTimeMap;
-
-  int get totalFocusTime {
-    return 20;
-  }
-
-  int get todayFocusTime {
-    return 10;
-  }
-
-  int get weekFocusTime {
-    return 10;
-  }
-
-  int get monthFocusTime {
-    return 10;
-  }
-
-  int get yearFocusTime {
-    return 10;
-  }
-
-  int getPeriodTimes(int index) {
-    if (index == 0) {
-      return totalFocusTime;
-    } else if (index == 1) {
-      return todayFocusTime;
-    } else if (index == 2) {
-      return weekFocusTime;
-    } else if (index == 3) {
-      return monthFocusTime;
-    } else {
-      return yearFocusTime;
-    }
-  }
-  /////////
-
   String formatTimer(int seconds) {
     var duration = Duration(seconds: seconds);
     if (duration.inHours > 0) {
@@ -97,17 +58,14 @@ class TimerProvider with ChangeNotifier {
     }
   }
 
-  void onTick(Timer timer) {
+  void onTick(Timer timer, BuildContext? context) {
     _userData.currentTime -= 1;
+    _userData.save();
 
     if (_userData.currentTime == 0) {
       // 캘린더 기록
-      if (currentSessionName == 'focus') {
-        DateTime now = DateTime.now();
-        DateTime dateOnly = DateUtils.dateOnly(now);
-        _calenderData.focusTimeMap[dateOnly] =
-            (_calenderData.focusTimeMap[dateOnly] ?? 0) + 1;
-        _calenderData.save();
+      if (currentSessionName == 'focus' && context != null) {
+        context.read<CalenderProvider>().addToCalender();
       }
 
       // 다음 세션으로 넘기는 작업
@@ -131,10 +89,10 @@ class TimerProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void onStartPressed() {
+  void onStartPressed(BuildContext context) {
     timer = Timer.periodic(
       const Duration(seconds: 1),
-      onTick,
+      (timer) => onTick(timer, context),
     );
     isInit = false;
 
@@ -149,9 +107,10 @@ class TimerProvider with ChangeNotifier {
 
   void onCancelPressed() {
     _userData.currentSession = 0;
-    _userData.save();
-    timer.cancel();
     _userData.currentTime = currentSessionSeconds;
+    _userData.save();
+
+    timer.cancel();
     isInit = true;
 
     notifyListeners();

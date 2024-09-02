@@ -18,15 +18,18 @@ class CalenderDataModelAdapter extends TypeAdapter<CalenderDataModel> {
     };
     return CalenderDataModel(
       focusTimeMap: (fields[1] as Map).cast<DateTime, int>(),
+      numberView: fields[2] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, CalenderDataModel obj) {
     writer
+      ..writeByte(2)
       ..writeByte(1)
-      ..writeByte(1)
-      ..write(obj.focusTimeMap);
+      ..write(obj.focusTimeMap)
+      ..writeByte(2)
+      ..write(obj.numberView);
   }
 
   @override

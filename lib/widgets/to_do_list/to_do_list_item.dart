@@ -14,48 +14,48 @@ class ToDoListItem extends StatelessWidget {
     required this.index,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    void showToDoDialog(int index) {
-      if (index == context.read<ToDoListProvider>().currentToDo) {
-        return;
-      } else if (!context.read<TimerProvider>().isInit) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return CustomDialog(
-              title: "세션 변경",
-              content: "세션을 변경하면 현재 세션이 초기화됩니다.",
-              onPressed: () {
-                context.read<ToDoListProvider>().setCurrentToDo(index);
-                context.read<TimerProvider>().onCancelPressed();
-                Navigator.pop(context);
-              },
-            );
-          },
-        );
-      } else {
-        context.read<ToDoListProvider>().setCurrentToDo(index);
-        context.read<TimerProvider>().onCancelPressed();
-      }
-    }
-
-    void showDeleteDialog(int index) {
+  void showToDoDialog(BuildContext context, int index) {
+    if (index == context.read<ToDoListProvider>().currentToDo) {
+      return;
+    } else if (!context.read<TimerProvider>().isInit) {
       showDialog(
         context: context,
         builder: (context) {
           return CustomDialog(
-            title: "세션 삭제",
-            content: "삭제된 세션은 복구되지 않습니다",
+            title: "세션 변경",
+            content: "세션을 변경하면 현재 세션이 초기화됩니다.",
             onPressed: () {
-              context.read<ToDoListProvider>().deleteToDo(index);
+              context.read<ToDoListProvider>().setCurrentToDo(index);
+              context.read<TimerProvider>().onCancelPressed();
               Navigator.pop(context);
             },
           );
         },
       );
+    } else {
+      context.read<ToDoListProvider>().setCurrentToDo(index);
+      context.read<TimerProvider>().onCancelPressed();
     }
+  }
 
+  void showDeleteDialog(BuildContext context, int index) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CustomDialog(
+          title: "세션 삭제",
+          content: "삭제된 세션은 복구되지 않습니다",
+          onPressed: () {
+            context.read<ToDoListProvider>().deleteToDo(index);
+            Navigator.pop(context);
+          },
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
@@ -79,7 +79,7 @@ class ToDoListItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: InkWell(
-              onTap: () => showToDoDialog(index),
+              onTap: () => showToDoDialog(context, index),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -90,7 +90,8 @@ class ToDoListItem extends StatelessWidget {
                         children: [
                           CustomCheckbox(
                             value: provider.currentToDo == index,
-                            onChanged: (value) => showToDoDialog(index),
+                            onChanged: (value) =>
+                                showToDoDialog(context, index),
                           ),
                           const SizedBox(width: 8),
                           Image.asset(
@@ -131,7 +132,7 @@ class ToDoListItem extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: provider.currentToDo != index
-                                ? () => showDeleteDialog(index)
+                                ? () => showDeleteDialog(context, index)
                                 : null,
                             icon: Image.asset(
                               "assets/images/trash.png",
