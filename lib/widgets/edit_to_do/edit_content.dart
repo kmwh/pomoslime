@@ -51,13 +51,16 @@ class EditContent extends StatelessWidget {
                       : Theme.of(context).colorScheme.primary.withOpacity(0.4),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  "${currentValue.toString()} ${isMinute ? "min" : ""}",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300,
+              SizedBox(
+                width: 300,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
+                    "${currentValue.toString()} ${isMinute ? "min" : ""}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
                   ),
                 ),
               ),

@@ -9,12 +9,11 @@ class TimerProvider with ChangeNotifier {
   final CalenderDataModel _calenderData;
 
   bool isInit = true;
-  late int currentSeconds;
   late String currentSessionName;
   late Timer timer;
 
   TimerProvider(this._userData, this._calenderData) {
-    currentSeconds =
+    _userData.currentTime =
         _userData.toDoList[_userData.currentToDo]["focusTime"] * 60;
     currentSessionName = 'focus';
     timer = Timer.periodic(
@@ -41,7 +40,8 @@ class TimerProvider with ChangeNotifier {
     }
   }
 
-  String get formattedCurrentSessionSeconds => formatTimer(currentSeconds);
+  String get formattedCurrentSessionSeconds =>
+      formatTimer(_userData.currentTime);
 
   int get totalSession =>
       _userData.toDoList[_userData.currentToDo]["focusCount"] * 2 - 1;
@@ -98,9 +98,9 @@ class TimerProvider with ChangeNotifier {
   }
 
   void onTick(Timer timer) {
-    currentSeconds -= 1;
+    _userData.currentTime -= 1;
 
-    if (currentSeconds == 0) {
+    if (_userData.currentTime == 0) {
       // 캘린더 기록
       if (currentSessionName == 'focus') {
         DateTime now = DateTime.now();
@@ -112,12 +112,12 @@ class TimerProvider with ChangeNotifier {
 
       // 다음 세션으로 넘기는 작업
       _userData.currentSession += 1;
-      currentSeconds = currentSessionSeconds;
+      _userData.currentTime = currentSessionSeconds;
 
       if (_userData.currentSession >= totalSession) {
         _userData.currentSession = 0;
         timer.cancel();
-        currentSeconds = currentSessionSeconds;
+        _userData.currentTime = currentSessionSeconds;
         isInit = true;
       }
 
@@ -151,7 +151,7 @@ class TimerProvider with ChangeNotifier {
     _userData.currentSession = 0;
     _userData.save();
     timer.cancel();
-    currentSeconds = currentSessionSeconds;
+    _userData.currentTime = currentSessionSeconds;
     isInit = true;
 
     notifyListeners();

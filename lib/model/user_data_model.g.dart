@@ -30,13 +30,14 @@ class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
           .toList(),
       currentToDo: fields[9] as int,
       currentSession: fields[10] as int,
+      currentTime: fields[11] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserDataModel obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.premium)
       ..writeByte(1)
@@ -58,7 +59,9 @@ class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
       ..writeByte(9)
       ..write(obj.currentToDo)
       ..writeByte(10)
-      ..write(obj.currentSession);
+      ..write(obj.currentSession)
+      ..writeByte(11)
+      ..write(obj.currentTime);
   }
 
   @override
