@@ -20,9 +20,9 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData22");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData25");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData22");
+      await Hive.openBox<CalenderDataModel>("calenderData25");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
@@ -99,7 +99,19 @@ Future<CalenderDataModel> initializeCalenderData(
     Box<CalenderDataModel> box) async {
   if (box.isEmpty) {
     final defaultCalenderData = CalenderDataModel(
-      focusTimeMap: {},
+      focusTimeMap: {
+        DateTime(2023, 5, 2): 10,
+        DateTime(2024, 1, 15): 5,
+        DateTime(2024, 8, 15): 10,
+        DateTime(2024, 8, 30): 60,
+        DateTime(2024, 8, 31): 50,
+        DateTime(2024, 9, 1): 5,
+      },
+      totalFocusTime: 0,
+      todayFocusTime: 0,
+      weekFocusTime: 0,
+      monthFocusTime: 0,
+      yearFocusTime: 0,
       numberView: false,
     );
     await box.put("calenderData", defaultCalenderData);

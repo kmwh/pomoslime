@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 
 class CalenderTile extends StatelessWidget {
   final String period;
-  final int timeIndex;
+  final int periodIndex;
 
   const CalenderTile({
     super.key,
     required this.period,
-    required this.timeIndex,
+    required this.periodIndex,
   });
 
   @override
@@ -39,7 +39,7 @@ class CalenderTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${provider.getPeriodTimes(timeIndex)} min",
+                    "${(provider.getPeriodTime(periodIndex))} min",
                     style: const TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w300,

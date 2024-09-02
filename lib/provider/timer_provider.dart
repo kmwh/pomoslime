@@ -65,7 +65,9 @@ class TimerProvider with ChangeNotifier {
     if (_userData.currentTime == 0) {
       // 캘린더 기록
       if (currentSessionName == 'focus' && context != null) {
-        context.read<CalenderProvider>().addToCalender();
+        context
+            .read<CalenderProvider>()
+            .addToCalender(currentSessionSeconds ~/ 60);
       }
 
       // 다음 세션으로 넘기는 작업

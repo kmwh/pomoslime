@@ -47,23 +47,23 @@ class CalenderScreen extends StatelessWidget {
             const SizedBox(height: 10),
             const CalenderTile(
               period: "전체",
-              timeIndex: 0,
+              periodIndex: 0,
             ),
             const CalenderTile(
               period: "오늘",
-              timeIndex: 1,
+              periodIndex: 1,
             ),
             const CalenderTile(
               period: "이번 주",
-              timeIndex: 2,
+              periodIndex: 2,
             ),
             const CalenderTile(
               period: "이번 달",
-              timeIndex: 3,
+              periodIndex: 3,
             ),
             const CalenderTile(
               period: "이번 년도",
-              timeIndex: 4,
+              periodIndex: 4,
             ),
             const SizedBox(height: 18),
             const CalenderBackupButtons(),
