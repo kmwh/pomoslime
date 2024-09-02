@@ -37,23 +37,27 @@ class EditContent extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
             ),
           ),
-          Row(
-            children: [
-              IconButton(
-                onPressed: (currentValue - timeUnit >= minValue)
-                    ? () => changeValueFunc(toDoKey, currentValue - timeUnit)
-                    : null,
-                icon: Image.asset(
-                  "assets/images/arrow_left.png",
-                  width: 24,
-                  color: (currentValue - timeUnit >= minValue)
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.primary.withOpacity(0.4),
+          SizedBox(
+            width: 180,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  onPressed: (currentValue - timeUnit >= minValue)
+                      ? () => changeValueFunc(toDoKey, currentValue - timeUnit)
+                      : null,
+                  icon: Image.asset(
+                    "assets/images/arrow_left.png",
+                    width: 24,
+                    color: (currentValue - timeUnit >= minValue)
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.4),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 300,
-                child: Padding(
+                Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: Text(
                     "${currentValue.toString()} ${isMinute ? "min" : ""}",
@@ -63,20 +67,23 @@ class EditContent extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-              IconButton(
-                onPressed: (currentValue + timeUnit <= maxValue)
-                    ? () => changeValueFunc(toDoKey, currentValue + timeUnit)
-                    : null,
-                icon: Image.asset(
-                  "assets/images/arrow.png",
-                  width: 24,
-                  color: (currentValue + timeUnit <= maxValue)
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.primary.withOpacity(0.4),
+                IconButton(
+                  onPressed: (currentValue + timeUnit <= maxValue)
+                      ? () => changeValueFunc(toDoKey, currentValue + timeUnit)
+                      : null,
+                  icon: Image.asset(
+                    "assets/images/arrow.png",
+                    width: 24,
+                    color: (currentValue + timeUnit <= maxValue)
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context)
+                            .colorScheme
+                            .primary
+                            .withOpacity(0.4),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),
