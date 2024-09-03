@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class TimerButtons extends StatelessWidget {
   const TimerButtons({super.key});
@@ -11,8 +12,8 @@ class TimerButtons extends StatelessWidget {
       context: context,
       builder: (context) {
         return CustomDialog(
-          title: "세션 초기화",
-          content: "세션을 초기화하면 이전 과정까지 기록됩니다",
+          title: "reset_session".tr(),
+          content: "reset_session_description".tr(),
           onPressed: () {
             context.read<TimerProvider>().onCancelPressed();
             Navigator.pop(context);

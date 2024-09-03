@@ -6,6 +6,7 @@ import 'package:pomoslime/widgets/edit_to_do/edit_content.dart';
 import 'package:pomoslime/widgets/edit_to_do/edit_text_field.dart';
 import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EditToDoScreen extends StatefulWidget {
   final int? index;
@@ -60,8 +61,8 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
         context: context,
         builder: (context) {
           return CustomDialog(
-            title: "세션 편집",
-            content: "현재 진행 중인 세션이 초기화됩니다",
+            title: "save_session_settings".tr(),
+            content: "save_session_settings_description".tr(),
             onPressed: () {
               context
                   .read<ToDoListProvider>()
@@ -89,7 +90,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         title: Text(
-          widget.index == null ? "Add To Do" : "Edit To Do",
+          widget.index == null ? "add_to_do".tr() : "edit_to_do".tr(),
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w300,
@@ -169,7 +170,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                 child: Column(
                   children: [
                     EditContent(
-                      text: "집중 횟수",
+                      text: "focus_count".tr(),
                       timeUnit: 1,
                       currentValue: newToDo["focusCount"],
                       maxValue: 16,
@@ -178,7 +179,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                       changeValueFunc: setNewToDoValue,
                     ),
                     EditContent(
-                      text: "집중 시간",
+                      text: "focus_time".tr(),
                       timeUnit: newToDo["timeUnit"],
                       currentValue: newToDo["focusTime"],
                       maxValue: 180,
@@ -188,7 +189,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                       isMinute: true,
                     ),
                     EditContent(
-                      text: "휴식 시간",
+                      text: "break_time".tr(),
                       timeUnit: newToDo["timeUnit"],
                       currentValue: newToDo["shortBreakTime"],
                       maxValue: 60,
@@ -198,7 +199,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                       isMinute: true,
                     ),
                     EditContent(
-                      text: "긴 휴식 시간",
+                      text: "long_break_time".tr(),
                       timeUnit: newToDo["timeUnit"],
                       currentValue: newToDo["longBreakTime"],
                       maxValue: 120,
@@ -208,7 +209,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                       isMinute: true,
                     ),
                     EditContent(
-                      text: "시간 단위",
+                      text: "time_unit".tr(),
                       timeUnit: 4,
                       currentValue: newToDo["timeUnit"],
                       maxValue: 5,
@@ -224,7 +225,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomTextButton(
-                    text: "저장",
+                    text: "save".tr(),
                     onPressed: saveNewToDo,
                     horizontalPadding: 30,
                     verticalPadding: 12,
@@ -233,7 +234,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                     width: 10,
                   ),
                   CustomTextButton(
-                    text: "취소",
+                    text: "cancel".tr(),
                     onPressed: () => Navigator.pop(context),
                     horizontalPadding: 30,
                     verticalPadding: 12,

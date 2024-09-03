@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class LanguageMenu extends StatelessWidget {
   const LanguageMenu({super.key});
@@ -25,9 +26,9 @@ class LanguageMenu extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
-            const Text(
-              "사용 언어",
-              style: TextStyle(
+            Text(
+              'language'.tr(),
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
@@ -37,32 +38,30 @@ class LanguageMenu extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(right: 10),
           width: 100,
-          child: Consumer<LanguageProvider>(
-            builder: (context, provider, child) {
-              return DropdownButton<String>(
-                value: provider.language,
-                onChanged: (String? newValue) {
-                  if (newValue != null) {
-                    provider.selectLanguage(newValue);
-                  }
-                },
-                items: languageItems.map<DropdownMenuItem<String>>(
-                  (String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    );
-                  },
-                ).toList(),
-                isExpanded: true,
-              );
+          child: DropdownButton<String>(
+            value: context.read<LanguageProvider>().language,
+            onChanged: (String? newValue) {
+              if (newValue != null) {
+                context
+                    .read<LanguageProvider>()
+                    .selectLanguage(context, newValue);
+              }
             },
+            items: languageItems.map<DropdownMenuItem<String>>(
+              (String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                );
+              },
+            ).toList(),
+            isExpanded: true,
           ),
         )
       ],

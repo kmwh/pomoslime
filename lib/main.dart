@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
@@ -16,47 +17,54 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await EasyLocalization.ensureInitialized();
+
   await Hive.initFlutter();
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData27");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData29");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData27");
+      await Hive.openBox<CalenderDataModel>("calenderData29");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
   final calenderData = await initializeCalenderData(calenderDataBox);
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => BackgroundUsageProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CalenderProvider(calenderData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => FocusImmediatelyProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => LanguageProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ThemeProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => TimerProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ToDoListProvider(userData),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => VibrationProvider(userData),
-        ),
-      ],
-      child: const App(),
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ko')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => BackgroundUsageProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => CalenderProvider(calenderData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => FocusImmediatelyProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => LanguageProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ThemeProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => TimerProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => ToDoListProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => VibrationProvider(userData),
+          ),
+        ],
+        child: const App(),
+      ),
     ),
   );
 }
@@ -123,6 +131,9 @@ class App extends StatelessWidget {
       builder: (context, themeProvider, child) {
         return MaterialApp(
           theme: themeProvider.themeData,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           home: const MainScreen(),
         );
       },

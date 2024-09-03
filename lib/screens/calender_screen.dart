@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
+import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/widgets/calender/calender_backup_buttons.dart';
 import 'package:pomoslime/widgets/calender/calender_tile.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CalenderScreen extends StatelessWidget {
   const CalenderScreen({super.key});
@@ -15,60 +17,64 @@ class CalenderScreen extends StatelessWidget {
         vertical: 70,
         horizontal: 32,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Center(
-              child: Text(
-                "Focus Calender",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w300,
+      child: Consumer<LanguageProvider>(
+        builder: (context, value, child) {
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                const Center(
+                  child: Text(
+                    "Focus Calender",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 26),
-            Consumer<CalenderProvider>(
-              builder: (context, provider, child) {
-                return HeatMap(
-                  datasets: provider.focusTimeMap,
-                  defaultColor: const Color.fromRGBO(129, 129, 129, 0.23),
-                  colorMode: ColorMode.opacity,
-                  showText: provider.numberView,
-                  showColorTip: false,
-                  scrollable: true,
-                  colorsets: const {
-                    1: Color(0xFF39d353),
+                const SizedBox(height: 26),
+                Consumer<CalenderProvider>(
+                  builder: (context, provider, child) {
+                    return HeatMap(
+                      datasets: provider.focusTimeMap,
+                      defaultColor: const Color.fromRGBO(129, 129, 129, 0.23),
+                      colorMode: ColorMode.opacity,
+                      showText: provider.numberView,
+                      showColorTip: false,
+                      scrollable: true,
+                      colorsets: const {
+                        1: Color(0xFF39d353),
+                      },
+                      size: 20,
+                    );
                   },
-                  size: 20,
-                );
-              },
+                ),
+                const SizedBox(height: 10),
+                CalenderTile(
+                  period: "total".tr(),
+                  periodIndex: 0,
+                ),
+                CalenderTile(
+                  period: "today".tr(),
+                  periodIndex: 1,
+                ),
+                CalenderTile(
+                  period: "this_week".tr(),
+                  periodIndex: 2,
+                ),
+                CalenderTile(
+                  period: "this_month".tr(),
+                  periodIndex: 3,
+                ),
+                CalenderTile(
+                  period: "this_year".tr(),
+                  periodIndex: 4,
+                ),
+                const SizedBox(height: 18),
+                const CalenderBackupButtons(),
+              ],
             ),
-            const SizedBox(height: 10),
-            const CalenderTile(
-              period: "전체",
-              periodIndex: 0,
-            ),
-            const CalenderTile(
-              period: "오늘",
-              periodIndex: 1,
-            ),
-            const CalenderTile(
-              period: "이번 주",
-              periodIndex: 2,
-            ),
-            const CalenderTile(
-              period: "이번 달",
-              periodIndex: 3,
-            ),
-            const CalenderTile(
-              period: "이번 년도",
-              periodIndex: 4,
-            ),
-            const SizedBox(height: 18),
-            const CalenderBackupButtons(),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

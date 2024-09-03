@@ -5,6 +5,7 @@ import 'package:pomoslime/screens/edit_to_do_screen.dart';
 import 'package:pomoslime/widgets/custom/custom_checkbox.dart';
 import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ToDoListItem extends StatelessWidget {
   final int index;
@@ -22,8 +23,8 @@ class ToDoListItem extends StatelessWidget {
         context: context,
         builder: (context) {
           return CustomDialog(
-            title: "세션 변경",
-            content: "세션을 변경하면 현재 세션이 초기화됩니다.",
+            title: "change_to_do".tr(),
+            content: "change_to_do_description".tr(),
             onPressed: () {
               context.read<ToDoListProvider>().setCurrentToDo(index);
               context.read<TimerProvider>().onCancelPressed();
@@ -43,8 +44,8 @@ class ToDoListItem extends StatelessWidget {
       context: context,
       builder: (context) {
         return CustomDialog(
-          title: "세션 삭제",
-          content: "삭제된 세션은 복구되지 않습니다",
+          title: "delete_to_do".tr(),
+          content: "delete_to_do_description".tr(),
           onPressed: () {
             context.read<ToDoListProvider>().deleteToDo(index);
             Navigator.pop(context);

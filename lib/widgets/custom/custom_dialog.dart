@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/widgets/custom/custom_text_button.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class CustomDialog extends StatelessWidget {
   final String title;
@@ -42,7 +43,7 @@ class CustomDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomTextButton(
-                  text: "확인",
+                  text: "ok".tr(),
                   fontSize: 14,
                   onPressed: onPressed,
                   horizontalPadding: 26,
@@ -52,7 +53,7 @@ class CustomDialog extends StatelessWidget {
                   width: 8,
                 ),
                 CustomTextButton(
-                  text: "취소",
+                  text: "cancel".tr(),
                   fontSize: 14,
                   onPressed: () => Navigator.pop(context),
                   horizontalPadding: 26,

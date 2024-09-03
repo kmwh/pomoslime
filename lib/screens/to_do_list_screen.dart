@@ -3,6 +3,7 @@ import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/screens/edit_to_do_screen.dart';
 import 'package:pomoslime/widgets/to_do_list/to_do_list_item.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ToDoListScreen extends StatelessWidget {
   const ToDoListScreen({super.key});
@@ -13,9 +14,9 @@ class ToDoListScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.surface,
-        title: const Text(
-          "To Do List",
-          style: TextStyle(
+        title: Text(
+          "to_do_list".tr(),
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w300,
           ),
