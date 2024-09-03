@@ -23,7 +23,7 @@ class UserDataModel extends HiveObject {
   bool backgroundUsage;
 
   @HiveField(6)
-  int language; // 0: eng, 1: kor
+  String language;
 
   @HiveField(7)
   bool focusImmediately;

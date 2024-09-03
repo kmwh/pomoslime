@@ -117,11 +117,7 @@ class SettingScreen extends StatelessWidget {
                   text: "권한 설정",
                   func: () {},
                 ),
-                SettingItemPopup(
-                  icon: "assets/images/language.png",
-                  text: "사용 언어",
-                  func: () => showLanguageDialog(context),
-                ),
+                const LanguageMenu(),
               ],
             ),
             SettingMenu(

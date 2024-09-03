@@ -6,9 +6,9 @@ class LanguageProvider with ChangeNotifier {
 
   LanguageProvider(this._userData);
 
-  int get language => _userData.language;
+  String get language => _userData.language;
 
-  void selectLanguage(int language) {
+  void selectLanguage(String language) {
     _userData.language = language;
     _userData.save();
 

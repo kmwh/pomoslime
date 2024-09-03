@@ -23,7 +23,7 @@ class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
       whiteNoiseIndex: fields[3] as int,
       darkMode: fields[4] as bool,
       backgroundUsage: fields[5] as bool,
-      language: fields[6] as int,
+      language: fields[6] as String,
       focusImmediately: fields[7] as bool,
       toDoList: (fields[8] as List)
           .map((dynamic e) => (e as Map).cast<dynamic, dynamic>())
