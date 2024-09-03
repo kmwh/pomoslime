@@ -51,7 +51,7 @@ class UserDataModel extends HiveObject {
   int currentSession; // 총 세션 기준 현재 세션
 
   @HiveField(11)
-  int currentTime; // 현재 세션에서 진행 중인 시간
+  int currentTime; // 현재 세션에서 진행 중인 시간(초)
 
   UserDataModel({
     required this.premium,

@@ -4,6 +4,7 @@ import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
+import 'package:pomoslime/widgets/setting/language_menu.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
 import 'package:pomoslime/widgets/setting/setting_item_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_switch.dart';
@@ -12,6 +13,15 @@ import 'package:provider/provider.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
+
+  void showLanguageDialog(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return const LanguageMenu();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +120,7 @@ class SettingScreen extends StatelessWidget {
                 SettingItemPopup(
                   icon: "assets/images/language.png",
                   text: "사용 언어",
-                  func: () {},
+                  func: () => showLanguageDialog(context),
                 ),
               ],
             ),
