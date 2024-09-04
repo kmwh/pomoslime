@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:vibration/vibration.dart';
 
 class TimerProvider with ChangeNotifier {
   final UserDataModel _userData;
@@ -68,6 +69,11 @@ class TimerProvider with ChangeNotifier {
         context
             .read<CalenderProvider>()
             .addToCalender(currentSessionSeconds ~/ 60);
+      }
+
+      // 다음 세션으로 넘어갈 때 진동
+      if (_userData.vibration) {
+        Vibration.vibrate(duration: 1000);
       }
 
       // 다음 세션으로 넘기는 작업
