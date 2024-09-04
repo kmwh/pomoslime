@@ -10,33 +10,36 @@ class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
     required this.text,
-    this.fontSize = 16,
+    this.fontSize = 14,
     required this.onPressed,
-    required this.horizontalPadding,
-    required this.verticalPadding,
+    this.horizontalPadding = 30,
+    this.verticalPadding = 12,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      style: TextButton.styleFrom(
-        side: BorderSide(
-          color: Theme.of(context).colorScheme.primaryContainer,
-          width: 0.8,
+    return SizedBox(
+      width: 104,
+      child: TextButton(
+        onPressed: onPressed,
+        style: TextButton.styleFrom(
+          side: BorderSide(
+            color: Theme.of(context).colorScheme.primaryContainer,
+            width: 0.8,
+          ),
+          backgroundColor: Theme.of(context).colorScheme.surfaceBright,
+          padding: EdgeInsets.symmetric(
+            horizontal: horizontalPadding,
+            vertical: verticalPadding,
+          ),
         ),
-        backgroundColor: Theme.of(context).colorScheme.surfaceBright,
-        padding: EdgeInsets.symmetric(
-          horizontal: horizontalPadding,
-          vertical: verticalPadding,
-        ),
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: fontSize,
-          fontWeight: FontWeight.w300,
-          color: Theme.of(context).colorScheme.primary,
+        child: Text(
+          text,
+          style: TextStyle(
+            fontSize: fontSize,
+            fontWeight: FontWeight.w300,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
     );

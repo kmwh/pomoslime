@@ -220,15 +220,14 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomTextButton(
                     text: "save".tr(),
                     onPressed: saveNewToDo,
-                    horizontalPadding: 30,
-                    verticalPadding: 12,
+                    verticalPadding: 16,
                   ),
                   const SizedBox(
                     width: 10,
@@ -236,8 +235,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                   CustomTextButton(
                     text: "cancel".tr(),
                     onPressed: () => Navigator.pop(context),
-                    horizontalPadding: 30,
-                    verticalPadding: 12,
+                    verticalPadding: 16,
                   ),
                 ],
               ),
