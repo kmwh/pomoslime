@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
-import 'package:pomoslime/screens/edit_to_do_screen.dart';
+import 'package:pomoslime/screens/timer/edit_to_do_screen.dart';
 import 'package:pomoslime/widgets/custom/custom_checkbox.dart';
 import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';

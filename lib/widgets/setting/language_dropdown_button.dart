@@ -3,8 +3,8 @@ import 'package:pomoslime/provider/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
-class LanguageMenu extends StatelessWidget {
-  const LanguageMenu({super.key});
+class LanguageDropdownButton extends StatelessWidget {
+  const LanguageDropdownButton({super.key});
 
   @override
   Widget build(BuildContext context) {

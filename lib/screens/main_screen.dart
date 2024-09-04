@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
-import 'package:pomoslime/screens/calender_screen.dart';
-import 'package:pomoslime/screens/setting_screen.dart';
-import 'package:pomoslime/screens/timer_screen.dart';
+import 'package:pomoslime/screens/calender/calender_screen.dart';
+import 'package:pomoslime/screens/settings/setting_screen.dart';
+import 'package:pomoslime/screens/timer/timer_screen.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {

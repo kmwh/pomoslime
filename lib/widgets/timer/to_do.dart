@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
-import 'package:pomoslime/screens/to_do_list_screen.dart';
+import 'package:pomoslime/screens/timer/to_do_list_screen.dart';
 import 'package:provider/provider.dart';
 
 class ToDo extends StatelessWidget {

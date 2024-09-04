@@ -5,8 +5,8 @@ import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
-import 'package:pomoslime/widgets/setting/language_menu.dart';
-import 'package:pomoslime/widgets/setting/notification_menu.dart';
+import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
+import 'package:pomoslime/widgets/setting/alarm_menu.dart';
 import 'package:pomoslime/widgets/setting/setting_item_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_switch.dart';
 import 'package:pomoslime/widgets/setting/setting_menu.dart';
@@ -15,15 +15,6 @@ import 'package:easy_localization/easy_localization.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
-
-  void showLanguageDialog(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return const LanguageMenu();
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +116,7 @@ class SettingScreen extends StatelessWidget {
                       text: "permission_settings".tr(),
                       func: () {},
                     ),
-                    const LanguageMenu(),
+                    const LanguageDropdownButton(),
                   ],
                 ),
                 SettingMenu(
