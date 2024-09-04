@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
+import 'package:pomoslime/provider/notification_provider.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
@@ -23,9 +24,9 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData29");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData30");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData29");
+      await Hive.openBox<CalenderDataModel>("calenderData30");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
@@ -38,6 +39,9 @@ void main() async {
       fallbackLocale: const Locale('en'),
       child: MultiProvider(
         providers: [
+          ChangeNotifierProvider(
+            create: (context) => NotificationProvider(userData),
+          ),
           ChangeNotifierProvider(
             create: (context) => BackgroundUsageProvider(userData),
           ),

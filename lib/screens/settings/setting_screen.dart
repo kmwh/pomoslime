@@ -16,6 +16,15 @@ import 'package:easy_localization/easy_localization.dart';
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
+  void showAlarmMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return const AlarmMenu();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -69,7 +78,7 @@ class SettingScreen extends StatelessWidget {
                     SettingItemPopup(
                       icon: "assets/images/notification.png",
                       text: "alarm".tr(),
-                      func: () => NotificationMenu.showOptions(context),
+                      func: () => showAlarmMenu(context),
                     ),
                     SettingItemPopup(
                       icon: "assets/images/sound.png",
