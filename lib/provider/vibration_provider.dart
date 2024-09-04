@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/model/user_data_model.dart';
+import 'package:vibration/vibration.dart';
 
 class VibrationProvider with ChangeNotifier {
   final UserDataModel _userData;
@@ -13,5 +14,11 @@ class VibrationProvider with ChangeNotifier {
     _userData.save();
 
     notifyListeners();
+  }
+
+  void vibrate() async {
+    if (await Vibration.hasVibrator() ?? false) {
+      Vibration.vibrate(pattern: [0, 200, 200, 200]);
+    }
   }
 }

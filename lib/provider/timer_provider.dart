@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
+import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:vibration/vibration.dart';
 
 class TimerProvider with ChangeNotifier {
   final UserDataModel _userData;
@@ -72,8 +72,8 @@ class TimerProvider with ChangeNotifier {
       }
 
       // 다음 세션으로 넘어갈 때 진동
-      if (_userData.vibration) {
-        Vibration.vibrate(duration: 1000);
+      if (_userData.vibration && context != null) {
+        context.read<VibrationProvider>().vibrate();
       }
 
       // 다음 세션으로 넘기는 작업
