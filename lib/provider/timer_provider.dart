@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
+import 'package:pomoslime/provider/notification_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -71,6 +72,13 @@ class TimerProvider with ChangeNotifier {
             .addToCalender(currentSessionSeconds ~/ 60);
       }
 
+      // 다음 세션으로 넘어갈 때 알람
+      if (_userData.notificationIndex != 0 && context != null) {
+        context
+            .read<NotificationProvider>()
+            .playNotification(_userData.notificationIndex);
+      }
+
       // 다음 세션으로 넘어갈 때 진동
       if (_userData.vibration && context != null) {
         context.read<VibrationProvider>().vibrate();
@@ -107,7 +115,7 @@ class TimerProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void onPausePressed() {
+  void onPausePressed(BuildContext context) {
     timer.cancel();
 
     notifyListeners();

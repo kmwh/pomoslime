@@ -6,21 +6,31 @@ import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
-import 'package:pomoslime/widgets/setting/alarm_menu.dart';
+import 'package:pomoslime/widgets/setting/notification_menu.dart';
 import 'package:pomoslime/widgets/setting/setting_item_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_switch.dart';
 import 'package:pomoslime/widgets/setting/setting_menu.dart';
+import 'package:pomoslime/widgets/setting/white_noise_menu.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
-  void showAlarmMenu(BuildContext context) {
+  void showNotificationMenu(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return const AlarmMenu();
+        return const NotificationMenu();
+      },
+    );
+  }
+
+  void showWhiteNoiseMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return const WhiteNoiseMenu();
       },
     );
   }
@@ -77,13 +87,13 @@ class SettingScreen extends StatelessWidget {
                     ),
                     SettingItemPopup(
                       icon: "assets/images/notification.png",
-                      text: "alarm".tr(),
-                      func: () => showAlarmMenu(context),
+                      text: "notification".tr(),
+                      func: () => showNotificationMenu(context),
                     ),
                     SettingItemPopup(
                       icon: "assets/images/sound.png",
                       text: "white_noise".tr(),
-                      func: () {},
+                      func: () => showWhiteNoiseMenu(context),
                     ),
                   ],
                 ),

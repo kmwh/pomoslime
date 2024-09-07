@@ -33,7 +33,7 @@ class TimerButtons extends StatelessWidget {
           children: [
             IconButton(
               onPressed: provider.isRunning
-                  ? () => provider.onPausePressed()
+                  ? () => provider.onPausePressed(context)
                   : () => provider.onStartPressed(context),
               icon: Image.asset(
                 height: 32,

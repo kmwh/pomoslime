@@ -24,9 +24,9 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData30");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData31");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData30");
+      await Hive.openBox<CalenderDataModel>("calenderData31");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
