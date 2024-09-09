@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:pomoslime/provider/notification_provider.dart';
+import 'package:pomoslime/provider/white_noise_provider.dart';
 import 'package:provider/provider.dart';
 
 class WhiteNoiseMenu extends StatelessWidget {
@@ -8,13 +8,13 @@ class WhiteNoiseMenu extends StatelessWidget {
 
   Widget _whiteNoiseOption(
       BuildContext context, int index, String label, String icon) {
-    return Consumer<NotificationProvider>(
+    return Consumer<WhiteNoiseProvider>(
       builder: (context, provider, child) {
         return Container(
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surfaceBright,
             borderRadius: BorderRadius.circular(12),
-            border: provider.notificationIndex == index
+            border: provider.whiteNoiseIndex == index
                 ? Border.all(
                     color: Theme.of(context).colorScheme.primaryContainer,
                     width: 0.9,
@@ -22,7 +22,7 @@ class WhiteNoiseMenu extends StatelessWidget {
                 : null,
           ),
           child: InkWell(
-            onTap: () => provider.setNotification(index),
+            onTap: () => provider.setWhiteNoise(index),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +51,7 @@ class WhiteNoiseMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<List<String>> sounds = [
-      ['None', 'sound'],
+      ['None', 'mute'],
       ['White Noise', 'sound'],
       ['Rain', 'sound'],
       ['Forest', 'sound'],

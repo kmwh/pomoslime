@@ -51,7 +51,7 @@ class NotificationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<List<String>> sounds = [
-      ['None', 'sound'],
+      ['None', 'mute'],
       ['Sound 1', 'sound'],
       ['Sound 2', 'sound'],
       ['Sound 3', 'sound'],

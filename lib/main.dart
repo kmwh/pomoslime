@@ -11,6 +11,7 @@ import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
+import 'package:pomoslime/provider/white_noise_provider.dart';
 import 'package:pomoslime/screens/main_screen.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -40,9 +41,6 @@ void main() async {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (context) => NotificationProvider(userData),
-          ),
-          ChangeNotifierProvider(
             create: (context) => BackgroundUsageProvider(userData),
           ),
           ChangeNotifierProvider(
@@ -55,6 +53,9 @@ void main() async {
             create: (context) => LanguageProvider(userData),
           ),
           ChangeNotifierProvider(
+            create: (context) => NotificationProvider(userData),
+          ),
+          ChangeNotifierProvider(
             create: (context) => ThemeProvider(userData),
           ),
           ChangeNotifierProvider(
@@ -65,6 +66,9 @@ void main() async {
           ),
           ChangeNotifierProvider(
             create: (context) => VibrationProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => WhiteNoiseProvider(userData),
           ),
         ],
         child: const App(),

@@ -4,6 +4,7 @@ import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/notification_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
+import 'package:pomoslime/provider/white_noise_provider.dart';
 import 'package:provider/provider.dart';
 
 class TimerProvider with ChangeNotifier {
@@ -100,6 +101,15 @@ class TimerProvider with ChangeNotifier {
       if (currentSessionName == 'focus' && !_userData.focusImmediately) {
         timer.cancel();
       }
+
+      // 백색소음 세팅
+      if (!isRunning ||
+          currentSessionName == 'short' ||
+          currentSessionName == 'long') {
+        context!.read<WhiteNoiseProvider>().pauseWhiteNoise(); // 백색소음 중지
+      } else if (currentSessionName == 'focus' && _userData.focusImmediately) {
+        context!.read<WhiteNoiseProvider>().playWhiteNoise(); // 백색소음 시작
+      }
     }
 
     notifyListeners();
@@ -112,11 +122,17 @@ class TimerProvider with ChangeNotifier {
     );
     isInit = false;
 
+    if (currentSessionName == 'focus') {
+      context.read<WhiteNoiseProvider>().playWhiteNoise(); // 백색소음 시작
+    }
+
     notifyListeners();
   }
 
   void onPausePressed(BuildContext context) {
     timer.cancel();
+
+    context.read<WhiteNoiseProvider>().pauseWhiteNoise(); // 백색소음 중지
 
     notifyListeners();
   }

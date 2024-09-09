@@ -11,6 +11,7 @@ class WhiteNoiseProvider with ChangeNotifier {
 
   WhiteNoiseProvider(this._userData) {
     whiteNoisePlayer = AudioPlayer();
+    whiteNoisePlayer.setReleaseMode(ReleaseMode.loop);
   }
 
   void setWhiteNoise(int index) {
@@ -20,8 +21,16 @@ class WhiteNoiseProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void playWhiteNoise(int index) async {
-    await whiteNoisePlayer
-        .play(AssetSource("sounds/white_noise/sound_$index.mp3"));
+  void playWhiteNoise() async {
+    if (whiteNoiseIndex != 0) {
+      await whiteNoisePlayer
+          .play(AssetSource("sounds/white_noise/sound_$whiteNoiseIndex.mp3"));
+    }
+  }
+
+  void pauseWhiteNoise() async {
+    if (whiteNoiseIndex != 0) {
+      await whiteNoisePlayer.pause();
+    }
   }
 }
