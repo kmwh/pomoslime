@@ -53,11 +53,11 @@ class WhiteNoiseMenu extends StatelessWidget {
     List<List<String>> sounds = [
       ['None', 'mute'],
       ['White Noise', 'sound'],
-      ['Rain', 'sound'],
-      ['Forest', 'sound'],
+      ['Rain', 'rain'],
+      ['Forest', 'tree'],
       ['Cafe', 'sound'],
-      ['Fire', 'sound'],
-      ['Library', 'sound'],
+      ['Fire', 'fire2'],
+      ['Library', 'book_open'],
     ];
 
     return Padding(

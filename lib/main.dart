@@ -97,7 +97,7 @@ Future<UserDataModel> initializeUserData(Box<UserDataModel> box) async {
           "shortBreakTime": 5,
           "longBreakTime": 10,
           "timeUnit": 5,
-          "icon": "pencil",
+          "icon": "book_open",
         },
       ],
       currentToDo: 0,

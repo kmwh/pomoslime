@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
+class EditTextField extends StatelessWidget {
   final TextEditingController controller;
   final Function(String, dynamic) onChanged;
 
-  const CustomTextField({
+  const EditTextField({
     super.key,
     required this.controller,
     required this.onChanged,

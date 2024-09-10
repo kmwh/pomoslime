@@ -3,6 +3,7 @@ import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/widgets/custom/custom_text_button.dart';
 import 'package:pomoslime/widgets/edit_to_do/edit_content.dart';
+import 'package:pomoslime/widgets/edit_to_do/edit_icon_button.dart';
 import 'package:pomoslime/widgets/edit_to_do/edit_text_field.dart';
 import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:provider/provider.dart';
@@ -118,33 +119,15 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
             children: [
               Row(
                 children: [
-                  Container(
-                    width: 48,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surfaceBright,
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        width: 0.8,
-                      ),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Image.asset(
-                          "assets/images/${newToDo["icon"]}.png",
-                          width: 20,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                    ),
+                  EditIconButton(
+                    currentIcon: newToDo['icon'],
+                    onTap: setNewToDoValue,
                   ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: SizedBox(
                       height: 48,
-                      child: CustomTextField(
+                      child: EditTextField(
                         controller: titleController,
                         onChanged: setNewToDoValue,
                       ),
