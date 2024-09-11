@@ -15,6 +15,7 @@ class TimerProvider with ChangeNotifier {
   late Timer timer;
 
   TimerProvider(this._userData) {
+    // Init 설정
     currentSessionName = 'focus';
     timer = Timer.periodic(
       const Duration(seconds: 1),

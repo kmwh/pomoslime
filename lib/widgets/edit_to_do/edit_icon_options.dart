@@ -14,7 +14,7 @@ class EditIconOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> iconOptions = [
-      'book_open',
+      'book',
       'palette',
       'hourglass',
       'laptop',

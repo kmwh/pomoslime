@@ -36,7 +36,7 @@ class ToDo extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        toDoProvider.currentToDoName,
+                        toDoProvider.currentToDoMap['name'],
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w300,

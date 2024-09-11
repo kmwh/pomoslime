@@ -12,8 +12,7 @@ class ToDoListProvider with ChangeNotifier {
 
   int get currentToDo => _userData.currentToDo;
 
-  String get currentToDoName =>
-      _userData.toDoList[_userData.currentToDo]["name"];
+  Map get currentToDoMap => _userData.toDoList[_userData.currentToDo];
 
   void setCurrentToDo(int index) {
     _userData.currentToDo = index;

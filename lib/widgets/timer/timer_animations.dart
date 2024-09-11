@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
+import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:provider/provider.dart';
 
 class TimerAnimations extends StatelessWidget {
@@ -9,16 +10,13 @@ class TimerAnimations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
-        return Consumer<TimerProvider>(
-          builder: (context, provider, child) {
-            return Lottie.asset(
-              'assets/animations/slime_book_${themeProvider.darkMode ? 'white' : 'black'}.json',
-              animate: provider.isRunning,
-              width: 220,
-            );
-          },
+    return Consumer3<ThemeProvider, TimerProvider, ToDoListProvider>(
+      builder:
+          (context, themeProvider, timerProvider, toDoListProvider, child) {
+        return Lottie.asset(
+          'assets/animations/slime_${toDoListProvider.currentToDoMap['icon'] ?? 'book'}_${themeProvider.darkMode ? 'white' : 'black'}.json',
+          animate: timerProvider.isRunning,
+          width: 220,
         );
       },
     );
