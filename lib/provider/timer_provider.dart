@@ -54,11 +54,9 @@ class TimerProvider with ChangeNotifier {
 
   String formatTimer(int seconds) {
     var duration = Duration(seconds: seconds);
-    if (duration.inHours > 0) {
-      return duration.toString().split('.').first;
-    } else {
-      return duration.toString().split('.').first.substring(2, 7);
-    }
+    return duration.inHours > 0
+        ? duration.toString().split('.').first
+        : duration.toString().split('.').first.substring(2, 7);
   }
 
   void onTick(Timer timer, BuildContext? context) {
@@ -96,8 +94,7 @@ class TimerProvider with ChangeNotifier {
         isInit = true;
       }
 
-      _userData.save();
-
+      // 휴식이 끝나고 다음 세션이 집중이면 focusImmediately 옵션에 따라 일시정지 혹은 바로 시작
       if (currentSessionName == 'focus' && !_userData.focusImmediately) {
         timer.cancel();
       }
@@ -110,6 +107,8 @@ class TimerProvider with ChangeNotifier {
       } else if (currentSessionName == 'focus' && _userData.focusImmediately) {
         context!.read<WhiteNoiseProvider>().playWhiteNoise(); // 백색소음 시작
       }
+
+      _userData.save();
     }
 
     notifyListeners();
@@ -131,7 +130,6 @@ class TimerProvider with ChangeNotifier {
 
   void onPausePressed(BuildContext context) {
     timer.cancel();
-
     context.read<WhiteNoiseProvider>().pauseWhiteNoise(); // 백색소음 중지
 
     notifyListeners();
@@ -141,7 +139,6 @@ class TimerProvider with ChangeNotifier {
     _userData.currentSession = 0;
     _userData.currentTime = currentSessionSeconds;
     _userData.save();
-
     timer.cancel();
     isInit = true;
 
