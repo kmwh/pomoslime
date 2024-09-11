@@ -77,7 +77,7 @@ class EditIconOptions extends StatelessWidget {
                           )
                         : null,
                   ),
-                  child: GestureDetector(
+                  child: InkWell(
                     onTap: () {
                       onTap('icon', icon);
                       Navigator.pop(context);

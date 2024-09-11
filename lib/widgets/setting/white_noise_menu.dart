@@ -57,7 +57,7 @@ class WhiteNoiseMenu extends StatelessWidget {
       ['Forest', 'tree'],
       ['Cafe', 'sound'],
       ['Fire', 'fire2'],
-      ['Library', 'book_open'],
+      ['Library', 'book'],
     ];
 
     return Padding(
