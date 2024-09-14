@@ -51,6 +51,8 @@ class TimerProvider with ChangeNotifier {
 
   int get currentSession => _userData.currentSession;
 
+  String get sessionName => currentSessionName;
+
   bool get isRunning => timer.isActive;
 
   String formatTimer(int seconds) {

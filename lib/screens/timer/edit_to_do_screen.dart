@@ -53,11 +53,14 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
   }
 
   void saveNewToDo() {
+    final toDoListProvider = context.read<ToDoListProvider>();
+    final timerProvider = context.read<TimerProvider>();
+
     if (widget.index == null) {
-      context.read<ToDoListProvider>().addToDo(newToDo);
+      toDoListProvider.addToDo(newToDo);
       Navigator.pop(context);
-    } else if (widget.index == context.read<ToDoListProvider>().currentToDo &&
-        !context.read<TimerProvider>().isInit) {
+    } else if (widget.index == toDoListProvider.currentToDo &&
+        !timerProvider.isInit) {
       showDialog(
         context: context,
         builder: (context) {
@@ -68,19 +71,19 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
               context
                   .read<ToDoListProvider>()
                   .updateToDo(widget.index!, newToDo);
-              context.read<TimerProvider>().onCancelPressed();
+              timerProvider.onCancelPressed();
               Navigator.pop(context);
               Navigator.pop(context);
             },
           );
         },
       );
-    } else if (widget.index == context.read<ToDoListProvider>().currentToDo) {
-      context.read<ToDoListProvider>().updateToDo(widget.index!, newToDo);
-      context.read<TimerProvider>().onCancelPressed();
+    } else if (widget.index == toDoListProvider.currentToDo) {
+      toDoListProvider.updateToDo(widget.index!, newToDo);
+      timerProvider.onCancelPressed();
       Navigator.pop(context);
     } else {
-      context.read<ToDoListProvider>().updateToDo(widget.index!, newToDo);
+      toDoListProvider.updateToDo(widget.index!, newToDo);
       Navigator.pop(context);
     }
   }

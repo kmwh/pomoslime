@@ -13,8 +13,11 @@ class TimerAnimations extends StatelessWidget {
     return Consumer3<ThemeProvider, TimerProvider, ToDoListProvider>(
       builder:
           (context, themeProvider, timerProvider, toDoListProvider, child) {
+        String animName = timerProvider.sessionName == 'focus'
+            ? toDoListProvider.currentToDoMap['icon'] ?? 'book'
+            : 'rest';
         return Lottie.asset(
-          'assets/animations/slime_${toDoListProvider.currentToDoMap['icon'] ?? 'book'}_${themeProvider.darkMode ? 'white' : 'black'}.json',
+          'assets/animations/slime_${animName}_${themeProvider.darkMode ? 'white' : 'black'}.json',
           animate: timerProvider.isRunning,
           width: 220,
         );
