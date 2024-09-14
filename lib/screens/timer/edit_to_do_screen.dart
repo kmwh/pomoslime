@@ -38,7 +38,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
         "shortBreakTime": 5,
         "longBreakTime": 10,
         "timeUnit": 5,
-        "icon": "pencil"
+        "icon": "book"
       };
     } else {
       newToDo.addAll(widget.toDo!);

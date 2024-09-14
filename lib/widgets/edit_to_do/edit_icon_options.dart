@@ -16,7 +16,7 @@ class EditIconOptions extends StatelessWidget {
     List<String> iconOptions = [
       'book',
       'palette',
-      'hourglass',
+      'barbell',
       'laptop',
     ];
 
