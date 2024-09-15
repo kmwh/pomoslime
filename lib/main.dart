@@ -8,6 +8,7 @@ import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
+import 'package:pomoslime/provider/premium_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
@@ -54,6 +55,9 @@ void main() async {
           ),
           ChangeNotifierProvider(
             create: (context) => NotificationProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => PremiumProvider(userData),
           ),
           ChangeNotifierProvider(
             create: (context) => ThemeProvider(userData),
