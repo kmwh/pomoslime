@@ -139,6 +139,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageProvider = context.read<LanguageProvider>();
+    languageProvider.selectLanguage(context, languageProvider.language);
+
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) {
         return MaterialApp(
