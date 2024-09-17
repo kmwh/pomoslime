@@ -7,6 +7,7 @@ import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
+import 'package:pomoslime/widgets/setting/premium_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_switch.dart';
 import 'package:pomoslime/widgets/setting/setting_menu.dart';
@@ -16,6 +17,15 @@ import 'package:easy_localization/easy_localization.dart';
 
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
+
+  void showPremiumPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const PremiumPopup();
+      },
+    );
+  }
 
   void showNotificationMenu(BuildContext context) {
     showModalBottomSheet(
@@ -54,7 +64,7 @@ class SettingScreen extends StatelessWidget {
                     SettingItemPopup(
                       icon: "assets/images/crown.png",
                       text: 'premium'.tr(),
-                      func: () {},
+                      func: () => showPremiumPopup(context),
                       isCrown: true,
                     ),
                     SettingItemPopup(

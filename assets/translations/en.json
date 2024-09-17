@@ -3,7 +3,7 @@
   "premium": "Premium",
   "payment_recovery": "Payment Recovery",
   "timer_settings": "Timer Settings",
-  "focus_immediately_after_resting": "Focus Immediately After Resting",
+  "focus_immediately_after_resting": "Focus Immediately",
   "vibration": "Vibration",
   "notification": "Notification",
   "white_noise": "White Noise",
@@ -41,5 +41,6 @@
   "save_session_settings": "Save Session Settings",
   "save_session_settings_description": "Saving will reset the current session.",
   "reset_session": "Reset Session",
-  "reset_session_description": "The session will be reset."
+  "reset_session_description": "The session will be reset.",
+  "premium_plan": "Premium Plan"
 }

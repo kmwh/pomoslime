@@ -41,5 +41,6 @@
   "save_session_settings": "세션 설정 저장",
   "save_session_settings_description": "저장시 현재 세션이 초기화됩니다.",
   "reset_session": "세션 초기화",
-  "reset_session_description": "세션이 초기화됩니다."
+  "reset_session_description": "세션이 초기화됩니다.",
+  "premium_plan": "프리미엄 플랜"
 }
