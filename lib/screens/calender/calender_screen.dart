@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
-import 'package:pomoslime/utils/ad_manager.dart';
 import 'package:pomoslime/widgets/calender/calender_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -82,7 +82,10 @@ class CalenderScreen extends StatelessWidget {
         ),
         Flexible(
           flex: 1,
-          child: AdManager().getBannerAdWidget(1),
+          child: Consumer<AdProvider>(
+            builder: (context, provider, child) =>
+                provider.getBannerAdWidget(1),
+          ),
         ),
       ],
     );

@@ -16,7 +16,7 @@ class TimerProvider with ChangeNotifier {
 
   TimerProvider(this._userData) {
     // Init 설정
-    currentSessionName = 'focus';
+    currentSessionSeconds;
     timer = Timer.periodic(
       const Duration(seconds: 1),
       (timer) => onTick(timer, null),

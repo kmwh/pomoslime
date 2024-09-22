@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
-import 'package:pomoslime/utils/ad_manager.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
 import 'package:pomoslime/widgets/setting/premium_popup.dart';
@@ -127,13 +127,13 @@ class SettingScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 6,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    AdManager().getBannerAdWidget(2),
+                    Consumer<AdProvider>(
+                      builder: (context, provider, child) =>
+                          provider.getBannerAdWidget(2),
+                    ),
                   ],
                 ),
                 SettingMenu(
@@ -155,11 +155,6 @@ class SettingScreen extends StatelessWidget {
                       onChanged: (value) {
                         context.read<BackgroundUsageProvider>().toggle();
                       },
-                    ),
-                    SettingItemPopup(
-                      icon: "assets/images/security.png",
-                      text: "permission_settings".tr(),
-                      func: () {},
                     ),
                     const LanguageDropdownButton(),
                   ],
