@@ -67,10 +67,16 @@ class SettingScreen extends StatelessWidget {
                       func: () => showPremiumPopup(context),
                       isCrown: true,
                     ),
+                  ],
+                ),
+                SettingMenu(
+                  title: "account_settings".tr(),
+                  children: [
                     SettingItemPopup(
-                      icon: "assets/images/refresh.png",
-                      text: 'payment_recovery'.tr(),
+                      icon: "assets/images/drive.png",
+                      text: "google_drive_backup".tr(),
                       func: () {},
+                      hasColor: true,
                     ),
                   ],
                 ),
@@ -146,21 +152,6 @@ class SettingScreen extends StatelessWidget {
                       func: () {},
                     ),
                     const LanguageDropdownButton(),
-                  ],
-                ),
-                SettingMenu(
-                  title: "app_info".tr(),
-                  children: [
-                    SettingItemPopup(
-                      icon: "assets/images/star.png",
-                      text: "app_review".tr(),
-                      func: () {},
-                    ),
-                    SettingItemPopup(
-                      icon: "assets/images/manual.png",
-                      text: "faq".tr(),
-                      func: () {},
-                    ),
                   ],
                 ),
               ],

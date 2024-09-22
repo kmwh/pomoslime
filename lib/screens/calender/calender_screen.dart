@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
-import 'package:pomoslime/widgets/calender/calender_backup_buttons.dart';
 import 'package:pomoslime/widgets/calender/calender_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -14,7 +13,7 @@ class CalenderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 70,
+        vertical: 72,
         horizontal: 32,
       ),
       child: Consumer<LanguageProvider>(
@@ -26,12 +25,12 @@ class CalenderScreen extends StatelessWidget {
                   child: Text(
                     "Focus Calender",
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 22,
                       fontWeight: FontWeight.w300,
                     ),
                   ),
                 ),
-                const SizedBox(height: 26),
+                const SizedBox(height: 30),
                 Consumer<CalenderProvider>(
                   builder: (context, provider, child) {
                     return HeatMap(
@@ -48,7 +47,7 @@ class CalenderScreen extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 14),
                 CalenderTile(
                   period: "total".tr(),
                   periodIndex: 0,
@@ -69,8 +68,6 @@ class CalenderScreen extends StatelessWidget {
                   period: "this_year".tr(),
                   periodIndex: 4,
                 ),
-                const SizedBox(height: 18),
-                const CalenderBackupButtons(),
               ],
             ),
           );
