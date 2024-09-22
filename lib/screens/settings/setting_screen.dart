@@ -5,6 +5,7 @@ import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
+import 'package:pomoslime/utils/ad_manager.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
 import 'package:pomoslime/widgets/setting/premium_popup.dart';
@@ -124,6 +125,15 @@ class SettingScreen extends StatelessWidget {
                           .read<CalenderProvider>()
                           .toggleNumberView(value),
                     ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AdManager().getBannerAdWidget(2),
                   ],
                 ),
                 SettingMenu(

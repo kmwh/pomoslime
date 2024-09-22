@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
@@ -15,10 +16,19 @@ import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/provider/white_noise_provider.dart';
 import 'package:pomoslime/screens/main_screen.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
+import 'package:pomoslime/utils/ad_manager.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  MobileAds.instance.initialize();
+  // 광고 로드
+  AdManager().loadBannerAd(0, "ca-app-pub-3940256099942544/9214589741");
+  AdManager().loadBannerAd(1, "ca-app-pub-3940256099942544/9214589741");
+  AdManager().loadBannerAd(2, "ca-app-pub-3940256099942544/9214589741");
+  AdManager().loadBannerAd(3, "ca-app-pub-3940256099942544/9214589741");
+  AdManager().loadRewardedAd("ca-app-pub-3940256099942544/5224354917");
 
   await EasyLocalization.ensureInitialized();
 

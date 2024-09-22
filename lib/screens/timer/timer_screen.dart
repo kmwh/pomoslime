@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/utils/ad_manager.dart';
 import 'package:pomoslime/widgets/timer/timer.dart';
 import 'package:pomoslime/widgets/timer/timer_animations.dart';
 import 'package:pomoslime/widgets/timer/timer_buttons.dart';
@@ -10,10 +11,10 @@ class TimerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Flexible(
-          flex: 1,
+        const Flexible(
+          flex: 13,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -24,8 +25,8 @@ class TimerScreen extends StatelessWidget {
             ],
           ),
         ),
-        Flexible(
-          flex: 1,
+        const Flexible(
+          flex: 13,
           child: Column(
             children: [
               TimerAnimations(),
@@ -33,6 +34,10 @@ class TimerScreen extends StatelessWidget {
               TimerButtons(),
             ],
           ),
+        ),
+        Flexible(
+          flex: 2,
+          child: AdManager().getBannerAdWidget(0),
         ),
       ],
     );
