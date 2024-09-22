@@ -63,11 +63,17 @@ class SettingScreen extends StatelessWidget {
                 SettingMenu(
                   title: 'premium_settings'.tr(),
                   children: [
-                    SettingItemPopup(
-                      icon: "assets/images/crown.png",
-                      text: 'one_day_premium'.tr(),
-                      func: () => showPremiumPopup(context),
-                      isCrown: true,
+                    Consumer<PremiumProvider>(
+                      builder: (context, provider, child) {
+                        return SettingItemPopup(
+                          icon: "assets/images/crown.png",
+                          text: 'one_day_premium'.tr(),
+                          func: () => showPremiumPopup(context),
+                          isCrown: true,
+                          isLocked: provider.isPremium,
+                          isSmile: true,
+                        );
+                      },
                     ),
                   ],
                 ),

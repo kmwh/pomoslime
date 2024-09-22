@@ -7,6 +7,7 @@ class SettingItemPopup extends StatelessWidget {
   final bool? isCrown;
   final bool? hasColor;
   final bool? isLocked;
+  final bool? isSmile;
 
   const SettingItemPopup({
     super.key,
@@ -16,6 +17,7 @@ class SettingItemPopup extends StatelessWidget {
     this.isCrown,
     this.hasColor,
     this.isLocked,
+    this.isSmile,
   });
 
   @override
@@ -52,7 +54,7 @@ class SettingItemPopup extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
             child: isLocked == true
                 ? Image.asset(
-                    "assets/images/lock.png",
+                    "assets/images/${isSmile == true ? "smile" : "lock"}.png",
                     height: 26,
                     color: Theme.of(context).colorScheme.primary,
                   )
