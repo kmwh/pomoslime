@@ -6,6 +6,7 @@ class SettingItemPopup extends StatelessWidget {
   final Function() func;
   final bool? isCrown;
   final bool? hasColor;
+  final bool? isLocked;
 
   const SettingItemPopup({
     super.key,
@@ -14,6 +15,7 @@ class SettingItemPopup extends StatelessWidget {
     required this.func,
     this.isCrown,
     this.hasColor,
+    this.isLocked,
   });
 
   @override
@@ -45,14 +47,20 @@ class SettingItemPopup extends StatelessWidget {
           ],
         ),
         InkWell(
-          onTap: func,
+          onTap: isLocked == true ? () {} : func,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 8),
-            child: Image.asset(
-              "assets/images/arrow.png",
-              height: 26,
-              color: Theme.of(context).colorScheme.primary,
-            ),
+            child: isLocked == true
+                ? Image.asset(
+                    "assets/images/lock.png",
+                    height: 26,
+                    color: Theme.of(context).colorScheme.primary,
+                  )
+                : Image.asset(
+                    "assets/images/arrow.png",
+                    height: 26,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
           ),
         ),
       ],

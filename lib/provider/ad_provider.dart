@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:pomoslime/model/user_data_model.dart';
+import 'package:pomoslime/provider/premium_provider.dart';
+import 'package:provider/provider.dart';
 
 class AdProvider with ChangeNotifier {
+  final UserDataModel _userData;
+
   final List<String> _bannerIds = [
     "ca-app-pub-3940256099942544/9214589741",
     "ca-app-pub-3940256099942544/9214589741",
@@ -14,7 +19,7 @@ class AdProvider with ChangeNotifier {
   RewardedAd? _rewardedAd;
   bool _isRewardedAdReady = false;
 
-  AdProvider() {
+  AdProvider(this._userData) {
     for (int i = 0; i < _bannerIds.length; i++) {
       loadBannerAd(i);
     }
@@ -52,7 +57,11 @@ class AdProvider with ChangeNotifier {
 
   // 배너 광고 위젯 반환
   Widget getBannerAdWidget(int index) {
-    if (index < 0 || index >= _bannerAds.length) return const SizedBox.shrink();
+    if (index < 0 ||
+        index >= _bannerAds.length ||
+        DateTime.now().difference(_userData.premium).inHours < 24) {
+      return const SizedBox.shrink();
+    }
 
     if (_isBannerAdReady[index] && _bannerAds[index] != null) {
       return SizedBox(
@@ -86,11 +95,12 @@ class AdProvider with ChangeNotifier {
   }
 
   // 리워드 광고 표시
-  void showRewardedAd() {
+  void showRewardedAd(BuildContext context) {
     if (_isRewardedAdReady && _rewardedAd != null) {
       _rewardedAd!.show(
         onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
           debugPrint('사용자가 리워드를 획득: ${reward.amount} ${reward.type}');
+          context.read<PremiumProvider>().activatePremium();
         },
       );
       loadRewardedAd(); // 다음 광고를 로드

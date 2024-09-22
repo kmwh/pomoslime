@@ -13,10 +13,7 @@
     "dark_mode": "다크 모드",
     "use_in_background": "백그라운드 사용",
     "permission_settings": "권한 설정",
-    "app_info": "앱 정보",
-    "app_review": "리뷰 작성하기",
     "language": "사용 언어",
-    "faq": "자주 묻는 질문",
     "total": "전체",
     "today": "오늘",
     "this_week": "이번 주",
@@ -44,5 +41,10 @@
     "reset_session_description": "세션이 초기화됩니다.",
     "premium_plan": "프리미엄 플랜",
     "account_settings": "계정 설정",
-    "google_drive_backup": "구글 드라이브 백업"
+    "google_drive_backup": "구글 드라이브 백업",
+    "one_day_premium": "원데이 프리미엄",
+    "remove_banner_ads": "배너 광고 제거",
+    "enable_white_sound": "백색소음 옵션 활성화",
+    "start_one_day_premium": "원데이 프리미엄 시작",
+    "one_day_premium_description": "광고를 보고 프리미엄 기능을 하루 동안 사용할 수 있습니다!"
 }

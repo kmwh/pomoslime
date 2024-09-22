@@ -30,9 +30,9 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData38");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData40");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData38");
+      await Hive.openBox<CalenderDataModel>("calenderData40");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
@@ -46,7 +46,7 @@ void main() async {
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (context) => AdProvider(),
+            create: (context) => AdProvider(userData),
           ),
           ChangeNotifierProvider(
             create: (context) => BackgroundUsageProvider(userData),
@@ -92,7 +92,7 @@ void main() async {
 Future<UserDataModel> initializeUserData(Box<UserDataModel> box) async {
   if (box.isEmpty) {
     final defaultUserData = UserDataModel(
-      premium: false,
+      premium: DateTime(1999),
       vibration: false,
       notificationIndex: 1,
       whiteNoiseIndex: 0,

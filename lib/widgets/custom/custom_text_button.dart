@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomTextButton extends StatelessWidget {
   final String text;
+  final double width;
   final double fontSize;
   final double horizontalPadding;
   final double verticalPadding;
@@ -10,6 +11,7 @@ class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
     required this.text,
+    this.width = 104,
     this.fontSize = 14,
     required this.onPressed,
     this.horizontalPadding = 30,
@@ -19,7 +21,7 @@ class CustomTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 104,
+      width: width,
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(

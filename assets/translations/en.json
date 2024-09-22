@@ -13,10 +13,7 @@
     "dark_mode": "Dark Mode",
     "use_in_background": "Use in Background",
     "permission_settings": "Permission Settings",
-    "app_info": "App Info",
-    "app_review": "Write a Review",
     "language": "Language",
-    "faq": "Frequently Asked Questions",
     "total": "Total",
     "today": "Today",
     "this_week": "This Week",
@@ -44,5 +41,10 @@
     "reset_session_description": "The session will be reset.",
     "premium_plan": "Premium Plan",
     "account_settings": "Account Settings",
-    "google_drive_backup": "Google Drive Backup"
+    "google_drive_backup": "Google Drive Backup",
+    "one_day_premium": "One-Day Premium",
+    "remove_banner_ads": "Remove banner ads",
+    "enable_white_sound": "Enable White Noise option",
+    "start_one_day_premium": "Start One-Day Premium",
+    "one_day_premium_description": "Watch the video and use premium features for a day!"
 }

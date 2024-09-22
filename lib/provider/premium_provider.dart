@@ -6,10 +6,11 @@ class PremiumProvider with ChangeNotifier {
 
   PremiumProvider(this._userData);
 
-  bool get isPremium => _userData.premium;
+  bool get isPremium =>
+      DateTime.now().difference(_userData.premium).inHours < 24;
 
-  void setPremium(bool value) {
-    _userData.premium = value;
+  void activatePremium() {
+    _userData.premium = DateTime.now();
     _userData.save();
 
     notifyListeners();

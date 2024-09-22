@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
+import 'package:pomoslime/provider/premium_provider.dart';
 import 'package:pomoslime/widgets/timer/timer.dart';
 import 'package:pomoslime/widgets/timer/timer_animations.dart';
 import 'package:pomoslime/widgets/timer/timer_buttons.dart';
@@ -38,9 +39,9 @@ class TimerScreen extends StatelessWidget {
         ),
         Flexible(
           flex: 2,
-          child: Consumer<AdProvider>(
-            builder: (context, provider, child) =>
-                provider.getBannerAdWidget(0),
+          child: Consumer2<AdProvider, PremiumProvider>(
+            builder: (context, adProvider, premiumProvider, child) =>
+                adProvider.getBannerAdWidget(0),
           ),
         ),
       ],

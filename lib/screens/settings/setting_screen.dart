@@ -4,6 +4,7 @@ import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
+import 'package:pomoslime/provider/premium_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
@@ -64,7 +65,7 @@ class SettingScreen extends StatelessWidget {
                   children: [
                     SettingItemPopup(
                       icon: "assets/images/crown.png",
-                      text: 'premium'.tr(),
+                      text: 'one_day_premium'.tr(),
                       func: () => showPremiumPopup(context),
                       isCrown: true,
                     ),
@@ -107,10 +108,15 @@ class SettingScreen extends StatelessWidget {
                       text: "notification".tr(),
                       func: () => showNotificationMenu(context),
                     ),
-                    SettingItemPopup(
-                      icon: "assets/images/sound.png",
-                      text: "white_noise".tr(),
-                      func: () => showWhiteNoiseMenu(context),
+                    Consumer<PremiumProvider>(
+                      builder: (context, provider, child) {
+                        return SettingItemPopup(
+                          icon: "assets/images/sound.png",
+                          text: "white_noise".tr(),
+                          func: () => showWhiteNoiseMenu(context),
+                          isLocked: !provider.isPremium,
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -130,9 +136,9 @@ class SettingScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Consumer<AdProvider>(
-                      builder: (context, provider, child) =>
-                          provider.getBannerAdWidget(2),
+                    Consumer2<AdProvider, PremiumProvider>(
+                      builder: (context, adProvider, premiumProvider, child) =>
+                          adProvider.getBannerAdWidget(2),
                     ),
                   ],
                 ),
