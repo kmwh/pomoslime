@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pomoslime/model/user_data_model.dart';
+import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/notification_provider.dart';
-import 'package:pomoslime/provider/premium_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/provider/white_noise_provider.dart';
 import 'package:provider/provider.dart';
@@ -107,7 +107,7 @@ class TimerProvider with ChangeNotifier {
       if (!isRunning ||
           currentSessionName == 'short' ||
           currentSessionName == 'long' ||
-          !context!.read<PremiumProvider>().isPremium) {
+          !context!.read<AdProvider>().isPremium) {
         context!.read<WhiteNoiseProvider>().pauseWhiteNoise(); // 백색소음 중지
       } else if (currentSessionName == 'focus' && _userData.focusImmediately) {
         context.read<WhiteNoiseProvider>().playWhiteNoise(); // 백색소음 시작

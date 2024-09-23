@@ -5,6 +5,7 @@ class SettingItemSwitch extends StatefulWidget {
   final String icon;
   final String text;
   final ValueChanged<bool> onChanged;
+  final bool hasColor;
 
   const SettingItemSwitch({
     super.key,
@@ -12,6 +13,7 @@ class SettingItemSwitch extends StatefulWidget {
     required this.icon,
     required this.text,
     required this.onChanged,
+    this.hasColor = false,
   });
 
   @override
@@ -39,7 +41,9 @@ class _SettingItemSwitchState extends State<SettingItemSwitch> {
               child: Image.asset(
                 widget.icon,
                 height: 24,
-                color: Theme.of(context).colorScheme.primary,
+                color: widget.hasColor
+                    ? null
+                    : Theme.of(context).colorScheme.primary,
               ),
             ),
             Text(

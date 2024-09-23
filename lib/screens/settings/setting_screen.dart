@@ -4,11 +4,11 @@ import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
-import 'package:pomoslime/provider/premium_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
+import 'package:pomoslime/widgets/setting/premium_item_popup.dart';
 import 'package:pomoslime/widgets/setting/premium_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_popup.dart';
 import 'package:pomoslime/widgets/setting/setting_item_switch.dart';
@@ -60,30 +60,17 @@ class SettingScreen extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SettingMenu(
-                  title: 'premium_settings'.tr(),
-                  children: [
-                    Consumer<PremiumProvider>(
-                      builder: (context, provider, child) {
-                        return SettingItemPopup(
-                          icon: "assets/images/crown.png",
-                          text: 'one_day_premium'.tr(),
-                          func: () => showPremiumPopup(context),
-                          isCrown: true,
-                          isLocked: provider.isPremium,
-                          isSmile: true,
-                        );
-                      },
-                    ),
-                  ],
+                PremiumItemPopup(
+                  onPressed: () => showPremiumPopup(context),
                 ),
                 SettingMenu(
                   title: "account_settings".tr(),
                   children: [
-                    SettingItemPopup(
+                    SettingItemSwitch(
+                      initialValue: false,
                       icon: "assets/images/drive.png",
-                      text: "google_drive_backup".tr(),
-                      func: () {},
+                      text: "google_drive_sync".tr(),
+                      onChanged: (value) {},
                       hasColor: true,
                     ),
                   ],
@@ -114,7 +101,7 @@ class SettingScreen extends StatelessWidget {
                       text: "notification".tr(),
                       func: () => showNotificationMenu(context),
                     ),
-                    Consumer<PremiumProvider>(
+                    Consumer<AdProvider>(
                       builder: (context, provider, child) {
                         return SettingItemPopup(
                           icon: "assets/images/sound.png",
@@ -142,9 +129,9 @@ class SettingScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Consumer2<AdProvider, PremiumProvider>(
-                      builder: (context, adProvider, premiumProvider, child) =>
-                          adProvider.getBannerAdWidget(2),
+                    Consumer<AdProvider>(
+                      builder: (context, provider, child) =>
+                          provider.getBannerAdWidget(2),
                     ),
                   ],
                 ),

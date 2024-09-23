@@ -71,7 +71,8 @@ class PremiumPopup extends StatelessWidget {
                   children: [
                     Image.asset(
                       "assets/images/crown.png",
-                      width: 26,
+                      width: 24,
+                      color: const Color.fromARGB(255, 255, 217, 0),
                     ),
                     const SizedBox(width: 8),
                     Text(
@@ -91,7 +92,8 @@ class PremiumPopup extends StatelessWidget {
                   children: [
                     Image.asset(
                       "assets/images/crown.png",
-                      width: 26,
+                      width: 24,
+                      color: const Color.fromARGB(255, 255, 217, 0),
                     ),
                     const SizedBox(width: 8),
                     Text(

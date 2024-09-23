@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pomoslime/model/user_data_model.dart';
-import 'package:pomoslime/provider/premium_provider.dart';
-import 'package:provider/provider.dart';
 
 class AdProvider with ChangeNotifier {
   final UserDataModel _userData;
@@ -25,6 +23,9 @@ class AdProvider with ChangeNotifier {
     }
     loadRewardedAd();
   }
+
+  bool get isPremium =>
+      DateTime.now().difference(_userData.premium).inHours < 24;
 
   // 배너 광고 로드
   void loadBannerAd(int index) {
@@ -57,9 +58,7 @@ class AdProvider with ChangeNotifier {
 
   // 배너 광고 위젯 반환
   Widget getBannerAdWidget(int index) {
-    if (index < 0 ||
-        index >= _bannerAds.length ||
-        DateTime.now().difference(_userData.premium).inHours < 24) {
+    if (index < 0 || index >= _bannerAds.length || isPremium) {
       return const SizedBox.shrink();
     }
 
@@ -100,7 +99,8 @@ class AdProvider with ChangeNotifier {
       _rewardedAd!.show(
         onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
           debugPrint('사용자가 리워드를 획득: ${reward.amount} ${reward.type}');
-          context.read<PremiumProvider>().activatePremium();
+          _userData.premium = DateTime.now();
+          notifyListeners();
         },
       );
       loadRewardedAd(); // 다음 광고를 로드
