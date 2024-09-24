@@ -27,6 +27,8 @@ class AdProvider with ChangeNotifier {
   bool get isPremium =>
       DateTime.now().difference(_userData.premium).inHours < 24;
 
+  DateTime get premium => _userData.premium;
+
   // 배너 광고 로드
   void loadBannerAd(int index) {
     if (index < 0 || index >= _bannerAds.length) return;

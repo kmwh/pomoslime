@@ -44,7 +44,12 @@ class PremiumItemPopup extends StatelessWidget {
           child: Consumer<AdProvider>(
             builder: (context, provider, child) {
               return ElevatedButton(
-                onPressed: provider.isPremium ? () {} : onPressed,
+                onPressed: provider.isPremium
+                    ? () {
+                        print(provider.premium);
+                        print(DateTime.now());
+                      }
+                    : onPressed,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.surfaceBright,
                   shadowColor: Colors.transparent,
@@ -54,7 +59,7 @@ class PremiumItemPopup extends StatelessWidget {
                       color: Theme.of(context)
                           .colorScheme
                           .secondaryContainer, // 테두리 색상
-                      width: 1, // 테두리 두께
+                      width: 0.1, // 테두리 두께
                     ),
                   ),
                   padding: EdgeInsets.zero,
