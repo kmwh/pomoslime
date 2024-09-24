@@ -34,7 +34,7 @@ class PremiumItemPopup extends StatelessWidget {
                 color: Theme.of(context)
                     .colorScheme
                     .secondaryContainer
-                    .withOpacity(0.6), // 그림자 색상
+                    .withOpacity(0.5), // 그림자 색상
                 blurRadius: 8, // 블러 효과 반경 (높을수록 더 흐릿해짐)
                 spreadRadius: 0.2, // 그림자 퍼짐 정도
                 offset: const Offset(0, 0), // 그림자의 위치 (x, y)
