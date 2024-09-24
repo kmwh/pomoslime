@@ -1,4 +1,4 @@
-package com.example.pomoslime
+package com.muhwa.pomoslime
 
 import io.flutter.embedding.android.FlutterActivity
 
