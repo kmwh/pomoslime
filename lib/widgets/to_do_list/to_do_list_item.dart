@@ -106,7 +106,8 @@ class ToDoListItem extends StatelessWidget {
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.primary,
                               fontSize: 18,
-                              fontWeight: FontWeight.w300,
+                              fontWeight: FontWeight.w200,
+                              fontFamily: "CustomFont",
                             ),
                           ),
                         ],
@@ -155,8 +156,9 @@ class ToDoListItem extends StatelessWidget {
                       "${provider.toDoList[index]["focusCount"].toString()}  |  ${provider.toDoList[index]["focusTime"].toString()} min  |  ${provider.toDoList[index]["shortBreakTime"].toString()} min  |  ${provider.toDoList[index]["longBreakTime"].toString()} min",
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.primaryContainer,
-                        fontSize: 14,
+                        fontSize: 15,
                         fontWeight: FontWeight.w300,
+                        fontFamily: "CustomFont",
                       ),
                     ),
                   ),

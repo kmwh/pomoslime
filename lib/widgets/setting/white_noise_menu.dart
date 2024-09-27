@@ -37,7 +37,8 @@ class WhiteNoiseMenu extends StatelessWidget {
                   label,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
-                    fontSize: 12,
+                    fontSize: 14,
+                    fontFamily: "CustomFont",
                   ),
                 ),
               ],
@@ -83,7 +84,8 @@ class WhiteNoiseMenu extends StatelessWidget {
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: "CustomFont",
                   ),
                 ),
                 IconButton(

@@ -32,12 +32,20 @@ class CustomDialog extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.w500,
+                fontFamily: "CustomFont",
               ),
             ),
             const SizedBox(height: 15),
-            Text(content),
+            Text(
+              content,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                fontFamily: "CustomFont",
+              ),
+            ),
             const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

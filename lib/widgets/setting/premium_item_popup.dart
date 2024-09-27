@@ -21,26 +21,14 @@ class PremiumItemPopup extends StatelessWidget {
           child: Text(
             "premium_settings".tr(),
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
+              fontFamily: "CustomFont",
             ),
           ),
         ),
-        Container(
+        SizedBox(
           height: 58,
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context)
-                    .colorScheme
-                    .secondaryContainer
-                    .withOpacity(0.5), // 그림자 색상
-                blurRadius: 8, // 블러 효과 반경 (높을수록 더 흐릿해짐)
-                spreadRadius: 0.2, // 그림자 퍼짐 정도
-                offset: const Offset(0, 0), // 그림자의 위치 (x, y)
-              ),
-            ],
-          ),
           child: Consumer<AdProvider>(
             builder: (context, provider, child) {
               return ElevatedButton(
@@ -51,16 +39,11 @@ class PremiumItemPopup extends StatelessWidget {
                       }
                     : onPressed,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.surfaceBright,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.secondaryContainer,
                   shadowColor: Colors.transparent,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondaryContainer, // 테두리 색상
-                      width: 0.1, // 테두리 두께
-                    ),
                   ),
                   padding: EdgeInsets.zero,
                 ),
@@ -82,10 +65,11 @@ class PremiumItemPopup extends StatelessWidget {
                           Text(
                             "one_day_premium".tr(),
                             style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 16,
                               fontWeight: FontWeight.w400,
                               color:
                                   Theme.of(context).colorScheme.secondaryFixed,
+                              fontFamily: "CustomFont",
                             ),
                           ),
                         ],
@@ -94,7 +78,7 @@ class PremiumItemPopup extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 10),
                         child: Image.asset(
                           "assets/images/${provider.isPremium ? "smile" : "key"}.png",
-                          width: 26,
+                          width: provider.isPremium ? 26 : 20,
                           color: Theme.of(context).colorScheme.secondaryFixed,
                         ),
                       ),

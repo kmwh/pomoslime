@@ -19,6 +19,7 @@ class ToDoListScreen extends StatelessWidget {
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w300,
+            fontFamily: "CustomFont",
           ),
         ),
         centerTitle: true,

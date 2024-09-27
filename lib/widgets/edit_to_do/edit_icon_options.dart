@@ -44,6 +44,7 @@ class EditIconOptions extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    fontFamily: "CustomFont",
                   ),
                 ),
                 IconButton(

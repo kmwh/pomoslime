@@ -49,8 +49,9 @@ class _SettingItemSwitchState extends State<SettingItemSwitch> {
             Text(
               widget.text,
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
+                fontFamily: "CustomFont",
               ),
             ),
           ],

@@ -35,6 +35,7 @@ class EditContent extends StatelessWidget {
               fontSize: 16,
               fontWeight: FontWeight.w300,
               color: Theme.of(context).colorScheme.primary,
+              fontFamily: "CustomFont",
             ),
           ),
           SizedBox(
@@ -64,6 +65,7 @@ class EditContent extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
+                      fontFamily: "CustomFont",
                     ),
                   ),
                 ),

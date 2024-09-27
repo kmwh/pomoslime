@@ -6,6 +6,7 @@ import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
+import 'package:pomoslime/widgets/setting/account_menu.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
 import 'package:pomoslime/widgets/setting/premium_item_popup.dart';
@@ -25,6 +26,15 @@ class SettingScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return const PremiumPopup();
+      },
+    );
+  }
+
+  void showAccountMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return const AccountMenu();
       },
     );
   }
@@ -66,12 +76,15 @@ class SettingScreen extends StatelessWidget {
                 SettingMenu(
                   title: "account_settings".tr(),
                   children: [
-                    SettingItemSwitch(
-                      initialValue: false,
-                      icon: "assets/images/drive.png",
-                      text: "google_drive_sync".tr(),
-                      onChanged: (value) {},
-                      hasColor: true,
+                    SettingItemPopup(
+                      icon: "assets/images/login.png",
+                      text: "google_login".tr(),
+                      func: () {},
+                    ),
+                    SettingItemPopup(
+                      icon: "assets/images/cloud.png",
+                      text: "backup_restore".tr(),
+                      func: () => showAccountMenu(context),
                     ),
                   ],
                 ),

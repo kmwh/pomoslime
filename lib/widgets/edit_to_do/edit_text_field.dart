@@ -16,7 +16,9 @@ class EditTextField extends StatelessWidget {
       controller: controller,
       onChanged: (value) => onChanged("name", value),
       style: const TextStyle(
+        fontSize: 20,
         fontWeight: FontWeight.w300,
+        fontFamily: "CustomFont",
       ),
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -38,7 +40,9 @@ class EditTextField extends StatelessWidget {
         hintText: "To Do",
         hintStyle: TextStyle(
           color: Theme.of(context).colorScheme.surfaceContainerLowest,
+          fontSize: 20,
           fontWeight: FontWeight.w300,
+          fontFamily: "CustomFont",
         ),
         contentPadding: const EdgeInsets.symmetric(
           vertical: 12.0,

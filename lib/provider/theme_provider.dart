@@ -25,8 +25,8 @@ class ThemeProvider with ChangeNotifier {
       primary: Color(0xFFFFFFFF),
       primaryContainer: Color.fromRGBO(255, 255, 255, 0.668),
       secondary: Color.fromARGB(255, 196, 196, 196),
-      secondaryContainer: Color.fromARGB(255, 255, 224, 46),
-      secondaryFixed: Color.fromRGBO(255, 247, 179, 1),
+      secondaryContainer: Color.fromRGBO(255, 224, 46, 0.3),
+      secondaryFixed: Color.fromRGBO(246, 255, 179, 1),
     ),
   );
 
@@ -40,7 +40,7 @@ class ThemeProvider with ChangeNotifier {
       primary: Color(0xFF222222),
       primaryContainer: Color.fromRGBO(0, 0, 0, 0.812),
       secondary: Color.fromARGB(255, 255, 224, 46),
-      secondaryContainer: Color.fromARGB(255, 255, 46, 238),
+      secondaryContainer: Color.fromRGBO(255, 46, 213, 0.3),
       secondaryFixed: Color.fromARGB(255, 151, 24, 109),
     ),
   );

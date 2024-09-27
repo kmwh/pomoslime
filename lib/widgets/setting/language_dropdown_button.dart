@@ -29,8 +29,9 @@ class LanguageDropdownButton extends StatelessWidget {
             Text(
               'language'.tr(),
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
+                fontFamily: "CustomFont",
               ),
             ),
           ],

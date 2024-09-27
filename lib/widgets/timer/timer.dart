@@ -14,6 +14,7 @@ class Timer extends StatelessWidget {
           style: const TextStyle(
             fontSize: 70,
             fontWeight: FontWeight.w100,
+            fontFamily: "CustomFont",
           ),
         );
       },

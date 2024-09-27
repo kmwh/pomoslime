@@ -20,8 +20,9 @@ class SettingMenu extends StatelessWidget {
           child: Text(
             title,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: FontWeight.w400,
+              fontFamily: "CustomFont",
             ),
           ),
         ),
@@ -32,7 +33,7 @@ class SettingMenu extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              vertical: 8,
+              vertical: 9,
               horizontal: 14,
             ),
             child: Column(

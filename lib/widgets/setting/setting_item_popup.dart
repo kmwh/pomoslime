@@ -5,6 +5,7 @@ class SettingItemPopup extends StatelessWidget {
   final String text;
   final Function() func;
   final bool? isLocked;
+  final bool? hasColor;
 
   const SettingItemPopup({
     super.key,
@@ -12,6 +13,7 @@ class SettingItemPopup extends StatelessWidget {
     required this.text,
     required this.func,
     this.isLocked,
+    this.hasColor,
   });
 
   @override
@@ -24,14 +26,17 @@ class SettingItemPopup extends StatelessWidget {
             Image.asset(
               icon,
               height: 24,
-              color: Theme.of(context).colorScheme.primary,
+              color: hasColor == true
+                  ? null
+                  : Theme.of(context).colorScheme.primary,
             ),
             const SizedBox(width: 7),
             Text(
               text,
               style: const TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.w400,
+                fontFamily: "CustomFont",
               ),
             ),
           ],

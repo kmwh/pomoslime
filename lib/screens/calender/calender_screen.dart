@@ -32,6 +32,7 @@ class CalenderScreen extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w300,
+                          fontFamily: "CustomFont",
                         ),
                       ),
                     ),

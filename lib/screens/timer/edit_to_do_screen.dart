@@ -98,6 +98,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w300,
+            fontFamily: "CustomFont",
           ),
         ),
         centerTitle: true,
