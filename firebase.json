@@ -1,0 +1,21 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "pomoslime-240f5",
+          "appId": "1:327354560033:android:8419bc5374bd749919bd60",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "pomoslime-240f5",
+          "configurations": {
+            "android": "1:327354560033:android:8419bc5374bd749919bd60"
+          }
+        }
+      }
+    }
+  }
+}

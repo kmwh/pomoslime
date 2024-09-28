@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "327354560033",
+    "project_id": "pomoslime-240f5",
+    "storage_bucket": "pomoslime-240f5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327354560033:android:8419bc5374bd749919bd60",
+        "android_client_info": {
+          "package_name": "com.muhwa.pomoslime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdaP3JIKVy0uomHAhtCrgInz5q2pkEFss"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

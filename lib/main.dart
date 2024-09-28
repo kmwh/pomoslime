@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:pomoslime/firebase_options.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
@@ -20,6 +22,10 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   MobileAds.instance.initialize();
 
