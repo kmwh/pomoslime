@@ -40,6 +40,6 @@ flutter:
     - assets/sounds/white_noise/
 
   fonts:
-    - family: CustomFont
+    - family: Im
       fonts:
-        - asset: assets/fonts/custom_font.otf
+        - asset: assets/fonts/im.ttf

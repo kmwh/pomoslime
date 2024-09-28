@@ -41,7 +41,6 @@ class ToDo extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w100,
                           color: Theme.of(context).colorScheme.primary,
-                          fontFamily: "CustomFont",
                         ),
                       ),
                     ],

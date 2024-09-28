@@ -34,9 +34,8 @@ class SettingItemPopup extends StatelessWidget {
             Text(
               text,
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
-                fontFamily: "CustomFont",
               ),
             ),
           ],

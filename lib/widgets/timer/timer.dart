@@ -11,10 +11,10 @@ class Timer extends StatelessWidget {
       builder: (context, provider, child) {
         return Text(
           provider.formattedCurrentSessionSeconds,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 70,
             fontWeight: FontWeight.w100,
-            fontFamily: "CustomFont",
+            color: Theme.of(context).colorScheme.primary,
           ),
         );
       },

@@ -37,8 +37,7 @@ class NotificationMenu extends StatelessWidget {
                   label,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
-                    fontSize: 12,
-                    fontFamily: "CustomFont",
+                    fontSize: 13,
                   ),
                 ),
               ],
@@ -85,7 +84,6 @@ class NotificationMenu extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
-                    fontFamily: "CustomFont",
                   ),
                 ),
                 IconButton(

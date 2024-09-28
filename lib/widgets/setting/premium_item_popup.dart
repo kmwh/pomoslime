@@ -23,7 +23,6 @@ class PremiumItemPopup extends StatelessWidget {
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
-              fontFamily: "CustomFont",
             ),
           ),
         ),
@@ -65,11 +64,10 @@ class PremiumItemPopup extends StatelessWidget {
                           Text(
                             "one_day_premium".tr(),
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color:
                                   Theme.of(context).colorScheme.secondaryFixed,
-                              fontFamily: "CustomFont",
                             ),
                           ),
                         ],

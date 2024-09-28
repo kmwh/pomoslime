@@ -28,6 +28,7 @@ class ThemeProvider with ChangeNotifier {
       secondaryContainer: Color.fromRGBO(255, 224, 46, 0.3),
       secondaryFixed: Color.fromRGBO(246, 255, 179, 1),
     ),
+    fontFamily: "Im",
   );
 
   final ThemeData _lightTheme = ThemeData(
@@ -43,5 +44,6 @@ class ThemeProvider with ChangeNotifier {
       secondaryContainer: Color.fromRGBO(255, 46, 213, 0.3),
       secondaryFixed: Color.fromARGB(255, 151, 24, 109),
     ),
+    fontFamily: "Im",
   );
 }

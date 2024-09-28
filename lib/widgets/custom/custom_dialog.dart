@@ -34,7 +34,6 @@ class CustomDialog extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                fontFamily: "CustomFont",
               ),
             ),
             const SizedBox(height: 15),
@@ -43,7 +42,6 @@ class CustomDialog extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
-                fontFamily: "CustomFont",
               ),
             ),
             const SizedBox(height: 15),

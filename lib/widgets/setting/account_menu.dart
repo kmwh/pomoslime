@@ -28,7 +28,6 @@ class AccountMenu extends StatelessWidget {
               text,
               style: const TextStyle(
                 fontSize: 16,
-                fontFamily: "CustomFont",
               ),
             ),
           ],
@@ -63,7 +62,6 @@ class AccountMenu extends StatelessWidget {
                     color: Theme.of(context).colorScheme.primary,
                     fontSize: 18,
                     fontWeight: FontWeight.w400,
-                    fontFamily: "CustomFont",
                   ),
                 ),
                 IconButton(

@@ -58,7 +58,6 @@ class PremiumPopup extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16,
-                  fontFamily: "CustomFont",
                 ),
               ),
             ),
@@ -82,7 +81,6 @@ class PremiumPopup extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: Color.fromARGB(255, 172, 83, 255),
-                        fontFamily: "CustomFont",
                       ),
                     ),
                   ],
@@ -104,7 +102,6 @@ class PremiumPopup extends StatelessWidget {
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
                         color: Color.fromARGB(255, 172, 83, 255),
-                        fontFamily: "CustomFont",
                       ),
                     ),
                   ],

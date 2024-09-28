@@ -18,7 +18,6 @@ class EditTextField extends StatelessWidget {
       style: const TextStyle(
         fontSize: 20,
         fontWeight: FontWeight.w300,
-        fontFamily: "CustomFont",
       ),
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -42,7 +41,6 @@ class EditTextField extends StatelessWidget {
           color: Theme.of(context).colorScheme.surfaceContainerLowest,
           fontSize: 20,
           fontWeight: FontWeight.w300,
-          fontFamily: "CustomFont",
         ),
         contentPadding: const EdgeInsets.symmetric(
           vertical: 12.0,
