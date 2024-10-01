@@ -12,7 +12,7 @@ class Timer extends StatelessWidget {
         return Text(
           provider.formattedCurrentSessionSeconds,
           style: TextStyle(
-            fontSize: 70,
+            fontSize: 60,
             fontWeight: FontWeight.w100,
             color: Theme.of(context).colorScheme.primary,
           ),

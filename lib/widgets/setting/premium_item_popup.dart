@@ -76,7 +76,7 @@ class PremiumItemPopup extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 10),
                         child: Image.asset(
                           "assets/images/${provider.isPremium ? "smile" : "key"}.png",
-                          width: provider.isPremium ? 26 : 20,
+                          width: provider.isPremium ? 26 : 19,
                           color: Theme.of(context).colorScheme.secondaryFixed,
                         ),
                       ),

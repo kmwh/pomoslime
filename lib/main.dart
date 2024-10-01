@@ -7,6 +7,7 @@ import 'package:pomoslime/firebase_options.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
+import 'package:pomoslime/provider/login_provider.dart';
 import 'package:pomoslime/provider/notification_provider.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
@@ -35,9 +36,9 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData42");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData43");
   final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData42");
+      await Hive.openBox<CalenderDataModel>("calenderData43");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
@@ -64,6 +65,9 @@ void main() async {
           ),
           ChangeNotifierProvider(
             create: (context) => LanguageProvider(userData),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => LoginProvider(),
           ),
           ChangeNotifierProvider(
             create: (context) => NotificationProvider(userData),

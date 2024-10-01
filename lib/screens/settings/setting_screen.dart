@@ -4,8 +4,10 @@ import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
+import 'package:pomoslime/provider/login_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
+import 'package:pomoslime/widgets/custom/custom_dialog.dart';
 import 'package:pomoslime/widgets/setting/account_menu.dart';
 import 'package:pomoslime/widgets/setting/language_dropdown_button.dart';
 import 'package:pomoslime/widgets/setting/notification_menu.dart';
@@ -26,6 +28,22 @@ class SettingScreen extends StatelessWidget {
       context: context,
       builder: (context) {
         return const PremiumPopup();
+      },
+    );
+  }
+
+  void showLogoutPopup(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return CustomDialog(
+          title: "google_logout".tr(),
+          content: "google_logout_content".tr(),
+          onPressed: () {
+            context.read<LoginProvider>().signOut();
+            Navigator.pop(context);
+          },
+        );
       },
     );
   }
@@ -73,20 +91,37 @@ class SettingScreen extends StatelessWidget {
                 PremiumItemPopup(
                   onPressed: () => showPremiumPopup(context),
                 ),
-                SettingMenu(
-                  title: "account_settings".tr(),
-                  children: [
-                    SettingItemPopup(
-                      icon: "assets/images/login.png",
-                      text: "google_login".tr(),
-                      func: () {},
-                    ),
-                    SettingItemPopup(
-                      icon: "assets/images/cloud.png",
-                      text: "backup_restore".tr(),
-                      func: () => showAccountMenu(context),
-                    ),
-                  ],
+                Consumer<LoginProvider>(
+                  builder: (context, provider, child) {
+                    return SettingMenu(
+                      title: "account_settings".tr(),
+                      children: [
+                        SettingItemPopup(
+                          icon: "assets/images/user.png",
+                          text: provider.loggedIn
+                              ? provider.displayName
+                              : "guest".tr(),
+                          func: null,
+                        ),
+                        SettingItemPopup(
+                          icon:
+                              "assets/images/${provider.loggedIn ? "logout" : "login"}.png",
+                          text: provider.loggedIn
+                              ? "google_logout".tr()
+                              : "google_login".tr(),
+                          func: () => provider.loggedIn
+                              ? showLogoutPopup(context)
+                              : provider.signInWithGoogle(),
+                        ),
+                        SettingItemPopup(
+                          icon: "assets/images/cloud.png",
+                          text: "backup_restore".tr(),
+                          func: () => showAccountMenu(context),
+                          isLocked: !provider.loggedIn,
+                        ),
+                      ],
+                    );
+                  },
                 ),
                 SettingMenu(
                   title: "timer_settings".tr(),
