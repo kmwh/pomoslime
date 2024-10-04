@@ -7,7 +7,8 @@ import 'package:pomoslime/firebase_options.dart';
 import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
-import 'package:pomoslime/provider/login_provider.dart';
+import 'package:pomoslime/provider/backup_provider.dart';
+import 'package:pomoslime/provider/sign_in_provider.dart';
 import 'package:pomoslime/provider/notification_provider.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
@@ -36,9 +37,8 @@ void main() async {
   Hive.registerAdapter(UserDataModelAdapter());
   Hive.registerAdapter(CalenderDataModelAdapter());
 
-  final userDataBox = await Hive.openBox<UserDataModel>("userData43");
-  final calenderDataBox =
-      await Hive.openBox<CalenderDataModel>("calenderData43");
+  final userDataBox = await Hive.openBox<UserDataModel>("userData");
+  final calenderDataBox = await Hive.openBox<CalenderDataModel>("calenderData");
 
   // 초기 설정 적용
   final userData = await initializeUserData(userDataBox);
@@ -58,6 +58,9 @@ void main() async {
             create: (context) => BackgroundUsageProvider(userData),
           ),
           ChangeNotifierProvider(
+            create: (context) => BackupProvider(userData, calenderData),
+          ),
+          ChangeNotifierProvider(
             create: (context) => CalenderProvider(calenderData),
           ),
           ChangeNotifierProvider(
@@ -67,7 +70,7 @@ void main() async {
             create: (context) => LanguageProvider(userData),
           ),
           ChangeNotifierProvider(
-            create: (context) => LoginProvider(),
+            create: (context) => SignInProvider(),
           ),
           ChangeNotifierProvider(
             create: (context) => NotificationProvider(userData),
@@ -155,8 +158,8 @@ class App extends StatelessWidget {
     final languageProvider = context.read<LanguageProvider>();
     languageProvider.selectLanguage(context, languageProvider.language);
 
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) {
+    return Consumer2<ThemeProvider, BackupProvider>(
+      builder: (context, themeProvider, backupProvider, child) {
         return MaterialApp(
           theme: themeProvider.themeData,
           localizationsDelegates: context.localizationDelegates,

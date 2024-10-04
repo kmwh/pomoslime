@@ -31,12 +31,7 @@ class PremiumItemPopup extends StatelessWidget {
           child: Consumer<AdProvider>(
             builder: (context, provider, child) {
               return ElevatedButton(
-                onPressed: provider.isPremium
-                    ? () {
-                        print(provider.premium);
-                        print(DateTime.now());
-                      }
-                    : onPressed,
+                onPressed: provider.isPremium ? () {} : onPressed,
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
                       Theme.of(context).colorScheme.secondaryContainer,

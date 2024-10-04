@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -37,8 +38,8 @@ class TimerSession extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TimerProvider>(
-      builder: (context, provider, child) {
+    return Consumer2<TimerProvider, BackupProvider>(
+      builder: (context, provider, backupProvider, child) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: setTimerSession(context, provider),

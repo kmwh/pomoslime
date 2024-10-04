@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/provider/to_do_list_provider.dart';
 import 'package:pomoslime/screens/timer/to_do_list_screen.dart';
@@ -12,8 +13,8 @@ class ToDo extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Consumer<ToDoListProvider>(
-          builder: (context, toDoProvider, child) {
+        Consumer2<ToDoListProvider, BackupProvider>(
+          builder: (context, toDoProvider, backupProvider, child) {
             return Consumer<TimerProvider>(
               builder: (context, provider, child) {
                 return GestureDetector(

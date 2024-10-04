@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SettingItemSwitch extends StatefulWidget {
+class SettingItemSwitch extends StatelessWidget {
   final bool initialValue;
   final String icon;
   final String text;
   final ValueChanged<bool> onChanged;
-  final bool hasColor;
 
   const SettingItemSwitch({
     super.key,
@@ -13,21 +12,7 @@ class SettingItemSwitch extends StatefulWidget {
     required this.icon,
     required this.text,
     required this.onChanged,
-    this.hasColor = false,
   });
-
-  @override
-  State<SettingItemSwitch> createState() => _SettingItemSwitchState();
-}
-
-class _SettingItemSwitchState extends State<SettingItemSwitch> {
-  bool _isToggled = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _isToggled = widget.initialValue;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +24,13 @@ class _SettingItemSwitchState extends State<SettingItemSwitch> {
             Padding(
               padding: const EdgeInsets.only(right: 7),
               child: Image.asset(
-                widget.icon,
+                icon,
                 height: 24,
-                color: widget.hasColor
-                    ? null
-                    : Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ),
             Text(
-              widget.text,
+              text,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
@@ -60,13 +43,10 @@ class _SettingItemSwitchState extends State<SettingItemSwitch> {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 2.5),
             child: Switch(
-              value: _isToggled,
+              value: initialValue,
               materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
               onChanged: (bool value) {
-                setState(() {
-                  _isToggled = value;
-                });
-                widget.onChanged(value);
+                onChanged(value);
               },
             ),
           ),

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pomoslime/provider/backup_provider.dart';
+import 'package:provider/provider.dart';
 
 class AccountMenu extends StatelessWidget {
   const AccountMenu({super.key});
 
-  Widget backupButton(BuildContext context, String icon, String text) {
+  Widget backupButton(
+      BuildContext context, String icon, String text, VoidCallback onPressed) {
     return SizedBox(
       width: double.infinity,
       height: 58,
@@ -14,7 +17,7 @@ class AccountMenu extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Row(
           children: [
             const SizedBox(width: 16),
@@ -34,6 +37,16 @@ class AccountMenu extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void dataBackup(BuildContext context) {
+    context.read<BackupProvider>().backupData(context);
+    Navigator.pop(context);
+  }
+
+  void dataRestore(BuildContext context) {
+    context.read<BackupProvider>().restoreData(context);
+    Navigator.pop(context);
   }
 
   @override
@@ -77,8 +90,18 @@ class AccountMenu extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              backupButton(context, "cloud_upload", "data_backup".tr()),
-              backupButton(context, "cloud_download", "data_restore".tr()),
+              backupButton(
+                context,
+                "cloud_upload",
+                "data_backup".tr(),
+                () => dataBackup(context),
+              ),
+              backupButton(
+                context,
+                "cloud_download",
+                "data_restore".tr(),
+                () => dataRestore(context),
+              ),
             ],
           ),
           const SizedBox(height: 20),

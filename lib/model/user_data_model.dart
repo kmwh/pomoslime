@@ -67,4 +67,34 @@ class UserDataModel extends HiveObject {
     required this.currentSession,
     required this.currentTime,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'vibration': vibration,
+      'notificationIndex': notificationIndex,
+      'whiteNoiseIndex': whiteNoiseIndex,
+      'darkMode': darkMode,
+      'backgroundUsage': backgroundUsage,
+      'language': language,
+      'focusImmediately': focusImmediately,
+      'toDoList': toDoList,
+      'currentToDo': currentToDo,
+      'currentSession': currentSession,
+      'currentTime': currentTime,
+    };
+  }
+
+  void updateFromMap(Map<String, dynamic> map) {
+    vibration = map['vibration'];
+    notificationIndex = map['notificationIndex'];
+    whiteNoiseIndex = map['whiteNoiseIndex'];
+    darkMode = map['darkMode'];
+    backgroundUsage = map['backgroundUsage'];
+    language = map['language'];
+    focusImmediately = map['focusImmediately'];
+    toDoList = List<Map>.from(map['toDoList']);
+    currentToDo = map['currentToDo'];
+    currentSession = map['currentSession'];
+    currentTime = map['currentTime'];
+  }
 }

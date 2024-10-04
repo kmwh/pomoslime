@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
+import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:pomoslime/widgets/calender/calender_tile.dart';
@@ -22,8 +23,8 @@ class CalenderScreen extends StatelessWidget {
               right: 32,
               left: 32,
             ),
-            child: Consumer<LanguageProvider>(
-              builder: (context, value, child) {
+            child: Consumer2<LanguageProvider, BackupProvider>(
+              builder: (context, languageProvider, backupProvider, child) {
                 return Column(
                   children: [
                     const Center(

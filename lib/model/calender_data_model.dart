@@ -34,4 +34,26 @@ class CalenderDataModel extends HiveObject {
     required this.yearFocusTime,
     required this.numberView,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'focusTimeMap': focusTimeMap,
+      'totalFocusTime': totalFocusTime,
+      'todayFocusTime': todayFocusTime,
+      'weekFocusTime': weekFocusTime,
+      'monthFocusTime': monthFocusTime,
+      'yearFocusTime': yearFocusTime,
+      'numberView': numberView,
+    };
+  }
+
+  void updateFromMap(Map<String, dynamic> map) {
+    focusTimeMap = Map<DateTime, int>.from(map['focusTimeMap']);
+    totalFocusTime = map['totalFocusTime'];
+    todayFocusTime = map['todayFocusTime'];
+    weekFocusTime = map['weekFocusTime'];
+    monthFocusTime = map['monthFocusTime'];
+    yearFocusTime = map['yearFocusTime'];
+    numberView = map['numberView'];
+  }
 }

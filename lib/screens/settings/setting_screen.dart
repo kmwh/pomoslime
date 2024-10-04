@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
+import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
-import 'package:pomoslime/provider/login_provider.dart';
+import 'package:pomoslime/provider/sign_in_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
 import 'package:pomoslime/widgets/custom/custom_dialog.dart';
@@ -40,7 +41,7 @@ class SettingScreen extends StatelessWidget {
           title: "google_logout".tr(),
           content: "google_logout_content".tr(),
           onPressed: () {
-            context.read<LoginProvider>().signOut();
+            context.read<SignInProvider>().signOut();
             Navigator.pop(context);
           },
         );
@@ -84,14 +85,14 @@ class SettingScreen extends StatelessWidget {
       ),
       child: SingleChildScrollView(
         child: Consumer<LanguageProvider>(
-          builder: (context, value, child) {
+          builder: (context, languageProvider, child) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PremiumItemPopup(
                   onPressed: () => showPremiumPopup(context),
                 ),
-                Consumer<LoginProvider>(
+                Consumer<SignInProvider>(
                   builder: (context, provider, child) {
                     return SettingMenu(
                       title: "account_settings".tr(),
@@ -126,22 +127,24 @@ class SettingScreen extends StatelessWidget {
                 SettingMenu(
                   title: "timer_settings".tr(),
                   children: [
-                    SettingItemSwitch(
-                      initialValue: context
-                          .read<FocusImmediatelyProvider>()
-                          .focusImmediately,
-                      icon: "assets/images/fire.png",
-                      text: "focus_immediately_after_resting".tr(),
-                      onChanged: (value) {
-                        context.read<FocusImmediatelyProvider>().toggle();
+                    Consumer2<FocusImmediatelyProvider, BackupProvider>(
+                      builder: (context, provider, backupProvider, child) {
+                        return SettingItemSwitch(
+                          initialValue: provider.focusImmediately,
+                          icon: "assets/images/fire.png",
+                          text: "focus_immediately_after_resting".tr(),
+                          onChanged: (value) => provider.toggle(),
+                        );
                       },
                     ),
-                    SettingItemSwitch(
-                      initialValue: context.read<VibrationProvider>().vibration,
-                      icon: "assets/images/vibration.png",
-                      text: "vibration".tr(),
-                      onChanged: (value) {
-                        context.read<VibrationProvider>().toggle();
+                    Consumer2<VibrationProvider, BackupProvider>(
+                      builder: (context, provider, backupProvider, child) {
+                        return SettingItemSwitch(
+                          initialValue: provider.vibration,
+                          icon: "assets/images/vibration.png",
+                          text: "vibration".tr(),
+                          onChanged: (value) => provider.toggle(),
+                        );
                       },
                     ),
                     SettingItemPopup(
@@ -164,13 +167,16 @@ class SettingScreen extends StatelessWidget {
                 SettingMenu(
                   title: "calendar_settings".tr(),
                   children: [
-                    SettingItemSwitch(
-                      initialValue: context.read<CalenderProvider>().numberView,
-                      icon: "assets/images/calender_date.png",
-                      text: "date_display".tr(),
-                      onChanged: (value) => context
-                          .read<CalenderProvider>()
-                          .toggleNumberView(value),
+                    Consumer2<CalenderProvider, BackupProvider>(
+                      builder: (context, provider, backupProvider, child) {
+                        return SettingItemSwitch(
+                          initialValue: provider.numberView,
+                          icon: "assets/images/calender_date.png",
+                          text: "date_display".tr(),
+                          onChanged: (value) =>
+                              provider.toggleNumberView(value),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -186,21 +192,24 @@ class SettingScreen extends StatelessWidget {
                 SettingMenu(
                   title: "app_settings".tr(),
                   children: [
-                    SettingItemSwitch(
-                      initialValue: context.read<ThemeProvider>().darkMode,
-                      icon: "assets/images/moon.png",
-                      text: "dark_mode".tr(),
-                      onChanged: (value) =>
-                          context.read<ThemeProvider>().toggle(),
+                    Consumer2<ThemeProvider, BackupProvider>(
+                      builder: (context, provider, backupProvider, child) {
+                        return SettingItemSwitch(
+                          initialValue: provider.darkMode,
+                          icon: "assets/images/moon.png",
+                          text: "dark_mode".tr(),
+                          onChanged: (value) => provider.toggle(),
+                        );
+                      },
                     ),
-                    SettingItemSwitch(
-                      initialValue: context
-                          .read<BackgroundUsageProvider>()
-                          .backgroundUsage,
-                      icon: "assets/images/timer.png",
-                      text: "use_in_background".tr(),
-                      onChanged: (value) {
-                        context.read<BackgroundUsageProvider>().toggle();
+                    Consumer2<BackgroundUsageProvider, BackupProvider>(
+                      builder: (context, provider, backupProvider, child) {
+                        return SettingItemSwitch(
+                          initialValue: provider.backgroundUsage,
+                          icon: "assets/images/timer.png",
+                          text: "use_in_background".tr(),
+                          onChanged: (value) => provider.toggle(),
+                        );
                       },
                     ),
                     const LanguageDropdownButton(),
