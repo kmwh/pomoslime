@@ -11,14 +11,21 @@ import 'package:provider/provider.dart';
 class BackupProvider with ChangeNotifier {
   final UserDataModel _userData;
   final CalenderDataModel _calenderData;
+  bool _isLoading = false;
 
   BackupProvider(this._userData, this._calenderData);
+
+  bool get isLoading => _isLoading;
 
   Future<void> backupData(BuildContext context) async {
     try {
       drive.DriveApi? api = context.read<SignInProvider>().driveApi;
       // 데이터를 암호화하여 저장
       if (api != null) {
+        // 로딩 화면 띄우기
+        setIsLoading(true);
+        notifyListeners();
+
         final encryptionHelper = EncryptionHelper(
             encrypt.Key.fromUtf8('32charactertoken32charactertoken'));
 
@@ -38,6 +45,10 @@ class BackupProvider with ChangeNotifier {
         await api.files.create(driveFile, uploadMedia: media);
 
         print("YES");
+
+        // 로딩화면 제거
+        setIsLoading(false);
+        notifyListeners();
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -48,6 +59,10 @@ class BackupProvider with ChangeNotifier {
     try {
       drive.DriveApi? api = context.read<SignInProvider>().driveApi;
       if (api != null) {
+        // 로딩 화면 띄우기
+        setIsLoading(true);
+        notifyListeners();
+
         var fileList = await api.files.list(
           q: "name='pomoslime_backup_89321958' and 'appDataFolder' in parents",
           spaces: 'appDataFolder',
@@ -85,7 +100,6 @@ class BackupProvider with ChangeNotifier {
             _userData.updateFromMap(userDataMap);
             _calenderData.updateFromMap(calendarDataMap);
 
-            notifyListeners();
             print("YYES");
           }
         } else {
@@ -94,8 +108,16 @@ class BackupProvider with ChangeNotifier {
       } else {
         debugPrint("You have to sign in google account.");
       }
+
+      // 로딩화면 제거
+      setIsLoading(false);
+      notifyListeners();
     } catch (e) {
       debugPrint(e.toString());
     }
+  }
+
+  void setIsLoading(bool value) {
+    _isLoading = value;
   }
 }
