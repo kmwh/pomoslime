@@ -156,7 +156,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final languageProvider = context.read<LanguageProvider>();
-    languageProvider.selectLanguage(context, languageProvider.language);
+    languageProvider.changeLanguage(context);
 
     return Consumer2<ThemeProvider, BackupProvider>(
       builder: (context, themeProvider, backupProvider, child) {

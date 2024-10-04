@@ -9,10 +9,14 @@ class LanguageProvider with ChangeNotifier {
 
   String get language => _userData.language;
 
-  Future<void> selectLanguage(BuildContext context, String language) async {
+  void selectLanguage(String language) {
     _userData.language = language;
     _userData.save();
 
+    notifyListeners();
+  }
+
+  Future<void> changeLanguage(BuildContext context) async {
     if (language == "English") {
       await context.setLocale(const Locale('en'));
     } else if (language == '한국어') {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -35,35 +36,38 @@ class LanguageDropdownButton extends StatelessWidget {
             ),
           ],
         ),
-        Container(
-          padding: const EdgeInsets.only(right: 10),
-          width: 100,
-          child: DropdownButton<String>(
-            value: context.read<LanguageProvider>().language,
-            onChanged: (String? newValue) {
-              if (newValue != null) {
-                context
-                    .read<LanguageProvider>()
-                    .selectLanguage(context, newValue);
-              }
-            },
-            items: languageItems.map<DropdownMenuItem<String>>(
-              (String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                );
-              },
-            ).toList(),
-            isExpanded: true,
-          ),
-        )
+        Consumer2<LanguageProvider, BackupProvider>(
+          builder: (context, languageProvider, backupProvider, child) {
+            languageProvider.changeLanguage(context);
+            return Container(
+              padding: const EdgeInsets.only(right: 10),
+              width: 100,
+              child: DropdownButton<String>(
+                value: languageProvider.language,
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    languageProvider.selectLanguage(newValue);
+                  }
+                },
+                items: languageItems.map<DropdownMenuItem<String>>(
+                  (String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w300,
+                        ),
+                      ),
+                    );
+                  },
+                ).toList(),
+                isExpanded: true,
+              ),
+            );
+          },
+        ),
       ],
     );
   }
