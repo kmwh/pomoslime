@@ -115,7 +115,7 @@ Future<UserDataModel> initializeUserData(Box<UserDataModel> box) async {
           "focusCount": 4,
           "focusTime": 25,
           "shortBreakTime": 5,
-          "longBreakTime": 10,
+          "longBreakTime": 15,
           "timeUnit": 5,
           "icon": "book",
         },
