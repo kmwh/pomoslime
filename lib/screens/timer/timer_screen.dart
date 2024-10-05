@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/widgets/timer/timer.dart';
 import 'package:pomoslime/widgets/timer/timer_animations.dart';
 import 'package:pomoslime/widgets/timer/timer_buttons.dart';
 import 'package:pomoslime/widgets/timer/timer_session.dart';
 import 'package:pomoslime/widgets/timer/to_do.dart';
-import 'package:provider/provider.dart';
 
 class TimerScreen extends StatelessWidget {
   const TimerScreen({super.key});
@@ -36,13 +34,13 @@ class TimerScreen extends StatelessWidget {
             ],
           ),
         ),
-        Flexible(
-          flex: 2,
-          child: Consumer<AdProvider>(
-            builder: (context, provider, child) =>
-                provider.getBannerAdWidget(0),
-          ),
-        ),
+        // Flexible(
+        //   flex: 2,
+        //   child: Consumer<AdProvider>(
+        //     builder: (context, provider, child) =>
+        //         provider.getBannerAdWidget(0),
+        //   ),
+        // ),
       ],
     );
   }

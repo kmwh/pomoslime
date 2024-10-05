@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/screens/calender/calender_screen.dart';
@@ -24,9 +27,15 @@ class _MainScreenState extends State<MainScreen> {
           const SettingScreen(),
         ];
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(BuildContext context, int index) {
     setState(() {
       _selectedIndex = index;
+
+      // 전면 광고 띄우기
+      int randomNum = Random().nextInt(13);
+      if (randomNum == 1) {
+        context.read<AdProvider>().showInterstitialAd();
+      }
     });
   }
 
@@ -60,7 +69,7 @@ class _MainScreenState extends State<MainScreen> {
                         showSelectedLabels: false,
                         showUnselectedLabels: false,
                         currentIndex: _selectedIndex,
-                        onTap: _onItemTapped,
+                        onTap: (index) => _onItemTapped(context, index),
                         items: [
                           BottomNavigationBarItem(
                             label: "timer",
@@ -98,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
               return Stack(
                 children: [
                   ModalBarrier(
-                    color: Colors.black.withOpacity(0.3), // 반투명 오버레이
+                    color: Colors.black.withOpacity(0.4), // 반투명 오버레이
                     dismissible: false, // 터치 불가능하게 만듦
                   ),
                   Center(
@@ -107,7 +116,7 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               );
             } else {
-              return SizedBox();
+              return SizedBox.shrink();
             }
           },
         ),

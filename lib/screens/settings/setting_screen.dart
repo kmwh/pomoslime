@@ -185,7 +185,7 @@ class SettingScreen extends StatelessWidget {
                   children: [
                     Consumer<AdProvider>(
                       builder: (context, provider, child) =>
-                          provider.getBannerAdWidget(2),
+                          provider.getBannerAdWidget(),
                     ),
                   ],
                 ),

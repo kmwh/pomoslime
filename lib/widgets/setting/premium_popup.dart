@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/widgets/custom/custom_text_button.dart';
 import 'package:provider/provider.dart';
@@ -115,7 +114,7 @@ class PremiumPopup extends StatelessWidget {
               verticalPadding: 16,
               onPressed: () {
                 Navigator.pop(context);
-                context.read<AdProvider>().showRewardedAd(context);
+                // context.read<AdProvider>().showRewardedAd(context);
               },
             ),
             const SizedBox(height: 4),

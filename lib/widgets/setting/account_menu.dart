@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -42,11 +43,13 @@ class AccountMenu extends StatelessWidget {
   void dataBackup(BuildContext context) {
     context.read<BackupProvider>().backupData(context);
     Navigator.pop(context);
+    context.read<AdProvider>().showInterstitialAd();
   }
 
   void dataRestore(BuildContext context) {
     context.read<BackupProvider>().restoreData(context);
     Navigator.pop(context);
+    context.read<AdProvider>().showInterstitialAd();
   }
 
   @override
