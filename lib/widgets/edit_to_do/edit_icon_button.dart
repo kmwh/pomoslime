@@ -30,8 +30,7 @@ class EditIconButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surfaceBright,
         border: Border.all(
-          color: Theme.of(context).colorScheme.primaryContainer,
-          width: 0.8,
+          color: Theme.of(context).colorScheme.surfaceContainerLowest,
         ),
         borderRadius: BorderRadius.circular(12),
       ),

@@ -36,7 +36,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
         "focusCount": 4,
         "focusTime": 25,
         "shortBreakTime": 5,
-        "longBreakTime": 10,
+        "longBreakTime": 15,
         "timeUnit": 5,
         "icon": "book"
       };
@@ -148,8 +148,7 @@ class _EditToDoScreenState extends State<EditToDoScreen> {
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surfaceBright,
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    width: 0.8,
+                    color: Theme.of(context).colorScheme.surfaceContainerLowest,
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),

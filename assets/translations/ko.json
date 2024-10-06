@@ -1,6 +1,4 @@
 {
-    "premium_settings": "프리미엄 세팅",
-    "premium": "프리미엄",
     "payment_recovery": "결제 복구",
     "timer_settings": "타이머 설정",
     "focus_immediately_after_resting": "휴식 후 바로 집중 시작",
@@ -47,10 +45,14 @@
     "backup_restore": "백업/복원",
     "data_backup": "데이터 백업",
     "data_restore": "데이터 복원",
-    "one_day_premium": "원데이 프리미엄",
-    "remove_banner_ads": "배너 광고 제거",
+    "restore_payment": "결제 복원",
+    "guest": "게스트",
+    "coffee_for_dev": "개발자에게 커피 선물하기",
+    "remove_ads": "광고 없이 사용",
+    "manage_multiple_to_do_lists": "여러 개의 할 일 목록 관리",
     "enable_white_sound": "백색소음 옵션 활성화",
-    "start_one_day_premium": "원데이 프리미엄 시작",
-    "one_day_premium_description": "광고를 보고 프리미엄 기능을 하루 동안 사용할 수 있습니다!",
-    "guest": "게스트"
+    "add_various_notification": "다양한 알림 소리 추가",
+    "present_coffee": "커피 선물하기",
+    "coffee_price": "4,900 ₩",
+    "premium_description": "감사의 뜻을 담아\n 추가 기능을 제공해드릴게요!"
 }

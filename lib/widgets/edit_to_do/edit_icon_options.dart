@@ -71,9 +71,9 @@ class EditIconOptions extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     border: icon == currentIcon
                         ? Border.all(
-                            color:
-                                Theme.of(context).colorScheme.primaryContainer,
-                            width: 0.9,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceContainerLowest,
                           )
                         : null,
                   ),

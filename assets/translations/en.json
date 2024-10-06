@@ -1,6 +1,4 @@
 {
-    "premium_settings": "Premium Settings",
-    "premium": "Premium",
     "payment_recovery": "Payment Recovery",
     "timer_settings": "Timer Settings",
     "focus_immediately_after_resting": "Focus Immediately",
@@ -47,10 +45,14 @@
     "backup_restore": "Backup/Restore",
     "data_backup": "Data backup",
     "data_restore": "Data restore",
-    "one_day_premium": "One-Day Premium",
-    "remove_banner_ads": "Remove banner ads",
+    "restore_payment": "Restore Payment",
+    "guest": "Guest",
+    "coffee_for_dev": "Present coffee to devs",
+    "remove_ads": "Remove ads",
+    "manage_multiple_to_do_lists": "Manage multiple To-Do lists",
     "enable_white_sound": "Enable White Noise option",
-    "start_one_day_premium": "Start One-Day Premium",
-    "one_day_premium_description": "Watch the video and use premium features for a day!",
-    "guest": "Guest"
+    "add_various_notification": "Add various notification sounds",
+    "present_coffee": "Present coffee",
+    "coffee_price": "3.50 $",
+    "premium_description": "Thank you, and we offer you additional features!"
 }

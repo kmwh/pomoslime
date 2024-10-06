@@ -42,6 +42,7 @@ class LanguageDropdownButton extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.only(right: 10),
               width: 100,
+              height: 40,
               child: DropdownButton<String>(
                 value: languageProvider.language,
                 onChanged: (String? newValue) {

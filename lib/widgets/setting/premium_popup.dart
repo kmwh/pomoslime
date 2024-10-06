@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/widgets/custom/custom_text_button.dart';
+import 'package:pomoslime/widgets/setting/premium_popup_text.dart';
 import 'package:provider/provider.dart';
 
 class PremiumPopup extends StatelessWidget {
@@ -38,80 +39,66 @@ class PremiumPopup extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              "one_day_premium".tr(),
-              style: const TextStyle(
+              "coffee_for_dev".tr(),
+              style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.w400,
+                color: Theme.of(context).colorScheme.secondaryFixed,
               ),
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  "assets/images/coffee.png",
+                  width: 23,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                SizedBox(width: 7),
+                Text(
+                  "coffee_price".tr(),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Lottie.asset(
               "assets/animations/slime_rest_${context.read<ThemeProvider>().darkMode ? 'white' : 'black'}.json",
               width: 120,
             ),
-            const SizedBox(height: 30),
-            SizedBox(
-              width: 250,
-              child: Text(
-                "one_day_premium_description".tr(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-            ),
+            // const SizedBox(height: 16),
+            // SizedBox(
+            //   width: 250,
+            //   child: Text(
+            //     "premium_description".tr(),
+            //     textAlign: TextAlign.center,
+            //     style: const TextStyle(
+            //       fontSize: 14,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(height: 30),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      "assets/images/crown.png",
-                      width: 24,
-                      color: const Color.fromARGB(255, 255, 217, 0),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      "remove_banner_ads".tr(),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromARGB(255, 172, 83, 255),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Image.asset(
-                      "assets/images/crown.png",
-                      width: 24,
-                      color: const Color.fromARGB(255, 255, 217, 0),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      "enable_white_sound".tr(),
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Color.fromARGB(255, 172, 83, 255),
-                      ),
-                    ),
-                  ],
-                ),
+                PremiumPopupText(text: "remove_ads".tr()),
+                SizedBox(height: 12),
+                PremiumPopupText(text: "manage_multiple_to_do_lists".tr()),
+                SizedBox(height: 12),
+                PremiumPopupText(text: "enable_white_sound".tr()),
+                SizedBox(height: 12),
+                PremiumPopupText(text: "add_various_notification".tr()),
               ],
             ),
             const SizedBox(height: 34),
             CustomTextButton(
-              text: "start_one_day_premium".tr(),
+              text: "present_coffee".tr(),
               width: 210,
               verticalPadding: 16,
+              fontSize: 15,
               onPressed: () {
                 Navigator.pop(context);
                 // context.read<AdProvider>().showRewardedAd(context);

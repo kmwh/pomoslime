@@ -73,8 +73,10 @@ class ToDoListItem extends StatelessWidget {
               color: Theme.of(context).colorScheme.surfaceBright,
               border: provider.currentToDo == index
                   ? Border.all(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      width: 0.9,
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primaryContainer
+                          .withOpacity(0.5),
                     )
                   : null,
               borderRadius: BorderRadius.circular(12),

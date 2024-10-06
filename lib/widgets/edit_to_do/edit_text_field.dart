@@ -16,22 +16,19 @@ class EditTextField extends StatelessWidget {
       controller: controller,
       onChanged: (value) => onChanged("name", value),
       style: const TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w300,
+        fontSize: 16,
       ),
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            width: 0.8,
+            color: Theme.of(context).colorScheme.surfaceContainerLowest,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            width: 0.8,
+            color: Theme.of(context).colorScheme.surfaceContainerLowest,
           ),
         ),
         fillColor: Theme.of(context).colorScheme.surfaceBright,
@@ -39,7 +36,7 @@ class EditTextField extends StatelessWidget {
         hintText: "To Do",
         hintStyle: TextStyle(
           color: Theme.of(context).colorScheme.surfaceContainerLowest,
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: FontWeight.w300,
         ),
         contentPadding: const EdgeInsets.symmetric(

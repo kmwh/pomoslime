@@ -89,20 +89,22 @@ class SettingScreen extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PremiumItemPopup(
-                  onPressed: () => showPremiumPopup(context),
-                ),
                 Consumer<SignInProvider>(
                   builder: (context, provider, child) {
                     return SettingMenu(
                       title: "account_settings".tr(),
                       children: [
-                        SettingItemPopup(
-                          icon: "assets/images/user.png",
-                          text: provider.loggedIn
-                              ? provider.displayName
-                              : "guest".tr(),
-                          func: null,
+                        Consumer<AdProvider>(
+                          builder: (context, adProvider, child) {
+                            return SettingItemPopup(
+                              icon:
+                                  "assets/images/${adProvider.isPremium ? "coffee" : "user"}.png",
+                              text: provider.loggedIn
+                                  ? provider.displayName
+                                  : "guest".tr(),
+                              func: null,
+                            );
+                          },
                         ),
                         SettingItemPopup(
                           icon:
@@ -120,8 +122,29 @@ class SettingScreen extends StatelessWidget {
                           func: () => showAccountMenu(context),
                           isLocked: !provider.loggedIn,
                         ),
+                        Consumer<AdProvider>(
+                          builder: (context, adProvider, child) {
+                            return adProvider.isPremium
+                                ? SizedBox.shrink()
+                                : SettingItemPopup(
+                                    icon: "assets/images/refresh.png",
+                                    text: "restore_payment".tr(),
+                                    func: () {},
+                                    isLocked: !provider.loggedIn,
+                                  );
+                          },
+                        ),
                       ],
                     );
+                  },
+                ),
+                Consumer<AdProvider>(
+                  builder: (context, provider, child) {
+                    return provider.isPremium
+                        ? SizedBox.shrink()
+                        : PremiumItemPopup(
+                            onPressed: () => showPremiumPopup(context),
+                          );
                   },
                 ),
                 SettingMenu(

@@ -26,8 +26,9 @@ class CustomTextButton extends StatelessWidget {
         onPressed: onPressed,
         style: TextButton.styleFrom(
           side: BorderSide(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            width: 0.8,
+            color: Theme.of(context).colorScheme.surfaceContainerLowest,
+            // color: const Color.fromARGB(255, 90, 90, 90),
+            width: 1,
           ),
           backgroundColor: Theme.of(context).colorScheme.surfaceBright,
           padding: EdgeInsets.symmetric(
