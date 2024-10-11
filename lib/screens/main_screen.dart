@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/backup_provider.dart';
+import 'package:pomoslime/provider/payment_provider.dart';
 import 'package:pomoslime/provider/timer_provider.dart';
 import 'package:pomoslime/screens/calender/calender_screen.dart';
 import 'package:pomoslime/screens/settings/setting_screen.dart';
@@ -101,9 +102,9 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         // 로딩 화면
-        Consumer<BackupProvider>(
-          builder: (context, provider, child) {
-            if (provider.isLoading) {
+        Consumer2<BackupProvider, PaymentProvider>(
+          builder: (context, backupProvider, paymentProvider, child) {
+            if (backupProvider.isLoading || paymentProvider.isLoading) {
               return Stack(
                 children: [
                   ModalBarrier(

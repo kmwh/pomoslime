@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pomoslime/provider/payment_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/widgets/custom/custom_text_button.dart';
 import 'package:pomoslime/widgets/setting/premium_popup_text.dart';
@@ -69,17 +70,6 @@ class PremiumPopup extends StatelessWidget {
               "assets/animations/slime_rest_${context.read<ThemeProvider>().darkMode ? 'white' : 'black'}.json",
               width: 120,
             ),
-            // const SizedBox(height: 16),
-            // SizedBox(
-            //   width: 250,
-            //   child: Text(
-            //     "premium_description".tr(),
-            //     textAlign: TextAlign.center,
-            //     style: const TextStyle(
-            //       fontSize: 14,
-            //     ),
-            //   ),
-            // ),
             const SizedBox(height: 30),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,14 +84,20 @@ class PremiumPopup extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 34),
-            CustomTextButton(
-              text: "present_coffee".tr(),
-              width: 210,
-              verticalPadding: 16,
-              fontSize: 15,
-              onPressed: () {
-                Navigator.pop(context);
-                // context.read<AdProvider>().showRewardedAd(context);
+            Consumer<PaymentProvider>(
+              builder: (context, provider, child) {
+                if (provider.isPremium) {
+                  Navigator.pop(context);
+                }
+                return CustomTextButton(
+                  text: "present_coffee".tr(),
+                  width: 210,
+                  verticalPadding: 16,
+                  fontSize: 15,
+                  onPressed: () {
+                    provider.purchaseProduct();
+                  },
+                );
               },
             ),
             const SizedBox(height: 4),

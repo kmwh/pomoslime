@@ -62,6 +62,7 @@ android {
     // }
 
     signingConfigs {
+        // android/keystore/key.jks, key.properties 필요
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']

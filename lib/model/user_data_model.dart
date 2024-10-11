@@ -5,7 +5,7 @@ part 'user_data_model.g.dart';
 @HiveType(typeId: 1)
 class UserDataModel extends HiveObject {
   @HiveField(0)
-  DateTime premium;
+  bool premium;
 
   @HiveField(1)
   bool vibration;

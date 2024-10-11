@@ -14,11 +14,6 @@ class AdProvider with ChangeNotifier {
     _loadInterstitialAd();
   }
 
-  bool get isPremium =>
-      DateTime.now().difference(_userData.premium).inHours < 24;
-
-  DateTime get premium => _userData.premium;
-
   // 배너 광고 로드
   void _loadBannerAd() {
     BannerAd(
@@ -65,7 +60,7 @@ class AdProvider with ChangeNotifier {
 
   // 배너 광고 위젯 반환
   Widget getBannerAdWidget() {
-    if (!isPremium && _bannerAd != null) {
+    if (!_userData.premium && _bannerAd != null) {
       return SizedBox(
         height: _bannerAd!.size.height.toDouble(),
         width: _bannerAd!.size.width.toDouble(),
