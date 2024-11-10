@@ -122,18 +122,6 @@ class SettingScreen extends StatelessWidget {
                           func: () => showAccountMenu(context),
                           isLocked: !provider.loggedIn,
                         ),
-                        Consumer<AdProvider>(
-                          builder: (context, adProvider, child) {
-                            return adProvider.isPremium
-                                ? SizedBox.shrink()
-                                : SettingItemPopup(
-                                    icon: "assets/images/refresh.png",
-                                    text: "restore_payment".tr(),
-                                    func: () {},
-                                    isLocked: !provider.loggedIn,
-                                  );
-                          },
-                        ),
                       ],
                     );
                   },
