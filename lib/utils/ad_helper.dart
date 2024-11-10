@@ -17,13 +17,13 @@ class AdHelper {
     }
   }
 
-  // static String get rewardedAdUnitId {
-  //   if (Platform.isAndroid) {
-  //     return "";
-  //   } else {
-  //     throw UnsupportedError("Unsupported platform");
-  //   }
-  // }
+  static String get rewardedAdUnitId {
+    if (Platform.isAndroid) {
+      return "ca-app-pub-4876179682567763/3030180605";
+    } else {
+      throw UnsupportedError("Unsupported platform");
+    }
+  }
 
   static String get testBannerAdUnitId {
     if (Platform.isAndroid) {
@@ -36,6 +36,14 @@ class AdHelper {
   static String get testInterstitialAdUnitId {
     if (Platform.isAndroid) {
       return 'ca-app-pub-3940256099942544/1033173712';
+    } else {
+      throw UnsupportedError('Unsupported platform');
+    }
+  }
+
+  static String get testRewardedAdUnitId {
+    if (Platform.isAndroid) {
+      return 'ca-app-pub-3940256099942544/5224354917';
     } else {
       throw UnsupportedError('Unsupported platform');
     }

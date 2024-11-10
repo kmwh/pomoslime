@@ -8,18 +8,22 @@ class AdProvider with ChangeNotifier {
 
   BannerAd? _bannerAd;
   InterstitialAd? _interstitialAd;
+  RewardedAd? _rewardedAd;
 
   AdProvider(this._userData) {
     _loadBannerAd();
     _loadInterstitialAd();
+    _loadRewardedAd();
   }
+
+  bool get isPremium => _userData.premium.isAfter(DateTime.now());
 
   // 배너 광고 로드
   void _loadBannerAd() {
     BannerAd(
       adUnitId: AdHelper.testBannerAdUnitId,
       size: AdSize.banner,
-      request: const AdRequest(),
+      request: AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) {
           _bannerAd = ad as BannerAd;
@@ -58,9 +62,20 @@ class AdProvider with ChangeNotifier {
     );
   }
 
+  void _loadRewardedAd() {
+    RewardedAd.load(
+      adUnitId: AdHelper.rewardedAdUnitId,
+      request: AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (ad) {},
+        onAdFailedToLoad: (err) {},
+      ),
+    );
+  }
+
   // 배너 광고 위젯 반환
   Widget getBannerAdWidget() {
-    if (!_userData.premium && _bannerAd != null) {
+    if (!isPremium && _bannerAd != null) {
       return SizedBox(
         height: _bannerAd!.size.height.toDouble(),
         width: _bannerAd!.size.width.toDouble(),

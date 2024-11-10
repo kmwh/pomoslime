@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pomoslime/provider/payment_provider.dart';
+import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/widgets/custom/custom_text_button.dart';
 import 'package:pomoslime/widgets/setting/premium_popup_text.dart';
@@ -84,7 +84,7 @@ class PremiumPopup extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 34),
-            Consumer<PaymentProvider>(
+            Consumer<AdProvider>(
               builder: (context, provider, child) {
                 if (provider.isPremium) {
                   Navigator.pop(context);
@@ -94,9 +94,7 @@ class PremiumPopup extends StatelessWidget {
                   width: 210,
                   verticalPadding: 16,
                   fontSize: 15,
-                  onPressed: () {
-                    provider.purchaseProduct();
-                  },
+                  onPressed: () {},
                 );
               },
             ),

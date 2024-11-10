@@ -5,7 +5,6 @@ import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
 import 'package:pomoslime/provider/language_provider.dart';
-import 'package:pomoslime/provider/payment_provider.dart';
 import 'package:pomoslime/provider/sign_in_provider.dart';
 import 'package:pomoslime/provider/theme_provider.dart';
 import 'package:pomoslime/provider/vibration_provider.dart';
@@ -95,7 +94,7 @@ class SettingScreen extends StatelessWidget {
                     return SettingMenu(
                       title: "account_settings".tr(),
                       children: [
-                        Consumer<PaymentProvider>(
+                        Consumer<AdProvider>(
                           builder: (context, adProvider, child) {
                             return SettingItemPopup(
                               icon:
@@ -123,7 +122,7 @@ class SettingScreen extends StatelessWidget {
                           func: () => showAccountMenu(context),
                           isLocked: !provider.loggedIn,
                         ),
-                        Consumer<PaymentProvider>(
+                        Consumer<AdProvider>(
                           builder: (context, adProvider, child) {
                             return adProvider.isPremium
                                 ? SizedBox.shrink()
@@ -139,7 +138,7 @@ class SettingScreen extends StatelessWidget {
                     );
                   },
                 ),
-                Consumer<PaymentProvider>(
+                Consumer<AdProvider>(
                   builder: (context, provider, child) {
                     return provider.isPremium
                         ? SizedBox.shrink()
@@ -176,7 +175,7 @@ class SettingScreen extends StatelessWidget {
                       text: "notification".tr(),
                       func: () => showNotificationMenu(context),
                     ),
-                    Consumer<PaymentProvider>(
+                    Consumer<AdProvider>(
                       builder: (context, provider, child) {
                         return SettingItemPopup(
                           icon: "assets/images/sound.png",

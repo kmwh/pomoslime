@@ -8,7 +8,6 @@ import 'package:pomoslime/model/calender_data_model.dart';
 import 'package:pomoslime/model/user_data_model.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
 import 'package:pomoslime/provider/backup_provider.dart';
-import 'package:pomoslime/provider/payment_provider.dart';
 import 'package:pomoslime/provider/sign_in_provider.dart';
 import 'package:pomoslime/provider/notification_provider.dart';
 import 'package:pomoslime/provider/background_usage_provider.dart';
@@ -77,9 +76,6 @@ void main() async {
             create: (context) => NotificationProvider(userData),
           ),
           ChangeNotifierProvider(
-            create: (context) => PaymentProvider(userData),
-          ),
-          ChangeNotifierProvider(
             create: (context) => ThemeProvider(userData),
           ),
           ChangeNotifierProvider(
@@ -105,7 +101,7 @@ void main() async {
 Future<UserDataModel> initializeUserData(Box<UserDataModel> box) async {
   if (box.isEmpty) {
     final defaultUserData = UserDataModel(
-      premium: false,
+      premium: DateTime(1900),
       vibration: false,
       notificationIndex: 1,
       whiteNoiseIndex: 0,

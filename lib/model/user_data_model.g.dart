@@ -17,7 +17,7 @@ class UserDataModelAdapter extends TypeAdapter<UserDataModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserDataModel(
-      premium: fields[0] as bool,
+      premium: fields[0] as DateTime,
       vibration: fields[1] as bool,
       notificationIndex: fields[2] as int,
       whiteNoiseIndex: fields[3] as int,
