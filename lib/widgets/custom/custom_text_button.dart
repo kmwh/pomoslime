@@ -40,7 +40,7 @@ class CustomTextButton extends StatelessWidget {
           text,
           style: TextStyle(
             fontSize: fontSize,
-            fontWeight: FontWeight.w300,
+            fontWeight: FontWeight.w400,
             color: Theme.of(context).colorScheme.primary,
           ),
         ),

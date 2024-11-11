@@ -20,10 +20,14 @@ class PremiumItemPopup extends StatelessWidget {
           child: ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              backgroundColor: Theme.of(context).colorScheme.surfaceBright,
               shadowColor: Colors.transparent,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
+                side: BorderSide(
+                  color: Theme.of(context).colorScheme.secondary,
+                  width: 0.8,
+                ),
               ),
               padding: EdgeInsets.zero,
             ),
@@ -36,17 +40,12 @@ class PremiumItemPopup extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Image.asset(
-                        "assets/images/coffee.png",
-                        width: 24,
-                        color: Theme.of(context).colorScheme.secondary,
-                      ),
-                      const SizedBox(width: 7),
+                      const SizedBox(width: 4),
                       Text(
-                        "coffee_for_dev".tr(),
+                        "one_day_premium".tr(),
                         style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
@@ -55,8 +54,8 @@ class PremiumItemPopup extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 10),
                     child: Image.asset(
-                      "assets/images/key.png",
-                      width: 19,
+                      "assets/images/crown.png",
+                      width: 24,
                       color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),

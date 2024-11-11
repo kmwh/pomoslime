@@ -47,12 +47,9 @@
     "data_restore": "Data restore",
     "restore_payment": "Restore Payment",
     "guest": "Guest",
-    "coffee_for_dev": "Present coffee to devs",
-    "remove_ads": "Remove ads",
-    "manage_multiple_to_do_lists": "Manage multiple To-Do lists",
-    "enable_white_sound": "Enable White Noise option",
-    "add_various_notification": "Add various notification sounds",
-    "present_coffee": "Present coffee",
-    "coffee_price": "3.50 $",
-    "premium_description": "Thank you, and we offer you additional features!"
+    "one_day_premium": "One-day Premium",
+    "remove_splash_ads": "Remove splash ads",
+    "remove_banner_ads": "Remove banner ads",
+    "premium_description": "Watch the video and use premium\n features for a day!",
+    "start_premium": "Start Premium"
 }

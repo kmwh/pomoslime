@@ -38,49 +38,45 @@ class PremiumPopup extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 6),
+            // Image.asset(
+            //   "assets/images/crown.png",
+            //   width: 30,
+            //   color: Theme.of(context).colorScheme.secondary,
+            // ),
             Text(
-              "coffee_for_dev".tr(),
+              "one_day_premium".tr(),
               style: TextStyle(
-                fontSize: 18,
-                color: Theme.of(context).colorScheme.secondaryFixed,
+                fontSize: 19,
+                fontWeight: FontWeight.normal,
+                color: Theme.of(context).colorScheme.secondary,
               ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/images/coffee.png",
-                  width: 23,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-                SizedBox(width: 7),
-                Text(
-                  "coffee_price".tr(),
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ],
             ),
             const SizedBox(height: 20),
             Lottie.asset(
               "assets/animations/slime_rest_${context.read<ThemeProvider>().darkMode ? 'white' : 'black'}.json",
               width: 120,
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "premium_description".tr(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.primary.withAlpha(200),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PremiumPopupText(text: "remove_ads".tr()),
+                PremiumPopupText(text: "remove_splash_ads".tr()),
                 SizedBox(height: 12),
-                PremiumPopupText(text: "manage_multiple_to_do_lists".tr()),
-                SizedBox(height: 12),
-                PremiumPopupText(text: "enable_white_sound".tr()),
-                SizedBox(height: 12),
-                PremiumPopupText(text: "add_various_notification".tr()),
+                PremiumPopupText(text: "remove_banner_ads".tr()),
               ],
             ),
             const SizedBox(height: 34),
@@ -90,7 +86,7 @@ class PremiumPopup extends StatelessWidget {
                   Navigator.pop(context);
                 }
                 return CustomTextButton(
-                  text: "present_coffee".tr(),
+                  text: "start_premium".tr(),
                   width: 210,
                   verticalPadding: 16,
                   fontSize: 15,

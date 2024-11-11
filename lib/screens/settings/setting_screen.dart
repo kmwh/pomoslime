@@ -130,8 +130,11 @@ class SettingScreen extends StatelessWidget {
                   builder: (context, provider, child) {
                     return provider.isPremium
                         ? SizedBox.shrink()
-                        : PremiumItemPopup(
-                            onPressed: () => showPremiumPopup(context),
+                        : Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: PremiumItemPopup(
+                              onPressed: () => showPremiumPopup(context),
+                            ),
                           );
                   },
                 ),
