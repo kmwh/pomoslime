@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- <key>GADApplicationIdentifier</key>
-	<string>ios 앱ID를 넣어주세요</string> -->
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-4876179682567763~1236470405</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>

@@ -105,8 +105,7 @@ class TimerProvider with ChangeNotifier {
       // 백색소음 세팅
       if (!isRunning ||
           currentSessionName == 'short' ||
-          currentSessionName == 'long' ||
-          DateTime.now().isAfter(_userData.premium)) {
+          currentSessionName == 'long') {
         context!.read<WhiteNoiseProvider>().pauseWhiteNoise(); // 백색소음 중지
       } else if (currentSessionName == 'focus' && _userData.focusImmediately) {
         context!.read<WhiteNoiseProvider>().playWhiteNoise(); // 백색소음 시작

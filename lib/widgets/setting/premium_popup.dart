@@ -38,11 +38,6 @@ class PremiumPopup extends StatelessWidget {
                 ),
               ],
             ),
-            // Image.asset(
-            //   "assets/images/crown.png",
-            //   width: 30,
-            //   color: Theme.of(context).colorScheme.secondary,
-            // ),
             Text(
               "one_day_premium".tr(),
               style: TextStyle(
@@ -90,7 +85,9 @@ class PremiumPopup extends StatelessWidget {
                   width: 210,
                   verticalPadding: 16,
                   fontSize: 15,
-                  onPressed: () {},
+                  onPressed: () {
+                    provider.showRewardedAd();
+                  },
                 );
               },
             ),

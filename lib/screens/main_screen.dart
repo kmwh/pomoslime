@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
 
       // 전면 광고 띄우기
       int randomNum = Random().nextInt(20);
-      if (randomNum == 1) {
+      if (randomNum == 1 && !context.read<AdProvider>().isPremium) {
         context.read<AdProvider>().showInterstitialAd();
       }
     });

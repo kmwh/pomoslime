@@ -55,8 +55,7 @@ class AdProvider with ChangeNotifier {
           _interstitialAd = ad;
         },
         onAdFailedToLoad: (err) {
-          _interstitialAd?.dispose();
-          _loadInterstitialAd();
+          debugPrint('Failed to load an interstitial ad: ${err.message}');
         },
       ),
     );
@@ -64,11 +63,23 @@ class AdProvider with ChangeNotifier {
 
   void _loadRewardedAd() {
     RewardedAd.load(
-      adUnitId: AdHelper.rewardedAdUnitId,
+      adUnitId: AdHelper.testRewardedAdUnitId,
       request: AdRequest(),
       rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) {},
-        onAdFailedToLoad: (err) {},
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              ad.dispose();
+              _rewardedAd = null;
+              _loadRewardedAd();
+            },
+          );
+
+          _rewardedAd = ad;
+        },
+        onAdFailedToLoad: (err) {
+          debugPrint('Failed to load a rewarded ad: ${err.message}');
+        },
       ),
     );
   }
@@ -89,6 +100,17 @@ class AdProvider with ChangeNotifier {
   void showInterstitialAd() {
     if (_interstitialAd != null) {
       _interstitialAd?.show();
+    }
+  }
+
+  void showRewardedAd() {
+    if (_rewardedAd != null) {
+      _rewardedAd?.show(
+        onUserEarnedReward: (ad, reward) {
+          _userData.premium = DateTime.now().add(Duration(days: 1));
+          notifyListeners();
+        },
+      );
     }
   }
 

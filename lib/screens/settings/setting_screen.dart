@@ -172,7 +172,6 @@ class SettingScreen extends StatelessWidget {
                           icon: "assets/images/sound.png",
                           text: "white_noise".tr(),
                           func: () => showWhiteNoiseMenu(context),
-                          isLocked: !provider.isPremium,
                         );
                       },
                     ),
