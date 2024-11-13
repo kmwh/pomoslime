@@ -55,7 +55,7 @@ class WhiteNoiseMenu extends StatelessWidget {
       ['White Noise', 'sound'],
       ['Rain', 'rain'],
       ['Forest', 'tree'],
-      ['Cafe', 'sound'],
+      ['Cafe', 'coffee'],
       ['Fire', 'fire2'],
       ['Library', 'book'],
     ];

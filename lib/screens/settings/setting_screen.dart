@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomoslime/provider/ad_provider.dart';
-import 'package:pomoslime/provider/background_usage_provider.dart';
+// import 'package:pomoslime/provider/background_usage_provider.dart';
 import 'package:pomoslime/provider/backup_provider.dart';
 import 'package:pomoslime/provider/calender_provider.dart';
 import 'package:pomoslime/provider/focus_immediately_provider.dart';
@@ -97,8 +97,7 @@ class SettingScreen extends StatelessWidget {
                         Consumer<AdProvider>(
                           builder: (context, adProvider, child) {
                             return SettingItemPopup(
-                              icon:
-                                  "assets/images/${adProvider.isPremium ? "coffee" : "user"}.png",
+                              icon: "assets/images/user.png",
                               text: provider.loggedIn
                                   ? provider.displayName
                                   : "guest".tr(),
@@ -215,16 +214,16 @@ class SettingScreen extends StatelessWidget {
                         );
                       },
                     ),
-                    Consumer2<BackgroundUsageProvider, BackupProvider>(
-                      builder: (context, provider, backupProvider, child) {
-                        return SettingItemSwitch(
-                          initialValue: provider.backgroundUsage,
-                          icon: "assets/images/timer.png",
-                          text: "use_in_background".tr(),
-                          onChanged: (value) => provider.toggle(),
-                        );
-                      },
-                    ),
+                    // Consumer2<BackgroundUsageProvider, BackupProvider>(
+                    //   builder: (context, provider, backupProvider, child) {
+                    //     return SettingItemSwitch(
+                    //       initialValue: provider.backgroundUsage,
+                    //       icon: "assets/images/timer.png",
+                    //       text: "use_in_background".tr(),
+                    //       onChanged: (value) => provider.toggle(),
+                    //     );
+                    //   },
+                    // ),
                     const LanguageDropdownButton(),
                   ],
                 ),

@@ -23,6 +23,7 @@ class WhiteNoiseProvider with ChangeNotifier {
 
   void playWhiteNoise() async {
     if (whiteNoiseIndex != 0) {
+      await whiteNoisePlayer.setVolume(1);
       await whiteNoisePlayer
           .play(AssetSource("sounds/white_noise/sound_$whiteNoiseIndex.mp3"));
     }

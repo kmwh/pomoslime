@@ -25,6 +25,7 @@ class NotificationProvider with ChangeNotifier {
   }
 
   void playNotification(int index) async {
+    await notificationPlayer.setVolume(1);
     await notificationPlayer
         .play(AssetSource("sounds/notification/sound_$index.mp3"));
   }

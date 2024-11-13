@@ -44,8 +44,6 @@ class BackupProvider with ChangeNotifier {
 
         await api.files.create(driveFile, uploadMedia: media);
 
-        print("YES");
-
         // 로딩화면 제거
         setIsLoading(false);
         notifyListeners();
@@ -99,8 +97,6 @@ class BackupProvider with ChangeNotifier {
 
             _userData.updateFromMap(userDataMap);
             _calenderData.updateFromMap(calendarDataMap);
-
-            print("YYES");
           }
         } else {
           debugPrint("Cannot finds file to restore.");
