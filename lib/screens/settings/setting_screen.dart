@@ -89,6 +89,7 @@ class SettingScreen extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 20,),
                 Consumer<SignInProvider>(
                   builder: (context, provider, child) {
                     return SettingMenu(
@@ -97,11 +98,12 @@ class SettingScreen extends StatelessWidget {
                         Consumer<AdProvider>(
                           builder: (context, adProvider, child) {
                             return SettingItemPopup(
-                              icon: "assets/images/user.png",
+                              icon: "assets/images/${adProvider.isPremium ? "crown" : "user"}.png",
                               text: provider.loggedIn
                                   ? provider.displayName
                                   : "guest".tr(),
                               func: null,
+                              hasColor: adProvider.isPremium,
                             );
                           },
                         ),
