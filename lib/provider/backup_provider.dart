@@ -24,7 +24,6 @@ class BackupProvider with ChangeNotifier {
       if (api != null) {
         // 로딩 화면 띄우기
         setIsLoading(true);
-        notifyListeners();
 
         final encryptionHelper = EncryptionHelper(
             encrypt.Key.fromUtf8('32charactertoken32charactertoken'));
@@ -39,14 +38,13 @@ class BackupProvider with ChangeNotifier {
         var media = drive.Media(Stream.value(fileContent), fileContent.length);
 
         var driveFile = drive.File();
-        driveFile.name = "pomoslime_backup_89321958";
+        driveFile.name = "pomoslime_backup_0";
         driveFile.parents = ['appDataFolder'];
 
         await api.files.create(driveFile, uploadMedia: media);
 
         // 로딩화면 제거
         setIsLoading(false);
-        notifyListeners();
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -59,10 +57,9 @@ class BackupProvider with ChangeNotifier {
       if (api != null) {
         // 로딩 화면 띄우기
         setIsLoading(true);
-        notifyListeners();
 
         var fileList = await api.files.list(
-          q: "name='pomoslime_backup_89321958' and 'appDataFolder' in parents",
+          q: "name='pomoslime_backup_0' and 'appDataFolder' in parents",
           spaces: 'appDataFolder',
         );
         String? fileId;
@@ -107,7 +104,6 @@ class BackupProvider with ChangeNotifier {
 
       // 로딩화면 제거
       setIsLoading(false);
-      notifyListeners();
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -115,5 +111,6 @@ class BackupProvider with ChangeNotifier {
 
   void setIsLoading(bool value) {
     _isLoading = value;
+    notifyListeners();
   }
 }

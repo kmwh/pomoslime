@@ -1,47 +1,55 @@
 {
-    "project_info": {
-        "project_number": "327354560033",
-        "project_id": "pomoslime-240f5",
-        "storage_bucket": "pomoslime-240f5.appspot.com"
-    },
-    "client": [
-        {
-            "client_info": {
-                "mobilesdk_app_id": "1:327354560033:android:8419bc5374bd749919bd60",
-                "android_client_info": {
-                    "package_name": "com.muhwa.pomoslime"
-                }
-            },
-            "oauth_client": [
-                {
-                    "client_id": "327354560033-fevil757qjbpqb3ngtjq3um3pqffe21s.apps.googleusercontent.com",
-                    "client_type": 1,
-                    "android_info": {
-                        "package_name": "com.muhwa.pomoslime",
-                        "certificate_hash": "f656dd95712af0c6126cd07693357e43e07fa9e8"
-                    }
-                },
-                {
-                    "client_id": "327354560033-86mqf7qbg9mod36jtfo30kalqotkch1p.apps.googleusercontent.com",
-                    "client_type": 3
-                }
-            ],
-            "api_key": [
-                {
-                    "current_key": "AIzaSyBdaP3JIKVy0uomHAhtCrgInz5q2pkEFss"
-                }
-            ],
-            "services": {
-                "appinvite_service": {
-                    "other_platform_oauth_client": [
-                        {
-                            "client_id": "327354560033-86mqf7qbg9mod36jtfo30kalqotkch1p.apps.googleusercontent.com",
-                            "client_type": 3
-                        }
-                    ]
-                }
-            }
+  "project_info": {
+    "project_number": "921992849728",
+    "project_id": "pomoslime-42d1b",
+    "storage_bucket": "pomoslime-42d1b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921992849728:android:e753c823373be559d132a5",
+        "android_client_info": {
+          "package_name": "com.muhwa.pomoslime"
         }
-    ],
-    "configuration_version": "1"
+      },
+      "oauth_client": [
+        {
+          "client_id": "921992849728-jql294pttuk84n3n235bpvoucacvq3lf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.muhwa.pomoslime",
+            "certificate_hash": "b5e57d606570792d83ca733489dd749b60c61b1b"
+          }
+        },
+        {
+          "client_id": "921992849728-v3laj5capl30h3ubsnulvusdarsm87ss.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.muhwa.pomoslime",
+            "certificate_hash": "ce31fd224189930227cd3d4307ea9e7358cc3535"
+          }
+        },
+        {
+          "client_id": "921992849728-8oq6hht1lpahvmemhku7gbolft4302j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWRrorqM60SI9QaUthqsprR6HOn1SBdaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921992849728-8oq6hht1lpahvmemhku7gbolft4302j3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
 }

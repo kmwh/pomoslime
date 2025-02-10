@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:googleapis/drive/v3.dart' as drive;
@@ -14,54 +13,42 @@ class SignInProvider with ChangeNotifier {
     _loginCheck();
   }
 
-  Future<void> _loginCheck() async {
-    _googleAccount = await GoogleSignIn(scopes: [
-      drive.DriveApi.driveAppdataScope,
-    ]).signInSilently();
-    // User? user = FirebaseAuth.instance.currentUser;
-    if (_googleAccount != null) {
-      _loggedIn = true;
-      _displayName = _googleAccount!.displayName ?? "Unnamed";
-      setDriveApi(_googleAccount);
-      notifyListeners();
-    }
-  }
-
   bool get loggedIn => _loggedIn;
 
   String get displayName => _displayName;
 
   drive.DriveApi? get driveApi => _driveApi;
 
-  Future<void> signInWithGoogle() async {
+  Future<void> _loginCheck() async {
     _googleAccount = await GoogleSignIn(scopes: [
       drive.DriveApi.driveAppdataScope,
-    ]).signIn();
+    ]).signInSilently();
+    setUserInfo();
+  }
 
+  void setUserInfo() {
     if (_googleAccount != null) {
       _displayName = _googleAccount!.displayName ?? "Unnamed";
+      _loggedIn = true;
+      setDriveApi(_googleAccount);
+      notifyListeners();
+    }
+  }
 
-      final GoogleSignInAuthentication googleAuth =
-          await _googleAccount!.authentication;
-
-      final googleCredential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      UserCredential credential =
-          await FirebaseAuth.instance.signInWithCredential(googleCredential);
-
-      if (credential.user != null) {
-        _loggedIn = true;
-        setDriveApi(_googleAccount);
-        notifyListeners();
-      }
+  Future<void> signIn() async {
+    try {
+      GoogleSignIn googleSignIn =
+          GoogleSignIn(scopes: [drive.DriveApi.driveAppdataScope]);
+      print("************** $googleSignIn");
+      _googleAccount =
+          await googleSignIn.signInSilently() ?? await googleSignIn.signIn();
+      setUserInfo();
+    } catch (e) {
+      print("************** Error during Google Sign-In: $e");
     }
   }
 
   Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
     _loggedIn = false;
     setDriveApi(null);

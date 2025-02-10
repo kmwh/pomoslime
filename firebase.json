@@ -3,16 +3,16 @@
     "platforms": {
       "android": {
         "default": {
-          "projectId": "pomoslime-240f5",
-          "appId": "1:327354560033:android:8419bc5374bd749919bd60",
+          "projectId": "pomoslime-42d1b",
+          "appId": "1:921992849728:android:e753c823373be559d132a5",
           "fileOutput": "android/app/google-services.json"
         }
       },
       "dart": {
         "lib/firebase_options.dart": {
-          "projectId": "pomoslime-240f5",
+          "projectId": "pomoslime-42d1b",
           "configurations": {
-            "android": "1:327354560033:android:8419bc5374bd749919bd60"
+            "android": "1:921992849728:android:e753c823373be559d132a5"
           }
         }
       }

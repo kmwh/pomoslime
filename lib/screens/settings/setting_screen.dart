@@ -89,7 +89,9 @@ class SettingScreen extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Consumer<SignInProvider>(
                   builder: (context, provider, child) {
                     return SettingMenu(
@@ -98,7 +100,8 @@ class SettingScreen extends StatelessWidget {
                         Consumer<AdProvider>(
                           builder: (context, adProvider, child) {
                             return SettingItemPopup(
-                              icon: "assets/images/${adProvider.isPremium ? "crown" : "user"}.png",
+                              icon:
+                                  "assets/images/${adProvider.isPremium ? "crown" : "user"}.png",
                               text: provider.loggedIn
                                   ? provider.displayName
                                   : "guest".tr(),
@@ -115,7 +118,7 @@ class SettingScreen extends StatelessWidget {
                               : "google_login".tr(),
                           func: () => provider.loggedIn
                               ? showLogoutPopup(context)
-                              : provider.signInWithGoogle(),
+                              : provider.signIn(),
                         ),
                         SettingItemPopup(
                           icon: "assets/images/cloud.png",
